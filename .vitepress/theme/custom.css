@@ -1,0 +1,11 @@
+/* Hero name - two-color gradient */
+.VPHero .name .clip {
+	background: linear-gradient(120deg, #0ea5e9 30%, #6366f1 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+:root {
+	--vp-home-hero-name-color: #0ea5e9;
+}

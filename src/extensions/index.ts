@@ -1,0 +1,3 @@
+const PLC_EXTENSION_MODULES = {}
+
+export { PLC_EXTENSION_MODULES }

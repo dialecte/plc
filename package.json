@@ -1,0 +1,62 @@
+{
+	"name": "@dialecte/plc",
+	"version": "0.0.1",
+	"description": "Dialecte - PLC (Programmable Logic Controller) sdk",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dialecte/plc.git"
+	},
+	"source": "src/index.ts",
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"//====== BUILD ======//": "",
+		"build": "run-p type-check \"build-only {@}\" --",
+		"build-only": "tsc -p tsconfig.json && vite build",
+		"//====== VITEPRESS ======//": "",
+		"doc:dev": "vitepress dev",
+		"doc:build": "vitepress build",
+		"doc:preview": "vitepress preview",
+		"//====== TEST ======//": "",
+		"test": "vitest",
+		"//====== CHECK ======//": "",
+		"check": "run-p type-check lint:check format:check",
+		"type-check": "tsc --noEmit",
+		"lint:check": "oxlint",
+		"lint:fix": "oxlint . --fix -D correctness --ignore-path .gitignore",
+		"format:check": "oxfmt --check",
+		"format:fix": "oxfmt",
+		"//====== HOOKS ======//": "",
+		"prepare": "husky"
+	},
+	"dependencies": {
+		"@dialecte/core": "0.2.16"
+	},
+	"devDependencies": {
+		"@tsconfig/node24": "^24.0.4",
+		"@types/node": "^24.12.4",
+		"@vitest/browser-playwright": "^4.1.8",
+		"husky": "^9.1.7",
+		"jiti": "^2.4.2",
+		"npm-run-all2": "^8.0.4",
+		"oxfmt": "^0.53.0",
+		"oxlint": "^1.68.0",
+		"playwright": "^1.60.0",
+		"tsx": "^4.22.4",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.16",
+		"vite-plugin-dts": "^5.0.2",
+		"vitepress": "^2.0.0-alpha.17",
+		"vitepress-plugin-llms": "^1.13.1",
+		"vitest": "^4.1.8"
+	}
+}
