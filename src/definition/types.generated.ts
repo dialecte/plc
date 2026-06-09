@@ -13,11 +13,13 @@ export type AttributesAccessVariable = {
 }
 
 export type AttributesAccessVars = {
+	accessSpecifier?: 'private' | 'protected' | 'internal' | 'public' | (string & {})
 	constant?: string
 	globalId?: string
 	non_retain?: string
 	pragma?: string
 	retain?: string
+	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
 }
 
 export type AttributesAction = {
@@ -26,11 +28,32 @@ export type AttributesAction = {
 	pragma?: string
 }
 
-export type AttributesAddData = {
+export type AttributesActionBlock = {
+	globalId?: string
+	indicator?: string
 }
 
-export type AttributesAddDataInfo = {
+export type AttributesActionQualifier = {
+	duration?: string
+	qualifier?:
+		| 'P1'
+		| 'N'
+		| 'P0'
+		| 'R'
+		| 'S'
+		| 'L'
+		| 'D'
+		| 'P'
+		| 'DS'
+		| 'DL'
+		| 'SD'
+		| 'SL'
+		| (string & {})
 }
+
+export type AttributesAddData = {}
+
+export type AttributesAddDataInfo = {}
 
 export type AttributesAddress = {
 	address?: string
@@ -39,10 +62,12 @@ export type AttributesAddress = {
 	notYetFixed?: string
 	pragma?: string
 	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
+	'xsi:type'?: 'AddressExpression' | (string & {})
 }
 
-export type AttributesArrayValue = {
-}
+export type AttributesArrayValue = {}
+
+export type AttributesBaseType = {}
 
 export type AttributesBody = {
 	globalId?: string
@@ -50,6 +75,7 @@ export type AttributesBody = {
 }
 
 export type AttributesBodyContent = {
+	'xsi:type'?: 'FBD' | 'IL' | 'LD' | 'SFC' | 'ST' | (string & {})
 }
 
 export type AttributesClass = {
@@ -61,10 +87,17 @@ export type AttributesClass = {
 	pragma?: string
 }
 
-export type AttributesCondition = {
+export type AttributesCommonObject = {
 	globalId?: string
-	pragma?: string
+	label?: string
+	'xsi:type'?: 'ActionBlocks' | 'Comment' | 'Connector' | 'Continuation' | (string & {})
 }
+
+export type AttributesComplexOperand = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+}
+
+export type AttributesCondition = {}
 
 export type AttributesConfigVariable = {
 	globalId?: string
@@ -83,6 +116,31 @@ export type AttributesConfiguration = {
 	pragma?: string
 }
 
+export type AttributesConnection = {
+	feedbackVariable?: string
+	globalId?: string
+	refConnectionPointOutId: string
+	'xsi:type'?: 'FeedbackConnection' | (string & {})
+}
+
+export type AttributesConnectionPointIn = {
+	globalId?: string
+}
+
+export type AttributesConnectionPointOut = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesConnectionPointOutAction = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesContent = {
+	'xsi:type'?: 'SimpleText' | (string & {})
+}
+
 export type AttributesContentHeader = {
 	author?: string
 	creationDateTime: string
@@ -93,8 +151,7 @@ export type AttributesContentHeader = {
 	version?: string
 }
 
-export type AttributesCoordinateInfo = {
-}
+export type AttributesCoordinateInfo = {}
 
 export type AttributesData = {
 	handleUnknown: 'preserve' | 'discard' | 'implementation' | (string & {})
@@ -109,13 +166,22 @@ export type AttributesDataTypeDecl = {
 }
 
 export type AttributesDescription = {
+	'xsi:type'?: 'SimpleText' | (string & {})
+}
+
+export type AttributesDimensionSpec = {
+	dimensionNumber: string
 }
 
 export type AttributesDocumentation = {
+	'xsi:type'?: 'SimpleText' | (string & {})
 }
 
-export type AttributesExtends = {
+export type AttributesEnumerator = {
+	name: string
 }
+
+export type AttributesExtends = {}
 
 export type AttributesExternalVars = {
 	constant?: string
@@ -128,9 +194,32 @@ export type AttributesFbInstTaskAssociation = {
 	fbInstanceName: string
 }
 
+export type AttributesFbdObject = {
+	complexIdentifier?: string
+	globalId?: string
+	identifier?: string
+	instanceName?: string
+	targetNetworkLabel?: string
+	typeName?: string
+	'xsi:type'?:
+		| 'Block'
+		| 'DataSink'
+		| 'DataSource'
+		| 'Jump'
+		| 'Return'
+		| 'Unconnected'
+		| (string & {})
+}
+
 export type AttributesFbdScaling = {
 	x: string
 	y: string
+}
+
+export type AttributesFeedbackConnection = {
+	feedbackVariable: string
+	globalId?: string
+	refConnectionPointOutId: string
 }
 
 export type AttributesFileHeader = {
@@ -163,19 +252,46 @@ export type AttributesGlobalNamespace = {
 }
 
 export type AttributesGlobalVars = {
+	accessSpecifier?: 'private' | 'protected' | 'internal' | 'public' | (string & {})
 	constant?: string
 	globalId?: string
 	non_retain?: string
 	pragma?: string
 	retain?: string
+	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
 }
 
-export type AttributesImplements = {
+export type AttributesGraphicalExpression = {
+	evaluationOrder: string
+	globalId?: string
+	label?: string
+	'xsi:type'?: 'FbdNetwork' | 'LadderRung' | (string & {})
 }
+
+export type AttributesGraphicalPredicate = {}
+
+export type AttributesIL = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+}
+
+export type AttributesImplements = {}
 
 export type AttributesInOutAssignment = {
 	actualValue: string
 	formalParameter: string
+}
+
+export type AttributesInOutVariable = {
+	globalId?: string
+	negated?: string
+	parameterName: string
+}
+
+export type AttributesInOutVariables = {}
+
+export type AttributesIndexRange = {
+	lower: string
+	upper: string
 }
 
 export type AttributesInfo = {
@@ -185,25 +301,40 @@ export type AttributesInfo = {
 }
 
 export type AttributesInitialValue = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
 }
 
-export type AttributesInoutVars = {
+export type AttributesInline = {
+	globalId?: string
+	pragma?: string
 }
+
+export type AttributesInoutVars = {}
 
 export type AttributesInputAssignment = {
 	actualValue: string
 	formalParameter: string
 }
 
+export type AttributesInputVariable = {
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	globalId?: string
+	negated?: string
+	parameterName: string
+	suppressName?: string
+}
+
+export type AttributesInputVariables = {}
+
 export type AttributesInputVars = {
 	non_retain?: string
 	retain?: string
 }
 
-export type AttributesInstances = {
-}
+export type AttributesInstances = {}
 
 export type AttributesInstantlyDefinedType = {
+	'xsi:type'?: 'ArrayTypeSpec' | 'ReferenceTypeSpec' | (string & {})
 }
 
 export type AttributesInterface = {
@@ -213,6 +344,24 @@ export type AttributesInterface = {
 	pragma?: string
 }
 
+export type AttributesLdObject = {
+	compareOperator?: '>' | '>=' | '=' | '<=' | '<' | '<>' | (string & {})
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	globalId?: string
+	latch?: 'none' | 'set' | 'reset' | (string & {})
+	negated?: string
+	operand?: string
+	operand1?: string
+	operand2?: string
+	'xsi:type'?:
+		| 'Coil'
+		| 'CompareContact'
+		| 'Contact'
+		| 'LeftPowerRail'
+		| 'RightPowerRail'
+		| (string & {})
+}
+
 export type AttributesLdScaling = {
 	x: string
 	y: string
@@ -220,6 +369,12 @@ export type AttributesLdScaling = {
 
 export type AttributesMainBody = {
 	globalId?: string
+	pragma?: string
+}
+
+export type AttributesMember = {
+	globalId?: string
+	name: string
 	pragma?: string
 }
 
@@ -240,20 +395,35 @@ export type AttributesNamespaceDecl = {
 	pragma?: string
 }
 
+export type AttributesNetwork = {
+	evaluationOrder: string
+	globalId?: string
+	label?: string
+}
+
 export type AttributesOutputAssignment = {
 	actualValue: string
 	formalParameter: string
 }
+
+export type AttributesOutputVariable = {
+	globalId?: string
+	negated?: string
+	parameterName: string
+	suppressName?: string
+}
+
+export type AttributesOutputVariables = {}
 
 export type AttributesOutputVars = {
 	non_retain?: string
 	retain?: string
 }
 
-export type AttributesParameters = {
-}
+export type AttributesParameters = {}
 
 export type AttributesPredicateContent = {
+	'xsi:type'?: 'FBD' | 'IL' | 'LD' | 'ST' | (string & {})
 }
 
 export type AttributesProgram = {
@@ -276,6 +446,26 @@ export type AttributesProject = {
 	schemaVersion: string
 }
 
+export type AttributesRange = {
+	lower: string
+	upper: string
+}
+
+export type AttributesReference = {
+	name: string
+}
+
+export type AttributesReferenceName = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+}
+
+export type AttributesReferenceTo = {}
+
+export type AttributesRelPosition = {
+	x: string
+	y: string
+}
+
 export type AttributesResource = {
 	globalId?: string
 	name: string
@@ -283,7 +473,31 @@ export type AttributesResource = {
 	resourceTypeName: string
 }
 
-export type AttributesResultType = {
+export type AttributesResultType = {}
+
+export type AttributesRung = {
+	evaluationOrder: string
+	globalId?: string
+	label?: string
+}
+
+export type AttributesST = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+}
+
+export type AttributesSfcObject = {
+	globalId?: string
+	initialStep?: string
+	mutualExclusion?: string
+	name?: string
+	'xsi:type'?:
+		| 'SelectionConvergence'
+		| 'SelectionDivergence'
+		| 'SimultaneousConvergence'
+		| 'SimultaneousDivergence'
+		| 'Step'
+		| 'Transition'
+		| (string & {})
 }
 
 export type AttributesSfcScaling = {
@@ -295,21 +509,36 @@ export type AttributesSimpleValue = {
 	value?: string
 }
 
-export type AttributesStructValue = {
+export type AttributesSize = {
+	x: string
+	y: string
 }
+
+export type AttributesStructValue = {}
 
 export type AttributesTask = {
 	globalId?: string
+	interval?: string
 	name: string
 	pragma?: string
+	priority?: string
+	single?: string
+	'xsi:type'?: 'StandardTask' | (string & {})
 }
 
 export type AttributesTempVars = {
+	accessSpecifier?: 'private' | 'protected' | 'internal' | 'public' | (string & {})
 	constant?: string
 	globalId?: string
 	non_retain?: string
 	pragma?: string
 	retain?: string
+	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
+}
+
+export type AttributesTextualPredicate = {
+	globalId?: string
+	pragma?: string
 }
 
 export type AttributesTransition = {
@@ -318,19 +547,29 @@ export type AttributesTransition = {
 	pragma?: string
 }
 
-export type AttributesType = {
-}
+export type AttributesType = {}
 
 export type AttributesTypeName = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
 }
 
-export type AttributesTypes = {
-}
+export type AttributesTypes = {}
 
 export type AttributesUserDefinedTypeSpec = {
+	overlap?: string
+	'xsi:type'?:
+		| 'ArrayTypeSpec'
+		| 'DirectlyDerivedTypeSpec'
+		| 'EnumTypeSpec'
+		| 'EnumTypeWithNamedValueSpec'
+		| 'ReferenceTypeSpec'
+		| 'StructTypeSpec'
+		| 'SubrangeTypeSpec'
+		| (string & {})
 }
 
 export type AttributesUsingDirective = {
+	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
 }
 
 export type AttributesValue = {
@@ -341,7 +580,10 @@ export type AttributesVariable = {
 	globalId?: string
 	name: string
 	pragma?: string
+	'xsi:type'?: 'VariableDecl' | (string & {})
 }
+
+export type AttributesVariableLength = {}
 
 export type AttributesVars = {
 	accessSpecifier: 'private' | 'protected' | 'internal' | 'public' | (string & {})
@@ -356,60 +598,98 @@ export type AttributesMap = {
 	AccessVariable: AttributesAccessVariable
 	AccessVars: AttributesAccessVars
 	Action: AttributesAction
+	ActionBlock: AttributesActionBlock
+	ActionQualifier: AttributesActionQualifier
 	AddData: AttributesAddData
 	AddDataInfo: AttributesAddDataInfo
 	Address: AttributesAddress
 	ArrayValue: AttributesArrayValue
+	BaseType: AttributesBaseType
 	Body: AttributesBody
 	BodyContent: AttributesBodyContent
 	Class: AttributesClass
+	CommonObject: AttributesCommonObject
+	ComplexOperand: AttributesComplexOperand
 	Condition: AttributesCondition
 	ConfigVariable: AttributesConfigVariable
 	ConfigVars: AttributesConfigVars
 	Configuration: AttributesConfiguration
+	Connection: AttributesConnection
+	ConnectionPointIn: AttributesConnectionPointIn
+	ConnectionPointOut: AttributesConnectionPointOut
+	ConnectionPointOutAction: AttributesConnectionPointOutAction
+	Content: AttributesContent
 	ContentHeader: AttributesContentHeader
 	CoordinateInfo: AttributesCoordinateInfo
 	Data: AttributesData
 	DataTypeDecl: AttributesDataTypeDecl
 	Description: AttributesDescription
+	DimensionSpec: AttributesDimensionSpec
 	Documentation: AttributesDocumentation
+	Enumerator: AttributesEnumerator
 	Extends: AttributesExtends
 	ExternalVars: AttributesExternalVars
 	FbInstTaskAssociation: AttributesFbInstTaskAssociation
+	FbdObject: AttributesFbdObject
 	FbdScaling: AttributesFbdScaling
+	FeedbackConnection: AttributesFeedbackConnection
 	FileHeader: AttributesFileHeader
 	Function: AttributesFunction
 	FunctionBlock: AttributesFunctionBlock
 	GlobalNamespace: AttributesGlobalNamespace
 	GlobalVars: AttributesGlobalVars
+	GraphicalExpression: AttributesGraphicalExpression
+	GraphicalPredicate: AttributesGraphicalPredicate
+	IL: AttributesIL
 	Implements: AttributesImplements
 	InOutAssignment: AttributesInOutAssignment
+	InOutVariable: AttributesInOutVariable
+	InOutVariables: AttributesInOutVariables
+	IndexRange: AttributesIndexRange
 	Info: AttributesInfo
 	InitialValue: AttributesInitialValue
+	Inline: AttributesInline
 	InoutVars: AttributesInoutVars
 	InputAssignment: AttributesInputAssignment
+	InputVariable: AttributesInputVariable
+	InputVariables: AttributesInputVariables
 	InputVars: AttributesInputVars
 	Instances: AttributesInstances
 	InstantlyDefinedType: AttributesInstantlyDefinedType
 	Interface: AttributesInterface
+	LdObject: AttributesLdObject
 	LdScaling: AttributesLdScaling
 	MainBody: AttributesMainBody
+	Member: AttributesMember
 	Method: AttributesMethod
 	NamespaceDecl: AttributesNamespaceDecl
+	Network: AttributesNetwork
 	OutputAssignment: AttributesOutputAssignment
+	OutputVariable: AttributesOutputVariable
+	OutputVariables: AttributesOutputVariables
 	OutputVars: AttributesOutputVars
 	Parameters: AttributesParameters
 	PredicateContent: AttributesPredicateContent
 	Program: AttributesProgram
 	ProgramInstance: AttributesProgramInstance
 	Project: AttributesProject
+	Range: AttributesRange
+	Reference: AttributesReference
+	ReferenceName: AttributesReferenceName
+	ReferenceTo: AttributesReferenceTo
+	RelPosition: AttributesRelPosition
 	Resource: AttributesResource
 	ResultType: AttributesResultType
+	Rung: AttributesRung
+	ST: AttributesST
+	SfcObject: AttributesSfcObject
 	SfcScaling: AttributesSfcScaling
 	SimpleValue: AttributesSimpleValue
+	Size: AttributesSize
 	StructValue: AttributesStructValue
 	Task: AttributesTask
 	TempVars: AttributesTempVars
+	TextualPredicate: AttributesTextualPredicate
 	Transition: AttributesTransition
 	Type: AttributesType
 	TypeName: AttributesTypeName
@@ -418,6 +698,7 @@ export type AttributesMap = {
 	UsingDirective: AttributesUsingDirective
 	Value: AttributesValue
 	Variable: AttributesVariable
+	VariableLength: AttributesVariableLength
 	Vars: AttributesVars
 }
 

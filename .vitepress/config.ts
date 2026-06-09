@@ -43,9 +43,7 @@ export default defineConfig({
 			'/api/': [
 				{
 					text: 'API',
-					items: [
-						{ text: 'Types', link: '/api/types' },
-					],
+					items: [{ text: 'Types', link: '/api/types' }],
 				},
 				{
 					text: 'Core',

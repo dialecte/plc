@@ -3,20 +3,31 @@
 export const DEFINITION = {
 	AccessVariable: {
 		tag: 'AccessVariable',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['AccessVars'],
 		attributes: {
-			sequence: ["alias", "direction", "globalId", "instancePathAndName", "pragma"],
+			sequence: ['alias', 'direction', 'globalId', 'instancePathAndName', 'pragma'],
 			details: {
-				alias: { required: true, facets: { whiteSpace: "preserve" } },
-				direction: { facets: { enumeration: ["readOnly", "readWrite"], pattern: ["[-.:0-9A-Z_a-z]+"], whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				instancePathAndName: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				alias: { required: true, facets: { whiteSpace: 'preserve' } },
+				direction: {
+					facets: {
+						enumeration: ['readOnly', 'readWrite'],
+						pattern: ['[-.:0-9A-Z_a-z]+'],
+						whiteSpace: 'collapse',
+					},
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				instancePathAndName: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Type"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Type'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -27,20 +38,43 @@ export const DEFINITION = {
 	},
 	AccessVars: {
 		tag: 'AccessVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'Configuration'],
 		attributes: {
-			sequence: ["constant", "globalId", "non_retain", "pragma", "retain"],
+			sequence: [
+				'accessSpecifier',
+				'constant',
+				'globalId',
+				'non_retain',
+				'pragma',
+				'retain',
+				'xsi:type',
+			],
 			details: {
-				constant: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				non_retain: { default: "false", facets: { whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				retain: { default: "false", facets: { whiteSpace: "collapse" } },
+				accessSpecifier: {
+					facets: {
+						enumeration: ['private', 'protected', 'internal', 'public'],
+						whiteSpace: 'preserve',
+					},
+				},
+				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['VarListWithAccessSpec'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Variable"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -51,18 +85,23 @@ export const DEFINITION = {
 	},
 	Action: {
 		tag: 'Action',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'FunctionBlock'],
 		attributes: {
-			sequence: ["globalId", "name", "pragma"],
+			sequence: ['globalId', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Body"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Body'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -71,17 +110,134 @@ export const DEFINITION = {
 			},
 		},
 	},
-	AddData: {
-		tag: 'AddData',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['FileHeader', 'ContentHeader', 'GlobalNamespace', 'NamespaceDecl', 'DataTypeDecl', 'Program', 'AccessVars', 'Variable', 'Address', 'GlobalVars', 'ExternalVars', 'Vars', 'TempVars', 'MainBody', 'Action', 'Body', 'Transition', 'Condition', 'FunctionBlock', 'Method', 'Class', 'Function', 'Interface', 'Configuration', 'Resource', 'Task', 'ProgramInstance', 'AccessVariable', 'ConfigVars', 'ConfigVariable', 'Project'],
+	ActionBlock: {
+		tag: 'ActionBlock',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['CommonObject'],
 		attributes: {
-			sequence: [],
+			sequence: ['globalId', 'indicator'],
 			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				indicator: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Data"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'ActionQualifier',
+				'Inline',
+				'ComplexOperand',
+				'ReferenceName',
+			],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				ActionQualifier: { maxOccurs: 1 },
+				Inline: { required: true, minOccurs: 1, maxOccurs: 1 },
+				ComplexOperand: { required: true, minOccurs: 1, maxOccurs: 1 },
+				ReferenceName: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [
+				{ options: ['ComplexOperand', 'Inline', 'ReferenceName'], minOccurs: 1, maxOccurs: 1 },
+			],
+		},
+	},
+	ActionQualifier: {
+		tag: 'ActionQualifier',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['ActionBlock'],
+		attributes: {
+			sequence: ['duration', 'qualifier'],
+			details: {
+				duration: { facets: { whiteSpace: 'preserve' } },
+				qualifier: {
+					default: 'N',
+					facets: {
+						enumeration: ['P1', 'N', 'P0', 'R', 'S', 'L', 'D', 'P', 'DS', 'DL', 'SD', 'SL'],
+						pattern: ['[-.:0-9A-Z_a-z]+'],
+						whiteSpace: 'collapse',
+					},
+				},
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+	},
+	AddData: {
+		tag: 'AddData',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'FileHeader',
+			'ContentHeader',
+			'GlobalNamespace',
+			'NamespaceDecl',
+			'DataTypeDecl',
+			'InstantlyDefinedType',
+			'UserDefinedTypeSpec',
+			'Member',
+			'Address',
+			'Program',
+			'AccessVars',
+			'Variable',
+			'GlobalVars',
+			'ExternalVars',
+			'Vars',
+			'TempVars',
+			'MainBody',
+			'Network',
+			'CommonObject',
+			'ConnectionPointIn',
+			'Connection',
+			'FeedbackConnection',
+			'ActionBlock',
+			'Inline',
+			'ConnectionPointOut',
+			'FbdObject',
+			'InOutVariable',
+			'InputVariable',
+			'OutputVariable',
+			'Rung',
+			'LdObject',
+			'SfcObject',
+			'ConnectionPointOutAction',
+			'GraphicalExpression',
+			'TextualPredicate',
+			'Action',
+			'Body',
+			'Transition',
+			'Condition',
+			'FunctionBlock',
+			'Method',
+			'Class',
+			'Function',
+			'Interface',
+			'Configuration',
+			'Resource',
+			'Task',
+			'ProgramInstance',
+			'AccessVariable',
+			'ConfigVars',
+			'ConfigVariable',
+			'Project',
+		],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['Data'],
 			details: {
 				Data: {},
 			},
@@ -89,15 +245,14 @@ export const DEFINITION = {
 	},
 	AddDataInfo: {
 		tag: 'AddDataInfo',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ContentHeader'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["Info"],
+			sequence: ['Info'],
 			details: {
 				Info: {},
 			},
@@ -105,21 +260,42 @@ export const DEFINITION = {
 	},
 	Address: {
 		tag: 'Address',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Variable', 'ConfigVariable'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Member', 'Variable', 'ConfigVariable'],
 		attributes: {
-			sequence: ["address", "globalId", "location", "notYetFixed", "pragma", "size"],
+			sequence: ['address', 'globalId', 'location', 'notYetFixed', 'pragma', 'size', 'xsi:type'],
 			details: {
-				address: { facets: { whiteSpace: "preserve" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				location: { facets: { enumeration: ["I", "Q", "M"], pattern: ["[-.:0-9A-Z_a-z]+"], whiteSpace: "collapse" } },
-				notYetFixed: { default: "false", facets: { whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				size: { facets: { enumeration: ["X", "B", "W", "D", "L"], pattern: ["[-.:0-9A-Z_a-z]+"], whiteSpace: "collapse" } },
+				address: { facets: { whiteSpace: 'preserve' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				location: {
+					facets: {
+						enumeration: ['I', 'Q', 'M'],
+						pattern: ['[-.:0-9A-Z_a-z]+'],
+						whiteSpace: 'collapse',
+					},
+				},
+				notYetFixed: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				size: {
+					facets: {
+						enumeration: ['X', 'B', 'W', 'D', 'L'],
+						pattern: ['[-.:0-9A-Z_a-z]+'],
+						whiteSpace: 'collapse',
+					},
+				},
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AddressExpression'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -129,33 +305,54 @@ export const DEFINITION = {
 	},
 	ArrayValue: {
 		tag: 'ArrayValue',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['InitialValue', 'Value'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["Value"],
+			sequence: ['Value'],
 			details: {
 				Value: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 		},
 	},
+	BaseType: {
+		tag: 'BaseType',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['UserDefinedTypeSpec', 'InstantlyDefinedType'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['TypeName', 'InstantlyDefinedType'],
+			details: {
+				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
+				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+	},
 	Body: {
 		tag: 'Body',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Action', 'Method'],
 		attributes: {
-			sequence: ["globalId", "pragma"],
+			sequence: ['globalId', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "BodyContent"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -166,36 +363,71 @@ export const DEFINITION = {
 	},
 	BodyContent: {
 		tag: 'BodyContent',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['MainBody', 'Body'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['MainBody', 'Inline', 'Body'],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['FBD', 'IL', 'LD', 'SFC', 'ST'] },
+				},
 			},
 		},
 		children: {
-			sequence: [],
+			sequence: [
+				'Network',
+				'IL',
+				'Rung',
+				'CommonObject',
+				'LdObject',
+				'FbdObject',
+				'SfcObject',
+				'ST',
+			],
 			details: {
+				Network: {},
+				IL: { maxOccurs: 1 },
+				Rung: {},
+				CommonObject: { maxOccurs: 1 },
+				LdObject: { maxOccurs: 1 },
+				FbdObject: { maxOccurs: 1 },
+				SfcObject: { maxOccurs: 1 },
+				ST: { maxOccurs: 1 },
 			},
 		},
 	},
 	Class: {
 		tag: 'Class',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['NamespaceDecl', 'GlobalNamespace'],
 		attributes: {
-			sequence: ["abstract", "final", "globalId", "internal", "name", "pragma"],
+			sequence: ['abstract', 'final', 'globalId', 'internal', 'name', 'pragma'],
 			details: {
-				abstract: { default: "false", facets: { whiteSpace: "collapse" } },
-				final: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				abstract: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				final: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Extends", "Implements", "ExternalVars", "Vars", "Method"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'Extends',
+				'Implements',
+				'ExternalVars',
+				'Vars',
+				'Method',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -208,41 +440,111 @@ export const DEFINITION = {
 			},
 		},
 	},
-	Condition: {
-		tag: 'Condition',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Transition'],
+	CommonObject: {
+		tag: 'CommonObject',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Network', 'Rung', 'BodyContent', 'GraphicalExpression'],
 		attributes: {
-			sequence: ["globalId", "pragma"],
+			sequence: ['globalId', 'label', 'xsi:type'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				label: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['ActionBlocks', 'Comment', 'Connector', 'Continuation'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "PredicateContent"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'ConnectionPointIn',
+				'ActionBlock',
+				'Content',
+				'ConnectionPointOut',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
-				UsingDirective: {},
-				PredicateContent: { required: true, minOccurs: 1, maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				ConnectionPointIn: { maxOccurs: 1 },
+				ActionBlock: {},
+				Content: { maxOccurs: 1 },
+				ConnectionPointOut: { maxOccurs: 1 },
 			},
+		},
+	},
+	ComplexOperand: {
+		tag: 'ComplexOperand',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['ActionBlock'],
+		attributes: {
+			sequence: ['xsi:type'],
+			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+		textContent: { facets: { whiteSpace: 'preserve' } },
+	},
+	Condition: {
+		tag: 'Condition',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['SfcObject', 'Transition'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['Reference', 'GraphicalPredicate', 'TextualPredicate'],
+			details: {
+				Reference: { required: true, minOccurs: 1, maxOccurs: 1 },
+				GraphicalPredicate: { required: true, minOccurs: 1, maxOccurs: 1 },
+				TextualPredicate: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [
+				{
+					options: ['GraphicalPredicate', 'Reference', 'TextualPredicate'],
+					minOccurs: 1,
+					maxOccurs: 1,
+				},
+			],
 		},
 	},
 	ConfigVariable: {
 		tag: 'ConfigVariable',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ConfigVars'],
 		attributes: {
-			sequence: ["globalId", "instancePathAndName", "pragma"],
+			sequence: ['globalId', 'instancePathAndName', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				instancePathAndName: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				instancePathAndName: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Type", "InitialValue", "Address"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Type', 'InitialValue', 'Address'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -255,17 +557,22 @@ export const DEFINITION = {
 	},
 	ConfigVars: {
 		tag: 'ConfigVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Configuration'],
 		attributes: {
-			sequence: ["globalId", "pragma"],
+			sequence: ['globalId', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "ConfigVariable"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'ConfigVariable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -276,18 +583,31 @@ export const DEFINITION = {
 	},
 	Configuration: {
 		tag: 'Configuration',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Instances'],
 		attributes: {
-			sequence: ["globalId", "name", "pragma"],
+			sequence: ['globalId', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Resource", "GlobalVars", "AccessVars", "ConfigVars"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'Resource',
+				'GlobalVars',
+				'AccessVars',
+				'ConfigVars',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -299,24 +619,183 @@ export const DEFINITION = {
 			},
 		},
 	},
-	ContentHeader: {
-		tag: 'ContentHeader',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Project'],
+	Connection: {
+		tag: 'Connection',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['ConnectionPointIn'],
 		attributes: {
-			sequence: ["author", "creationDateTime", "language", "modificationDateTime", "name", "organization", "version"],
+			sequence: ['feedbackVariable', 'globalId', 'refConnectionPointOutId', 'xsi:type'],
 			details: {
-				author: { facets: { whiteSpace: "preserve" } },
-				creationDateTime: { required: true, facets: { whiteSpace: "collapse" } },
-				language: { facets: { pattern: ["[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*"], whiteSpace: "collapse" } },
-				modificationDateTime: { facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				organization: { facets: { whiteSpace: "preserve" } },
-				version: { facets: { whiteSpace: "preserve" } },
+				feedbackVariable: { facets: { whiteSpace: 'preserve' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				refConnectionPointOutId: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['FeedbackConnection'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["CoordinateInfo", "AddDataInfo", "AddData"],
+			sequence: ['Documentation', 'AddData', 'RelPosition'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: {},
+			},
+		},
+	},
+	ConnectionPointIn: {
+		tag: 'ConnectionPointIn',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'CommonObject',
+			'InOutVariable',
+			'InputVariable',
+			'FbdObject',
+			'LdObject',
+			'SfcObject',
+			'GraphicalPredicate',
+		],
+		attributes: {
+			sequence: ['globalId'],
+			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'RelPosition', 'Connection', 'FeedbackConnection'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Connection: {},
+				FeedbackConnection: {},
+			},
+			choices: [{ options: ['Connection', 'FeedbackConnection'], minOccurs: 1, maxOccurs: 1 }],
+		},
+	},
+	ConnectionPointOut: {
+		tag: 'ConnectionPointOut',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'CommonObject',
+			'InOutVariable',
+			'OutputVariable',
+			'FbdObject',
+			'LdObject',
+			'SfcObject',
+		],
+		attributes: {
+			sequence: ['connectionPointOutId', 'globalId'],
+			details: {
+				connectionPointOutId: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'RelPosition'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+			},
+		},
+	},
+	ConnectionPointOutAction: {
+		tag: 'ConnectionPointOutAction',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['SfcObject'],
+		attributes: {
+			sequence: ['connectionPointOutId', 'globalId'],
+			details: {
+				connectionPointOutId: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'RelPosition'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+			},
+		},
+	},
+	Content: {
+		tag: 'Content',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['CommonObject'],
+		attributes: {
+			sequence: ['xsi:type'],
+			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['SimpleText'] },
+				},
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+	},
+	ContentHeader: {
+		tag: 'ContentHeader',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Project'],
+		attributes: {
+			sequence: [
+				'author',
+				'creationDateTime',
+				'language',
+				'modificationDateTime',
+				'name',
+				'organization',
+				'version',
+			],
+			details: {
+				author: { facets: { whiteSpace: 'preserve' } },
+				creationDateTime: { required: true, facets: { whiteSpace: 'collapse' } },
+				language: {
+					facets: { pattern: ['[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*'], whiteSpace: 'collapse' },
+				},
+				modificationDateTime: { facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				organization: { facets: { whiteSpace: 'preserve' } },
+				version: { facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: ['CoordinateInfo', 'AddDataInfo', 'AddData'],
 			details: {
 				CoordinateInfo: { maxOccurs: 1 },
 				AddDataInfo: { maxOccurs: 1 },
@@ -326,15 +805,14 @@ export const DEFINITION = {
 	},
 	CoordinateInfo: {
 		tag: 'CoordinateInfo',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ContentHeader'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["FbdScaling", "LdScaling", "SfcScaling"],
+			sequence: ['FbdScaling', 'LdScaling', 'SfcScaling'],
 			details: {
 				FbdScaling: { maxOccurs: 1 },
 				LdScaling: { maxOccurs: 1 },
@@ -344,37 +822,48 @@ export const DEFINITION = {
 	},
 	Data: {
 		tag: 'Data',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['AddData'],
 		attributes: {
-			sequence: ["handleUnknown", "name"],
+			sequence: ['handleUnknown', 'name'],
 			details: {
-				handleUnknown: { required: true, facets: { enumeration: ["preserve", "discard", "implementation"], pattern: ["[-.:0-9A-Z_a-z]+"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "collapse" } },
+				handleUnknown: {
+					required: true,
+					facets: {
+						enumeration: ['preserve', 'discard', 'implementation'],
+						pattern: ['[-.:0-9A-Z_a-z]+'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
 			sequence: [],
 			any: true,
-			details: {
-			},
+			details: {},
 		},
 	},
 	DataTypeDecl: {
 		tag: 'DataTypeDecl',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['NamespaceDecl', 'GlobalNamespace'],
 		attributes: {
-			sequence: ["globalId", "internal", "name", "pragma"],
+			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "UserDefinedTypeSpec"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'UserDefinedTypeSpec'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -385,68 +874,165 @@ export const DEFINITION = {
 	},
 	Description: {
 		tag: 'Description',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Info'],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['SimpleText'] },
+				},
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	DimensionSpec: {
+		tag: 'DimensionSpec',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['InstantlyDefinedType', 'UserDefinedTypeSpec'],
+		attributes: {
+			sequence: ['dimensionNumber'],
 			details: {
+				dimensionNumber: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 4294967295, whiteSpace: 'collapse' },
+				},
 			},
+		},
+		children: {
+			sequence: ['IndexRange', 'VariableLength'],
+			details: {
+				IndexRange: { required: true, minOccurs: 1, maxOccurs: 1 },
+				VariableLength: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [{ options: ['IndexRange', 'VariableLength'], minOccurs: 1, maxOccurs: 1 }],
 		},
 	},
 	Documentation: {
 		tag: 'Documentation',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['GlobalNamespace', 'NamespaceDecl', 'DataTypeDecl', 'Program', 'AccessVars', 'Variable', 'Address', 'GlobalVars', 'ExternalVars', 'Vars', 'TempVars', 'MainBody', 'Action', 'Body', 'Transition', 'Condition', 'FunctionBlock', 'Method', 'Class', 'Function', 'Interface', 'Configuration', 'Resource', 'Task', 'ProgramInstance', 'AccessVariable', 'ConfigVars', 'ConfigVariable', 'Project'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'GlobalNamespace',
+			'NamespaceDecl',
+			'DataTypeDecl',
+			'Enumerator',
+			'Member',
+			'Address',
+			'Program',
+			'AccessVars',
+			'Variable',
+			'GlobalVars',
+			'ExternalVars',
+			'Vars',
+			'TempVars',
+			'MainBody',
+			'Network',
+			'CommonObject',
+			'ConnectionPointIn',
+			'Connection',
+			'FeedbackConnection',
+			'ActionBlock',
+			'Inline',
+			'ConnectionPointOut',
+			'FbdObject',
+			'InOutVariable',
+			'InputVariable',
+			'OutputVariable',
+			'Rung',
+			'LdObject',
+			'SfcObject',
+			'ConnectionPointOutAction',
+			'GraphicalExpression',
+			'TextualPredicate',
+			'Action',
+			'Body',
+			'Transition',
+			'Condition',
+			'FunctionBlock',
+			'Method',
+			'Class',
+			'Function',
+			'Interface',
+			'Configuration',
+			'Resource',
+			'Task',
+			'ProgramInstance',
+			'AccessVariable',
+			'ConfigVars',
+			'ConfigVariable',
+			'Project',
+		],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['SimpleText'] },
+				},
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	Enumerator: {
+		tag: 'Enumerator',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['UserDefinedTypeSpec'],
+		attributes: {
+			sequence: ['name'],
 			details: {
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: ['Documentation'],
+			details: {
+				Documentation: { maxOccurs: 1 },
 			},
 		},
 	},
 	Extends: {
 		tag: 'Extends',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['FunctionBlock', 'Class', 'Interface'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["TypeName", "InstantlyDefinedType"],
+			sequence: ['TypeName', 'InstantlyDefinedType'],
 			details: {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ["InstantlyDefinedType", "TypeName"], minOccurs: 1, maxOccurs: 1 },
-			],
+			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
 		},
 	},
 	ExternalVars: {
 		tag: 'ExternalVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'FunctionBlock', 'Class', 'Function'],
 		attributes: {
-			sequence: ["constant", "globalId", "pragma"],
+			sequence: ['constant', 'globalId', 'pragma'],
 			details: {
-				constant: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Variable"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -457,54 +1043,140 @@ export const DEFINITION = {
 	},
 	FbInstTaskAssociation: {
 		tag: 'FbInstTaskAssociation',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ProgramInstance'],
 		attributes: {
-			sequence: ["associatedTaskName", "fbInstanceName"],
+			sequence: ['associatedTaskName', 'fbInstanceName'],
 			details: {
-				associatedTaskName: { required: true, facets: { whiteSpace: "preserve" } },
-				fbInstanceName: { required: true, facets: { whiteSpace: "preserve" } },
+				associatedTaskName: { required: true, facets: { whiteSpace: 'preserve' } },
+				fbInstanceName: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	FbdObject: {
+		tag: 'FbdObject',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Network', 'Rung', 'BodyContent', 'GraphicalExpression'],
+		attributes: {
+			sequence: [
+				'complexIdentifier',
+				'globalId',
+				'identifier',
+				'instanceName',
+				'targetNetworkLabel',
+				'typeName',
+				'xsi:type',
+			],
 			details: {
+				complexIdentifier: { facets: { whiteSpace: 'preserve' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				identifier: { facets: { whiteSpace: 'preserve' } },
+				instanceName: { facets: { whiteSpace: 'preserve' } },
+				targetNetworkLabel: { facets: { whiteSpace: 'preserve' } },
+				typeName: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: {
+						enumeration: ['Block', 'DataSink', 'DataSource', 'Jump', 'Return', 'Unconnected'],
+					},
+				},
+			},
+		},
+		children: {
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'InOutVariables',
+				'InputVariables',
+				'OutputVariables',
+				'ConnectionPointIn',
+				'ConnectionPointOut',
+			],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				InOutVariables: { maxOccurs: 1 },
+				InputVariables: { maxOccurs: 1 },
+				OutputVariables: { maxOccurs: 1 },
+				ConnectionPointIn: { maxOccurs: 1 },
+				ConnectionPointOut: { maxOccurs: 1 },
 			},
 		},
 	},
 	FbdScaling: {
 		tag: 'FbdScaling',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['CoordinateInfo'],
 		attributes: {
-			sequence: ["x", "y"],
+			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: "collapse" } },
-				y: { required: true, facets: { whiteSpace: "collapse" } },
+				x: { required: true, facets: { whiteSpace: 'collapse' } },
+				y: { required: true, facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	FeedbackConnection: {
+		tag: 'FeedbackConnection',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['ConnectionPointIn'],
+		attributes: {
+			sequence: ['feedbackVariable', 'globalId', 'refConnectionPointOutId'],
 			details: {
+				feedbackVariable: { required: true, facets: { whiteSpace: 'preserve' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				refConnectionPointOutId: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'RelPosition'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: {},
 			},
 		},
 	},
 	FileHeader: {
 		tag: 'FileHeader',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Project'],
 		attributes: {
-			sequence: ["companyName", "companyURL", "productName", "productRelease", "productVersion"],
+			sequence: ['companyName', 'companyURL', 'productName', 'productRelease', 'productVersion'],
 			details: {
-				companyName: { required: true, facets: { whiteSpace: "preserve" } },
-				companyURL: { facets: { whiteSpace: "collapse" } },
-				productName: { required: true, facets: { whiteSpace: "preserve" } },
-				productRelease: { facets: { whiteSpace: "preserve" } },
-				productVersion: { required: true, facets: { whiteSpace: "preserve" } },
+				companyName: { required: true, facets: { whiteSpace: 'preserve' } },
+				companyURL: { facets: { whiteSpace: 'collapse' } },
+				productName: { required: true, facets: { whiteSpace: 'preserve' } },
+				productRelease: { facets: { whiteSpace: 'preserve' } },
+				productVersion: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["AddData"],
+			sequence: ['AddData'],
 			details: {
 				AddData: { maxOccurs: 1 },
 			},
@@ -512,19 +1184,33 @@ export const DEFINITION = {
 	},
 	Function: {
 		tag: 'Function',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['NamespaceDecl', 'GlobalNamespace'],
 		attributes: {
-			sequence: ["globalId", "internal", "name", "pragma"],
+			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "ResultType", "Parameters", "ExternalVars", "TempVars", "MainBody"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'ResultType',
+				'Parameters',
+				'ExternalVars',
+				'TempVars',
+				'MainBody',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -539,21 +1225,40 @@ export const DEFINITION = {
 	},
 	FunctionBlock: {
 		tag: 'FunctionBlock',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['NamespaceDecl', 'GlobalNamespace'],
 		attributes: {
-			sequence: ["abstract", "final", "globalId", "internal", "name", "pragma"],
+			sequence: ['abstract', 'final', 'globalId', 'internal', 'name', 'pragma'],
 			details: {
-				abstract: { default: "false", facets: { whiteSpace: "collapse" } },
-				final: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				abstract: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				final: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Extends", "Implements", "Parameters", "ExternalVars", "Vars", "TempVars", "Method", "MainBody", "Action", "Transition"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'Extends',
+				'Implements',
+				'Parameters',
+				'ExternalVars',
+				'Vars',
+				'TempVars',
+				'Method',
+				'MainBody',
+				'Action',
+				'Transition',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -573,17 +1278,33 @@ export const DEFINITION = {
 	},
 	GlobalNamespace: {
 		tag: 'GlobalNamespace',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Types'],
 		attributes: {
-			sequence: ["globalId", "pragma"],
+			sequence: ['globalId', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "NamespaceDecl", "DataTypeDecl", "Program", "FunctionBlock", "Class", "Function", "Interface"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'NamespaceDecl',
+				'DataTypeDecl',
+				'Program',
+				'FunctionBlock',
+				'Class',
+				'Function',
+				'Interface',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -597,28 +1318,55 @@ export const DEFINITION = {
 				Interface: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 			choices: [
-				{ options: ["Class", "Function", "FunctionBlock", "Interface", "Program"], minOccurs: 1, maxOccurs: 1 },
-				{ options: ["PouDecl"], minOccurs: 1, maxOccurs: 1 },
-				{ options: ["DataTypeDecl", "NamespaceDecl", "PouDecl"] },
+				{
+					options: ['Class', 'Function', 'FunctionBlock', 'Interface', 'Program'],
+					minOccurs: 1,
+					maxOccurs: 1,
+				},
+				{ options: ['PouDecl'], minOccurs: 1, maxOccurs: 1 },
+				{ options: ['DataTypeDecl', 'NamespaceDecl', 'PouDecl'] },
 			],
 		},
 	},
 	GlobalVars: {
 		tag: 'GlobalVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'Resource', 'Configuration'],
 		attributes: {
-			sequence: ["constant", "globalId", "non_retain", "pragma", "retain"],
+			sequence: [
+				'accessSpecifier',
+				'constant',
+				'globalId',
+				'non_retain',
+				'pragma',
+				'retain',
+				'xsi:type',
+			],
 			details: {
-				constant: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				non_retain: { default: "false", facets: { whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				retain: { default: "false", facets: { whiteSpace: "collapse" } },
+				accessSpecifier: {
+					facets: {
+						enumeration: ['private', 'protected', 'internal', 'public'],
+						whiteSpace: 'preserve',
+					},
+				},
+				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['VarListWithAccessSpec'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Variable"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -627,57 +1375,191 @@ export const DEFINITION = {
 			},
 		},
 	},
-	Implements: {
-		tag: 'Implements',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['FunctionBlock', 'Class'],
+	GraphicalExpression: {
+		tag: 'GraphicalExpression',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['GraphicalPredicate'],
 		attributes: {
-			sequence: [],
+			sequence: ['evaluationOrder', 'globalId', 'label', 'xsi:type'],
 			details: {
+				evaluationOrder: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				label: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['FbdNetwork', 'LadderRung'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["TypeName", "InstantlyDefinedType"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'CommonObject',
+				'FbdObject',
+				'LdObject',
+			],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				CommonObject: { maxOccurs: 1 },
+				FbdObject: { maxOccurs: 1 },
+				LdObject: { maxOccurs: 1 },
+			},
+		},
+	},
+	GraphicalPredicate: {
+		tag: 'GraphicalPredicate',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Condition'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['ConnectionPointIn', 'GraphicalExpression'],
+			details: {
+				ConnectionPointIn: { required: true, minOccurs: 1, maxOccurs: 1 },
+				GraphicalExpression: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+		},
+	},
+	IL: {
+		tag: 'IL',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['BodyContent', 'PredicateContent'],
+		attributes: {
+			sequence: ['xsi:type'],
+			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+		textContent: { facets: { whiteSpace: 'preserve' } },
+	},
+	Implements: {
+		tag: 'Implements',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['FunctionBlock', 'Class'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['TypeName', 'InstantlyDefinedType'],
 			details: {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ["InstantlyDefinedType", "TypeName"], minOccurs: 1, maxOccurs: 1 },
-			],
+			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
 		},
 	},
 	InOutAssignment: {
 		tag: 'InOutAssignment',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ProgramInstance'],
 		attributes: {
-			sequence: ["actualValue", "formalParameter"],
+			sequence: ['actualValue', 'formalParameter'],
 			details: {
-				actualValue: { required: true, facets: { whiteSpace: "preserve" } },
-				formalParameter: { required: true, facets: { whiteSpace: "preserve" } },
+				actualValue: { required: true, facets: { whiteSpace: 'preserve' } },
+				formalParameter: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	InOutVariable: {
+		tag: 'InOutVariable',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['InOutVariables'],
+		attributes: {
+			sequence: ['globalId', 'negated', 'parameterName'],
 			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				parameterName: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'ConnectionPointIn', 'ConnectionPointOut'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				ConnectionPointIn: { maxOccurs: 1 },
+				ConnectionPointOut: { maxOccurs: 1 },
+			},
+		},
+	},
+	InOutVariables: {
+		tag: 'InOutVariables',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['FbdObject'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['InOutVariable'],
+			details: {
+				InOutVariable: {},
+			},
+		},
+	},
+	IndexRange: {
+		tag: 'IndexRange',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['DimensionSpec'],
+		attributes: {
+			sequence: ['lower', 'upper'],
+			details: {
+				lower: { required: true, facets: { whiteSpace: 'preserve' } },
+				upper: { required: true, facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
 		},
 	},
 	Info: {
 		tag: 'Info',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['AddDataInfo'],
 		attributes: {
-			sequence: ["name", "vendor", "version"],
+			sequence: ['name', 'vendor', 'version'],
 			details: {
-				name: { required: true, facets: { whiteSpace: "collapse" } },
-				vendor: { required: true, facets: { whiteSpace: "collapse" } },
-				version: { facets: { whiteSpace: "collapse" } },
+				name: { required: true, facets: { whiteSpace: 'collapse' } },
+				vendor: { required: true, facets: { whiteSpace: 'collapse' } },
+				version: { facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
-			sequence: ["Description"],
+			sequence: ['Description'],
 			details: {
 				Description: { maxOccurs: 1 },
 			},
@@ -685,36 +1567,65 @@ export const DEFINITION = {
 	},
 	InitialValue: {
 		tag: 'InitialValue',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Variable', 'ConfigVariable'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['UserDefinedTypeSpec', 'Member', 'Variable', 'ConfigVariable'],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["SimpleValue", "ArrayValue", "StructValue"],
+			sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
 			details: {
 				SimpleValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 				ArrayValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 				StructValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 			choices: [
-				{ options: ["ArrayValue", "SimpleValue", "StructValue"], minOccurs: 1, maxOccurs: 1 },
+				{ options: ['ArrayValue', 'SimpleValue', 'StructValue'], minOccurs: 1, maxOccurs: 1 },
 			],
+		},
+	},
+	Inline: {
+		tag: 'Inline',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['ActionBlock'],
+		attributes: {
+			sequence: ['globalId', 'pragma'],
+			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				UsingDirective: {},
+				BodyContent: {},
+			},
 		},
 	},
 	InoutVars: {
 		tag: 'InoutVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Parameters'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["Variable"],
+			sequence: ['Variable'],
 			details: {
 				Variable: {},
 			},
@@ -722,34 +1633,79 @@ export const DEFINITION = {
 	},
 	InputAssignment: {
 		tag: 'InputAssignment',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ProgramInstance'],
 		attributes: {
-			sequence: ["actualValue", "formalParameter"],
+			sequence: ['actualValue', 'formalParameter'],
 			details: {
-				actualValue: { required: true, facets: { whiteSpace: "preserve" } },
-				formalParameter: { required: true, facets: { whiteSpace: "preserve" } },
+				actualValue: { required: true, facets: { whiteSpace: 'preserve' } },
+				formalParameter: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	InputVariable: {
+		tag: 'InputVariable',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['InputVariables'],
+		attributes: {
+			sequence: ['edge', 'globalId', 'negated', 'parameterName', 'suppressName'],
 			details: {
+				edge: {
+					default: 'none',
+					facets: { enumeration: ['none', 'falling', 'rising'], whiteSpace: 'preserve' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				parameterName: { required: true, facets: { whiteSpace: 'preserve' } },
+				suppressName: { default: 'false', facets: { whiteSpace: 'collapse' } },
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'ConnectionPointIn'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				ConnectionPointIn: { maxOccurs: 1 },
+			},
+		},
+	},
+	InputVariables: {
+		tag: 'InputVariables',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['FbdObject'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['InputVariable'],
+			details: {
+				InputVariable: {},
 			},
 		},
 	},
 	InputVars: {
 		tag: 'InputVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Parameters'],
 		attributes: {
-			sequence: ["non_retain", "retain"],
+			sequence: ['non_retain', 'retain'],
 			details: {
-				non_retain: { default: "false", facets: { whiteSpace: "collapse" } },
-				retain: { default: "false", facets: { whiteSpace: "collapse" } },
+				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
-			sequence: ["Variable"],
+			sequence: ['Variable'],
 			details: {
 				Variable: {},
 			},
@@ -757,15 +1713,14 @@ export const DEFINITION = {
 	},
 	Instances: {
 		tag: 'Instances',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Project'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["Configuration"],
+			sequence: ['Configuration'],
 			details: {
 				Configuration: {},
 			},
@@ -773,34 +1728,47 @@ export const DEFINITION = {
 	},
 	InstantlyDefinedType: {
 		tag: 'InstantlyDefinedType',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Type', 'Extends', 'Implements', 'ResultType'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['BaseType', 'ReferenceTo', 'Type', 'Extends', 'Implements', 'ResultType'],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['ArrayTypeSpec', 'ReferenceTypeSpec'] },
+				},
 			},
 		},
 		children: {
-			sequence: [],
+			sequence: ['BaseType', 'DimensionSpec', 'AddData', 'ReferenceTo'],
 			details: {
+				BaseType: { maxOccurs: 1 },
+				DimensionSpec: {},
+				AddData: { maxOccurs: 1 },
+				ReferenceTo: { maxOccurs: 1 },
 			},
 		},
 	},
 	Interface: {
 		tag: 'Interface',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['NamespaceDecl', 'GlobalNamespace'],
 		attributes: {
-			sequence: ["globalId", "internal", "name", "pragma"],
+			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Extends", "Method"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Extends', 'Method'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -810,36 +1778,107 @@ export const DEFINITION = {
 			},
 		},
 	},
+	LdObject: {
+		tag: 'LdObject',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Rung', 'BodyContent', 'GraphicalExpression'],
+		attributes: {
+			sequence: [
+				'compareOperator',
+				'edge',
+				'globalId',
+				'latch',
+				'negated',
+				'operand',
+				'operand1',
+				'operand2',
+				'xsi:type',
+			],
+			details: {
+				compareOperator: {
+					facets: { enumeration: ['>', '>=', '=', '<=', '<', '<>'], whiteSpace: 'preserve' },
+				},
+				edge: {
+					default: 'none',
+					facets: { enumeration: ['none', 'falling', 'rising'], whiteSpace: 'preserve' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				latch: {
+					default: 'none',
+					facets: { enumeration: ['none', 'set', 'reset'], whiteSpace: 'preserve' },
+				},
+				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				operand: { facets: { whiteSpace: 'preserve' } },
+				operand1: { facets: { whiteSpace: 'preserve' } },
+				operand2: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: {
+						enumeration: ['Coil', 'CompareContact', 'Contact', 'LeftPowerRail', 'RightPowerRail'],
+					},
+				},
+			},
+		},
+		children: {
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'ConnectionPointIn',
+				'ConnectionPointOut',
+				'Type',
+			],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				ConnectionPointIn: { maxOccurs: 1 },
+				ConnectionPointOut: { maxOccurs: 1 },
+				Type: { maxOccurs: 1 },
+			},
+		},
+	},
 	LdScaling: {
 		tag: 'LdScaling',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['CoordinateInfo'],
 		attributes: {
-			sequence: ["x", "y"],
+			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: "collapse" } },
-				y: { required: true, facets: { whiteSpace: "collapse" } },
+				x: { required: true, facets: { whiteSpace: 'collapse' } },
+				y: { required: true, facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 	},
 	MainBody: {
 		tag: 'MainBody',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'FunctionBlock', 'Function'],
 		attributes: {
-			sequence: ["globalId", "pragma"],
+			sequence: ['globalId', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "BodyContent"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -848,24 +1887,72 @@ export const DEFINITION = {
 			},
 		},
 	},
-	Method: {
-		tag: 'Method',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['FunctionBlock', 'Class', 'Interface'],
+	Member: {
+		tag: 'Member',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['UserDefinedTypeSpec'],
 		attributes: {
-			sequence: ["abstract", "accessSpecifier", "final", "globalId", "name", "override", "pragma"],
+			sequence: ['globalId', 'name', 'pragma'],
 			details: {
-				abstract: { default: "false", facets: { whiteSpace: "collapse" } },
-				accessSpecifier: { required: true, facets: { enumeration: ["private", "protected", "internal", "public"], whiteSpace: "preserve" } },
-				final: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				override: { default: "false", facets: { whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "ResultType", "Parameters", "TempVars", "Body"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Type', 'InitialValue', 'Address'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				UsingDirective: {},
+				Type: { required: true, minOccurs: 1, maxOccurs: 1 },
+				InitialValue: { maxOccurs: 1 },
+				Address: { maxOccurs: 1 },
+			},
+		},
+	},
+	Method: {
+		tag: 'Method',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['FunctionBlock', 'Class', 'Interface'],
+		attributes: {
+			sequence: ['abstract', 'accessSpecifier', 'final', 'globalId', 'name', 'override', 'pragma'],
+			details: {
+				abstract: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				accessSpecifier: {
+					required: true,
+					facets: {
+						enumeration: ['private', 'protected', 'internal', 'public'],
+						whiteSpace: 'preserve',
+					},
+				},
+				final: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				override: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'ResultType',
+				'Parameters',
+				'TempVars',
+				'Body',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -879,19 +1966,35 @@ export const DEFINITION = {
 	},
 	NamespaceDecl: {
 		tag: 'NamespaceDecl',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['GlobalNamespace', 'NamespaceDecl'],
 		attributes: {
-			sequence: ["globalId", "internal", "name", "pragma"],
+			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "NamespaceDecl", "DataTypeDecl", "Program", "FunctionBlock", "Class", "Function", "Interface"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'NamespaceDecl',
+				'DataTypeDecl',
+				'Program',
+				'FunctionBlock',
+				'Class',
+				'Function',
+				'Interface',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -905,42 +2008,120 @@ export const DEFINITION = {
 				Interface: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 			choices: [
-				{ options: ["Class", "Function", "FunctionBlock", "Interface", "Program"], minOccurs: 1, maxOccurs: 1 },
-				{ options: ["PouDecl"], minOccurs: 1, maxOccurs: 1 },
-				{ options: ["DataTypeDecl", "NamespaceDecl", "PouDecl"] },
+				{
+					options: ['Class', 'Function', 'FunctionBlock', 'Interface', 'Program'],
+					minOccurs: 1,
+					maxOccurs: 1,
+				},
+				{ options: ['PouDecl'], minOccurs: 1, maxOccurs: 1 },
+				{ options: ['DataTypeDecl', 'NamespaceDecl', 'PouDecl'] },
 			],
+		},
+	},
+	Network: {
+		tag: 'Network',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['BodyContent', 'PredicateContent'],
+		attributes: {
+			sequence: ['evaluationOrder', 'globalId', 'label'],
+			details: {
+				evaluationOrder: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				label: { facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'RelPosition', 'Size', 'CommonObject', 'FbdObject'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				CommonObject: { required: true, minOccurs: 1, maxOccurs: 1 },
+				FbdObject: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [{ options: ['CommonObject', 'FbdObject'] }],
 		},
 	},
 	OutputAssignment: {
 		tag: 'OutputAssignment',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ProgramInstance'],
 		attributes: {
-			sequence: ["actualValue", "formalParameter"],
+			sequence: ['actualValue', 'formalParameter'],
 			details: {
-				actualValue: { required: true, facets: { whiteSpace: "preserve" } },
-				formalParameter: { required: true, facets: { whiteSpace: "preserve" } },
+				actualValue: { required: true, facets: { whiteSpace: 'preserve' } },
+				formalParameter: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	OutputVariable: {
+		tag: 'OutputVariable',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['OutputVariables'],
+		attributes: {
+			sequence: ['globalId', 'negated', 'parameterName', 'suppressName'],
 			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				parameterName: { required: true, facets: { whiteSpace: 'preserve' } },
+				suppressName: { default: 'false', facets: { whiteSpace: 'collapse' } },
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'ConnectionPointOut'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				ConnectionPointOut: { maxOccurs: 1 },
+			},
+		},
+	},
+	OutputVariables: {
+		tag: 'OutputVariables',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['FbdObject'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['OutputVariable'],
+			details: {
+				OutputVariable: {},
 			},
 		},
 	},
 	OutputVars: {
 		tag: 'OutputVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Parameters'],
 		attributes: {
-			sequence: ["non_retain", "retain"],
+			sequence: ['non_retain', 'retain'],
 			details: {
-				non_retain: { default: "false", facets: { whiteSpace: "collapse" } },
-				retain: { default: "false", facets: { whiteSpace: "collapse" } },
+				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
-			sequence: ["Variable"],
+			sequence: ['Variable'],
 			details: {
 				Variable: {},
 			},
@@ -948,55 +2129,78 @@ export const DEFINITION = {
 	},
 	Parameters: {
 		tag: 'Parameters',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'FunctionBlock', 'Method', 'Function'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["InoutVars", "InputVars", "OutputVars"],
+			sequence: ['InoutVars', 'InputVars', 'OutputVars'],
 			details: {
 				InoutVars: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InputVars: { required: true, minOccurs: 1, maxOccurs: 1 },
 				OutputVars: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ["InoutVars", "InputVars", "OutputVars"] },
-			],
+			choices: [{ options: ['InoutVars', 'InputVars', 'OutputVars'] }],
 		},
 	},
 	PredicateContent: {
 		tag: 'PredicateContent',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Condition'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['TextualPredicate', 'Condition'],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['FBD', 'IL', 'LD', 'ST'] },
+				},
 			},
 		},
 		children: {
-			sequence: [],
+			sequence: ['Network', 'IL', 'Rung', 'ST'],
 			details: {
+				Network: {},
+				IL: { maxOccurs: 1 },
+				Rung: {},
+				ST: { maxOccurs: 1 },
 			},
 		},
 	},
 	Program: {
 		tag: 'Program',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['NamespaceDecl', 'GlobalNamespace'],
 		attributes: {
-			sequence: ["globalId", "internal", "name", "pragma"],
+			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				internal: { default: "false", facets: { whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "AccessVars", "GlobalVars", "Parameters", "ExternalVars", "Vars", "TempVars", "MainBody", "Action", "Transition"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'AccessVars',
+				'GlobalVars',
+				'Parameters',
+				'ExternalVars',
+				'Vars',
+				'TempVars',
+				'MainBody',
+				'Action',
+				'Transition',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1015,21 +2219,36 @@ export const DEFINITION = {
 	},
 	ProgramInstance: {
 		tag: 'ProgramInstance',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Resource'],
 		attributes: {
-			sequence: ["associatedTaskName", "evaluationOrder", "globalId", "name", "pragma", "typeName"],
+			sequence: ['associatedTaskName', 'evaluationOrder', 'globalId', 'name', 'pragma', 'typeName'],
 			details: {
-				associatedTaskName: { facets: { whiteSpace: "preserve" } },
-				evaluationOrder: { facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				typeName: { required: true, facets: { whiteSpace: "preserve" } },
+				associatedTaskName: { facets: { whiteSpace: 'preserve' } },
+				evaluationOrder: {
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				typeName: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "InputAssignment", "OutputAssignment", "InOutAssignment", "FbInstTaskAssociation"],
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'InputAssignment',
+				'OutputAssignment',
+				'InOutAssignment',
+				'FbInstTaskAssociation',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1043,16 +2262,16 @@ export const DEFINITION = {
 	},
 	Project: {
 		tag: 'Project',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: [],
 		attributes: {
-			sequence: ["schemaVersion"],
+			sequence: ['schemaVersion'],
 			details: {
-				schemaVersion: { required: true, facets: { whiteSpace: "collapse" } },
+				schemaVersion: { required: true, facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
-			sequence: ["FileHeader", "ContentHeader", "Types", "Instances", "AddData", "Documentation"],
+			sequence: ['FileHeader', 'ContentHeader', 'Types', 'Instances', 'AddData', 'Documentation'],
 			details: {
 				FileHeader: { required: true, minOccurs: 1, maxOccurs: 1 },
 				ContentHeader: { required: true, minOccurs: 1, maxOccurs: 1 },
@@ -1063,21 +2282,130 @@ export const DEFINITION = {
 			},
 		},
 	},
-	Resource: {
-		tag: 'Resource',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Configuration'],
+	Range: {
+		tag: 'Range',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['UserDefinedTypeSpec'],
 		attributes: {
-			sequence: ["globalId", "name", "pragma", "resourceTypeName"],
+			sequence: ['lower', 'upper'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				resourceTypeName: { required: true, facets: { whiteSpace: "preserve" } },
+				lower: { required: true, facets: { whiteSpace: 'preserve' } },
+				upper: { required: true, facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "GlobalVars", "Task", "ProgramInstance"],
+			sequence: [],
+			details: {},
+		},
+	},
+	Reference: {
+		tag: 'Reference',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Condition'],
+		attributes: {
+			sequence: ['name'],
+			details: {
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+	},
+	ReferenceName: {
+		tag: 'ReferenceName',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['ActionBlock'],
+		attributes: {
+			sequence: ['xsi:type'],
+			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+		textContent: { facets: { whiteSpace: 'preserve' } },
+	},
+	ReferenceTo: {
+		tag: 'ReferenceTo',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['InstantlyDefinedType', 'UserDefinedTypeSpec'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: ['TypeName', 'InstantlyDefinedType'],
+			details: {
+				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
+				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+	},
+	RelPosition: {
+		tag: 'RelPosition',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'Network',
+			'CommonObject',
+			'ConnectionPointIn',
+			'Connection',
+			'FeedbackConnection',
+			'ActionBlock',
+			'ConnectionPointOut',
+			'FbdObject',
+			'Rung',
+			'LdObject',
+			'SfcObject',
+			'ConnectionPointOutAction',
+			'GraphicalExpression',
+		],
+		attributes: {
+			sequence: ['x', 'y'],
+			details: {
+				x: { required: true, facets: { whiteSpace: 'collapse' } },
+				y: { required: true, facets: { whiteSpace: 'collapse' } },
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+	},
+	Resource: {
+		tag: 'Resource',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Configuration'],
+		attributes: {
+			sequence: ['globalId', 'name', 'pragma', 'resourceTypeName'],
+			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				resourceTypeName: { required: true, facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: [
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'GlobalVars',
+				'Task',
+				'ProgramInstance',
+			],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1090,68 +2418,202 @@ export const DEFINITION = {
 	},
 	ResultType: {
 		tag: 'ResultType',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Method', 'Function'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["TypeName", "InstantlyDefinedType"],
+			sequence: ['TypeName', 'InstantlyDefinedType'],
 			details: {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ["InstantlyDefinedType", "TypeName"], minOccurs: 1, maxOccurs: 1 },
+			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+	},
+	Rung: {
+		tag: 'Rung',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['BodyContent', 'PredicateContent'],
+		attributes: {
+			sequence: ['evaluationOrder', 'globalId', 'label'],
+			details: {
+				evaluationOrder: {
+					required: true,
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+				},
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				label: { facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'CommonObject',
+				'LdObject',
+				'FbdObject',
 			],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				CommonObject: { required: true, minOccurs: 1, maxOccurs: 1 },
+				LdObject: { required: true, minOccurs: 1, maxOccurs: 1 },
+				FbdObject: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+			choices: [{ options: ['CommonObject', 'FbdObject', 'LdObject'] }],
+		},
+	},
+	ST: {
+		tag: 'ST',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['PredicateContent', 'BodyContent'],
+		attributes: {
+			sequence: ['xsi:type'],
+			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
+			},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+		textContent: { facets: { whiteSpace: 'preserve' } },
+	},
+	SfcObject: {
+		tag: 'SfcObject',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['BodyContent'],
+		attributes: {
+			sequence: ['globalId', 'initialStep', 'mutualExclusion', 'name', 'xsi:type'],
+			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				initialStep: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				mutualExclusion: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				name: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: {
+						enumeration: [
+							'SelectionConvergence',
+							'SelectionDivergence',
+							'SimultaneousConvergence',
+							'SimultaneousDivergence',
+							'Step',
+							'Transition',
+						],
+					},
+				},
+			},
+		},
+		children: {
+			sequence: [
+				'Documentation',
+				'AddData',
+				'RelPosition',
+				'Size',
+				'ConnectionPointIn',
+				'ConnectionPointOut',
+				'ConnectionPointOutAction',
+				'Condition',
+			],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				RelPosition: { maxOccurs: 1 },
+				Size: { maxOccurs: 1 },
+				ConnectionPointIn: {},
+				ConnectionPointOut: { maxOccurs: 1 },
+				ConnectionPointOutAction: { maxOccurs: 1 },
+				Condition: { maxOccurs: 1 },
+			},
 		},
 	},
 	SfcScaling: {
 		tag: 'SfcScaling',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['CoordinateInfo'],
 		attributes: {
-			sequence: ["x", "y"],
+			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: "collapse" } },
-				y: { required: true, facets: { whiteSpace: "collapse" } },
+				x: { required: true, facets: { whiteSpace: 'collapse' } },
+				y: { required: true, facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 	},
 	SimpleValue: {
 		tag: 'SimpleValue',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['InitialValue', 'Value'],
 		attributes: {
-			sequence: ["value"],
+			sequence: ['value'],
 			details: {
-				value: { facets: { whiteSpace: "preserve" } },
+				value: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
 			sequence: [],
+			details: {},
+		},
+	},
+	Size: {
+		tag: 'Size',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'Network',
+			'CommonObject',
+			'ActionBlock',
+			'FbdObject',
+			'Rung',
+			'LdObject',
+			'SfcObject',
+			'GraphicalExpression',
+		],
+		attributes: {
+			sequence: ['x', 'y'],
 			details: {
+				x: { required: true, facets: { whiteSpace: 'collapse' } },
+				y: { required: true, facets: { whiteSpace: 'collapse' } },
 			},
+		},
+		children: {
+			sequence: [],
+			details: {},
 		},
 	},
 	StructValue: {
 		tag: 'StructValue',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Value', 'InitialValue'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["Value"],
+			sequence: ['Value'],
 			details: {
 				Value: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
@@ -1159,18 +2621,30 @@ export const DEFINITION = {
 	},
 	Task: {
 		tag: 'Task',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Resource'],
 		attributes: {
-			sequence: ["globalId", "name", "pragma"],
+			sequence: ['globalId', 'interval', 'name', 'pragma', 'priority', 'single', 'xsi:type'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				interval: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				priority: { facets: { minInclusive: 0, maxInclusive: 65535, whiteSpace: 'collapse' } },
+				single: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['StandardTask'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1180,20 +2654,43 @@ export const DEFINITION = {
 	},
 	TempVars: {
 		tag: 'TempVars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'FunctionBlock', 'Method', 'Function'],
 		attributes: {
-			sequence: ["constant", "globalId", "non_retain", "pragma", "retain"],
+			sequence: [
+				'accessSpecifier',
+				'constant',
+				'globalId',
+				'non_retain',
+				'pragma',
+				'retain',
+				'xsi:type',
+			],
 			details: {
-				constant: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				non_retain: { default: "false", facets: { whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				retain: { default: "false", facets: { whiteSpace: "collapse" } },
+				accessSpecifier: {
+					facets: {
+						enumeration: ['private', 'protected', 'internal', 'public'],
+						whiteSpace: 'preserve',
+					},
+				},
+				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['VarListWithAccessSpec'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Variable"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1202,20 +2699,51 @@ export const DEFINITION = {
 			},
 		},
 	},
-	Transition: {
-		tag: 'Transition',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Program', 'FunctionBlock'],
+	TextualPredicate: {
+		tag: 'TextualPredicate',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Condition'],
 		attributes: {
-			sequence: ["globalId", "name", "pragma"],
+			sequence: ['globalId', 'pragma'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				pragma: { facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Condition"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'PredicateContent'],
+			details: {
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				UsingDirective: {},
+				PredicateContent: { required: true, minOccurs: 1, maxOccurs: 1 },
+			},
+		},
+	},
+	Transition: {
+		tag: 'Transition',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Program', 'FunctionBlock'],
+		attributes: {
+			sequence: ['globalId', 'name', 'pragma'],
+			details: {
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+			},
+		},
+		children: {
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Condition'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1226,51 +2754,50 @@ export const DEFINITION = {
 	},
 	Type: {
 		tag: 'Type',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Variable', 'AccessVariable', 'ConfigVariable'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['Member', 'Variable', 'LdObject', 'AccessVariable', 'ConfigVariable'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["TypeName", "InstantlyDefinedType"],
+			sequence: ['TypeName', 'InstantlyDefinedType'],
 			details: {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ["InstantlyDefinedType", "TypeName"], minOccurs: 1, maxOccurs: 1 },
-			],
+			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
 		},
 	},
 	TypeName: {
 		tag: 'TypeName',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['Type', 'Extends', 'Implements', 'ResultType'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['BaseType', 'ReferenceTo', 'Type', 'Extends', 'Implements', 'ResultType'],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
 			},
 		},
 		children: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
-		textContent: { facets: { whiteSpace: "preserve" } },
+		textContent: { facets: { whiteSpace: 'preserve' } },
 	},
 	Types: {
 		tag: 'Types',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Project'],
 		attributes: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
 		children: {
-			sequence: ["GlobalNamespace"],
+			sequence: ['GlobalNamespace'],
 			details: {
 				GlobalNamespace: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
@@ -1278,71 +2805,156 @@ export const DEFINITION = {
 	},
 	UserDefinedTypeSpec: {
 		tag: 'UserDefinedTypeSpec',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['DataTypeDecl'],
 		attributes: {
-			sequence: [],
+			sequence: ['overlap', 'xsi:type'],
 			details: {
+				overlap: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: {
+						enumeration: [
+							'ArrayTypeSpec',
+							'DirectlyDerivedTypeSpec',
+							'EnumTypeSpec',
+							'EnumTypeWithNamedValueSpec',
+							'ReferenceTypeSpec',
+							'StructTypeSpec',
+							'SubrangeTypeSpec',
+						],
+					},
+				},
 			},
 		},
 		children: {
-			sequence: [],
+			sequence: [
+				'BaseType',
+				'DimensionSpec',
+				'AddData',
+				'InitialValue',
+				'Enumerator',
+				'ReferenceTo',
+				'Member',
+				'Range',
+			],
 			details: {
+				BaseType: { maxOccurs: 1 },
+				DimensionSpec: {},
+				AddData: { maxOccurs: 1 },
+				InitialValue: { maxOccurs: 1 },
+				Enumerator: {},
+				ReferenceTo: { maxOccurs: 1 },
+				Member: {},
+				Range: { maxOccurs: 1 },
 			},
 		},
 	},
 	UsingDirective: {
 		tag: 'UsingDirective',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['GlobalNamespace', 'NamespaceDecl', 'DataTypeDecl', 'Program', 'AccessVars', 'Variable', 'Address', 'GlobalVars', 'ExternalVars', 'Vars', 'TempVars', 'MainBody', 'Action', 'Body', 'Transition', 'Condition', 'FunctionBlock', 'Method', 'Class', 'Function', 'Interface', 'Configuration', 'Resource', 'Task', 'ProgramInstance', 'AccessVariable', 'ConfigVars', 'ConfigVariable'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'GlobalNamespace',
+			'NamespaceDecl',
+			'DataTypeDecl',
+			'Member',
+			'Address',
+			'Program',
+			'AccessVars',
+			'Variable',
+			'GlobalVars',
+			'ExternalVars',
+			'Vars',
+			'TempVars',
+			'MainBody',
+			'Inline',
+			'TextualPredicate',
+			'Action',
+			'Body',
+			'Transition',
+			'Condition',
+			'FunctionBlock',
+			'Method',
+			'Class',
+			'Function',
+			'Interface',
+			'Configuration',
+			'Resource',
+			'Task',
+			'ProgramInstance',
+			'AccessVariable',
+			'ConfigVars',
+			'ConfigVariable',
+		],
 		attributes: {
-			sequence: [],
+			sequence: ['xsi:type'],
 			details: {
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['AccessSpecifiers', 'EdgeModifierType'] },
+				},
 			},
 		},
 		children: {
 			sequence: [],
-			details: {
-			},
+			details: {},
 		},
-		textContent: { facets: { whiteSpace: "preserve" } },
+		textContent: { facets: { whiteSpace: 'preserve' } },
 	},
 	Value: {
 		tag: 'Value',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ArrayValue', 'StructValue'],
 		attributes: {
-			sequence: ["repetitionValue"],
+			sequence: ['repetitionValue'],
 			details: {
-				repetitionValue: { default: "1", facets: { whiteSpace: "preserve" } },
+				repetitionValue: { default: '1', facets: { whiteSpace: 'preserve' } },
 			},
 		},
 		children: {
-			sequence: ["SimpleValue", "ArrayValue", "StructValue"],
+			sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
 			details: {
 				SimpleValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 				ArrayValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 				StructValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 			choices: [
-				{ options: ["ArrayValue", "SimpleValue", "StructValue"], minOccurs: 1, maxOccurs: 1 },
+				{ options: ['ArrayValue', 'SimpleValue', 'StructValue'], minOccurs: 1, maxOccurs: 1 },
 			],
 		},
 	},
 	Variable: {
 		tag: 'Variable',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
-		parents: ['AccessVars', 'GlobalVars', 'InoutVars', 'InputVars', 'OutputVars', 'ExternalVars', 'Vars', 'TempVars'],
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: [
+			'AccessVars',
+			'GlobalVars',
+			'InoutVars',
+			'InputVars',
+			'OutputVars',
+			'ExternalVars',
+			'Vars',
+			'TempVars',
+		],
 		attributes: {
-			sequence: ["globalId", "name", "pragma"],
+			sequence: ['globalId', 'name', 'pragma', 'xsi:type'],
 			details: {
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				name: { required: true, facets: { whiteSpace: "preserve" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				'xsi:type': {
+					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
+					facets: { enumeration: ['VariableDecl'] },
+				},
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Type", "InitialValue", "Address"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Type', 'InitialValue', 'Address'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
@@ -1353,23 +2965,48 @@ export const DEFINITION = {
 			},
 		},
 	},
+	VariableLength: {
+		tag: 'VariableLength',
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+		parents: ['DimensionSpec'],
+		attributes: {
+			sequence: [],
+			details: {},
+		},
+		children: {
+			sequence: [],
+			details: {},
+		},
+		textContent: { facets: { whiteSpace: 'collapse' } },
+	},
 	Vars: {
 		tag: 'Vars',
-		namespace: { prefix: "ppx", uri: "www.iec.ch/public/TC65SC65BWG7TF10" },
+		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['Program', 'FunctionBlock', 'Class'],
 		attributes: {
-			sequence: ["accessSpecifier", "constant", "globalId", "non_retain", "pragma", "retain"],
+			sequence: ['accessSpecifier', 'constant', 'globalId', 'non_retain', 'pragma', 'retain'],
 			details: {
-				accessSpecifier: { required: true, facets: { enumeration: ["private", "protected", "internal", "public"], whiteSpace: "preserve" } },
-				constant: { default: "false", facets: { whiteSpace: "collapse" } },
-				globalId: { facets: { pattern: ["[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*", "[A-Za-z_:][-.:0-9A-Z_a-z]*"], whiteSpace: "collapse" } },
-				non_retain: { default: "false", facets: { whiteSpace: "collapse" } },
-				pragma: { facets: { whiteSpace: "preserve" } },
-				retain: { default: "false", facets: { whiteSpace: "collapse" } },
+				accessSpecifier: {
+					required: true,
+					facets: {
+						enumeration: ['private', 'protected', 'internal', 'public'],
+						whiteSpace: 'preserve',
+					},
+				},
+				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				globalId: {
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+						whiteSpace: 'collapse',
+					},
+				},
+				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				pragma: { facets: { whiteSpace: 'preserve' } },
+				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
 			},
 		},
 		children: {
-			sequence: ["Documentation", "AddData", "UsingDirective", "Variable"],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
