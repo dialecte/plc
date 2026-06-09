@@ -20,10 +20,15 @@ export default defineConfig({
 	build: {
 		sourcemap: import.meta.env?.DEV,
 		lib: {
-			entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+			entry: {
+				index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+				test: fileURLToPath(new URL('./src/test/index.ts', import.meta.url)),
+			},
 			name: 'PlcDialecte',
 			formats: ['es'],
-			fileName: 'index',
+		},
+		rollupOptions: {
+			external: [/^@dialecte\/core/],
 		},
 	},
 })
