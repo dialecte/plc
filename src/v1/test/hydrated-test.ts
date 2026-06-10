@@ -1,4 +1,8 @@
-import { CUSTOM_RECORD_ID_ATTRIBUTE, CUSTOM_RECORD_ID_ATTRIBUTE_NAME } from '@dialecte/core/helpers'
+import {
+	CUSTOM_RECORD_ID_ATTRIBUTE,
+	CUSTOM_RECORD_ID_ATTRIBUTE_NAME,
+	XMLNS_XSI_NAMESPACE,
+} from '@dialecte/core/helpers'
 import {
 	createTestProject,
 	createTestRecordFactory,
@@ -7,15 +11,15 @@ import {
 	XMLNS_DEV_NAMESPACE,
 } from '@dialecte/core/test'
 
-import { PLC_DIALECTE_CONFIG } from '@/config'
-import { PLC_EXTENSION_MODULES } from '@/extensions'
+import { PLC_DIALECTE_CONFIG } from '@/v1/config'
+import { PLC_EXTENSION_MODULES } from '@/v1/extensions'
 
-import type { Config } from '@/config/dialecte.config'
+import type { Config } from '@/v1/config/dialecte.config'
 
 type PlcModules = typeof PLC_EXTENSION_MODULES
 
 export const XMLNS_PLC_NAMESPACE = `xmlns=${PLC_DIALECTE_CONFIG.namespaces.default.uri}`
-export const ALL_XMLNS_NAMESPACES = `${XMLNS_PLC_NAMESPACE} ${XMLNS_DEV_NAMESPACE}`
+export const ALL_XMLNS_NAMESPACES = `${XMLNS_PLC_NAMESPACE} ${XMLNS_DEV_NAMESPACE} ${XMLNS_XSI_NAMESPACE}`
 export { CUSTOM_RECORD_ID_ATTRIBUTE, CUSTOM_RECORD_ID_ATTRIBUTE_NAME }
 
 const PLC_EXTENSIONS = { base: PLC_EXTENSION_MODULES }

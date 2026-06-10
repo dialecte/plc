@@ -21,8 +21,8 @@ export default defineConfig({
 		sourcemap: import.meta.env?.DEV,
 		lib: {
 			entry: {
-				index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-				test: fileURLToPath(new URL('./src/test/index.ts', import.meta.url)),
+				'v1/index': fileURLToPath(new URL('./src/v1/index.ts', import.meta.url)),
+				'v1/test': fileURLToPath(new URL('./src/v1/test/index.ts', import.meta.url)),
 			},
 			name: 'PlcDialecte',
 			formats: ['es'],

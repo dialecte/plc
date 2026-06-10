@@ -1,4 +1,4 @@
-import { createPlcProject } from './dialecte'
+import { createPlcProject } from './v1/dialecte'
 
 import { describe, it, expect } from 'vitest'
 

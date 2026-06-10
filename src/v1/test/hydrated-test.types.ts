@@ -1,6 +1,6 @@
 import { PLC_EXTENSION_MODULES } from '../extensions'
 
-import type { Config } from '@/config/dialecte.config'
+import type { Config } from '@/v1/config/dialecte.config'
 import type * as CoreTest from '@dialecte/core/test'
 
 export namespace PlcTest {

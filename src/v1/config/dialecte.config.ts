@@ -9,12 +9,15 @@ import {
 	ROOT_ELEMENT,
 	SINGLETON_ELEMENTS,
 } from '../definition'
+import { IO_HOOKS } from '../hooks'
+import { PLC_NAMESPACES } from './namespaces'
 
 import type { IOConfig, AnyDialecteConfig, DatabaseConfig } from '@dialecte/core'
 
 // PLC-specific IO configuration
 export const PLC_IO_CONFIG = {
 	supportedFileExtensions: ['.xml'],
+	hooks: IO_HOOKS,
 } as const satisfies IOConfig
 
 // PLC database configuration
@@ -27,9 +30,7 @@ export const PLC_DATABASE_CONFIG = {
 	},
 } as const satisfies DatabaseConfig
 
-export const PLC_NAMESPACES = {
-	default: { uri: 'www.iec.ch/public/TC65SC65BWG7TF10', prefix: '' },
-} as const
+export { PLC_NAMESPACES }
 
 export const PLC_DIALECTE_CONFIG = {
 	singletonElements: SINGLETON_ELEMENTS,

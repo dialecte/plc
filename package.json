@@ -1,6 +1,6 @@
 {
 	"name": "@dialecte/plc",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Dialecte - PLC (Programmable Logic Controller) sdk",
 	"license": "MIT",
 	"repository": {
@@ -13,13 +13,13 @@
 	],
 	"type": "module",
 	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+		"./v1": {
+			"types": "./dist/v1/index.d.ts",
+			"default": "./dist/v1/index.js"
 		},
-		"./test": {
-			"types": "./dist/test.d.ts",
-			"default": "./dist/test.js"
+		"./v1/test": {
+			"types": "./dist/v1/test.d.ts",
+			"default": "./dist/v1/test.js"
 		}
 	},
 	"scripts": {
@@ -43,7 +43,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@dialecte/core": "0.2.16"
+		"@dialecte/core": "0.2.19"
 	},
 	"devDependencies": {
 		"@tsconfig/node24": "^24.0.4",
