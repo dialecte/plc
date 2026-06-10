@@ -1,5 +1,5 @@
 import type { Config } from './dialecte.config'
-import type { PLC_EXTENSION_MODULES } from '@/extensions'
+import type { PLC_EXTENSION_MODULES } from '@/v1/extensions'
 import type * as Core from '@dialecte/core'
 
 type PlcExtensions = Core.MergedExtensions<typeof PLC_EXTENSION_MODULES>
