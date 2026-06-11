@@ -18,7 +18,7 @@ import type { Config } from '@/v1/config/dialecte.config'
 
 type PlcModules = typeof PLC_EXTENSION_MODULES
 
-export const XMLNS_PLC_NAMESPACE = `xmlns=${PLC_DIALECTE_CONFIG.namespaces.default.uri}`
+export const XMLNS_PLC_NAMESPACE = `xmlns="${PLC_DIALECTE_CONFIG.namespaces.default.uri}"`
 export const ALL_XMLNS_NAMESPACES = `${XMLNS_PLC_NAMESPACE} ${XMLNS_DEV_NAMESPACE} ${XMLNS_XSI_NAMESPACE}`
 export { CUSTOM_RECORD_ID_ATTRIBUTE, CUSTOM_RECORD_ID_ATTRIBUTE_NAME }
 
