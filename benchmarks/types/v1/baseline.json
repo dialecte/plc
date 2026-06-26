@@ -1,0 +1,42 @@
+{
+	"tool": "dialecte bench",
+	"version": "v1",
+	"runs": 3,
+	"results": {
+		"whole-program (check)": {
+			"Instantiations": 96571,
+			"Types": 69755,
+			"Symbols": 220244
+		},
+		"whole-program (emit)": {
+			"Instantiations": 96571,
+			"Types": 69755,
+			"Symbols": 220244
+		},
+		"baseline (import)": {
+			"Instantiations": 53197,
+			"Types": 45369,
+			"Symbols": 109586
+		},
+		"coverage: surface": {
+			"Instantiations": 64109,
+			"Types": 47870,
+			"Symbols": 111477
+		},
+		"coverage: calls": {
+			"Instantiations": 146842,
+			"Types": 61873,
+			"Symbols": 151404
+		},
+		"coverage: deep": {
+			"Instantiations": 54974,
+			"Types": 45817,
+			"Symbols": 110076
+		},
+		"coverage: api": {
+			"Instantiations": 91749,
+			"Types": 52904,
+			"Symbols": 124464
+		}
+	}
+}
