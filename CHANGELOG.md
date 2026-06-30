@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.12] - 2026-06-30
+
+### Fixed
+
+TC6 v201 import now produces XSD-valid IEC 61131-10 output for several cases caught by validating against the FDIS schema:
+
+- `Project/@schemaVersion` is stamped with the IEC schema version (`1.0`) instead of being copied empty.
+- `creationDateTime` is emitted on `ContentHeader` (where it is required) rather than `FileHeader` (where it is forbidden); `FileHeader`/`ContentHeader` are always present with their required attributes.
+- Parameter-set variables (`InputVars`/`OutputVars`/`InoutVars`) carry the required `orderWithinParamSet`.
+- `Vars` carries the required `accessSpecifier`.
+- Comment text is emitted as `Content` element text rather than a non-schema `value` attribute.
+
 ## [0.0.11] - 2026-06-30
 
 ### Fixed

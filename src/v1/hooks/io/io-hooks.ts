@@ -35,6 +35,42 @@ const TC6_NS = 'http://www.plcopen.org/xml/tc6_0201'
 const IEC_NS = PLC_NAMESPACES.default.uri
 const XSI_NS = PLC_NAMESPACES.xsi.uri
 
+/** IEC 61131-10 Ed1.0 schema version — the XSD declares `version="1.0"`. */
+const IEC_SCHEMA_VERSION = '1.0'
+/** Attributes the IEC `FileHeader` permits (TC6 carries extras like `creationDateTime`). */
+const FILE_HEADER_ATTRS = [
+	'companyName',
+	'companyURL',
+	'productName',
+	'productVersion',
+	'productRelease',
+]
+/** Attributes the IEC `ContentHeader` permits. */
+const CONTENT_HEADER_ATTRS = [
+	'name',
+	'version',
+	'creationDateTime',
+	'modificationDateTime',
+	'organization',
+	'author',
+	'language',
+]
+/** Fallback for the required `ContentHeader/@creationDateTime` when no source carries one. */
+const FALLBACK_CREATION_DATE_TIME = '1970-01-01T00:00:00'
+
+/** Copy only `allowed` attributes from `src` (if any) onto `dest`. */
+function copyAttributes(src: Element | null, dest: Element, allowed: readonly string[]): void {
+	if (!src) return
+	for (const attr of src.attributes) {
+		if (allowed.includes(attr.name)) dest.setAttribute(attr.name, attr.value)
+	}
+}
+
+/** Set `name` to `fallback` only when it is missing/empty on `el`. */
+function ensureAttribute(el: Element, name: string, fallback: string): void {
+	if (!el.getAttribute(name)) el.setAttribute(name, fallback)
+}
+
 /**
  * Detect whether an XML string is TC6 v201 format.
  * Uses `inspectXml` to look for the root `project` element and check its
@@ -60,28 +96,39 @@ export function normalizeTc6v201(xml: string): string {
 
 	const iecDoc = document.implementation.createDocument(IEC_NS, '', null)
 
-	// Build Project root
+	// Build Project root. Output conforms to IEC 61131-10 Ed1.0, whose
+	// `schemaVersion` is a required xs:decimal — stamp it regardless of the TC6 value.
 	const tcProject = tc6Doc.documentElement
 	const iecProject = iecDoc.createElementNS(IEC_NS, 'Project')
-	const schemaVersion = tcProject.getAttribute('schemaVersion')
-	if (schemaVersion) iecProject.setAttribute('schemaVersion', schemaVersion)
+	iecProject.setAttribute('schemaVersion', IEC_SCHEMA_VERSION)
 	iecDoc.appendChild(iecProject)
 
-	// FileHeader
-	const fileHeader = tcProject.querySelector('fileHeader')
-	if (fileHeader) {
-		const fh = iecDoc.createElementNS(IEC_NS, 'FileHeader')
-		for (const attr of fileHeader.attributes) fh.setAttribute(attr.name, attr.value)
-		iecProject.appendChild(fh)
-	}
+	const tcFileHeader = tcProject.querySelector('fileHeader')
+	const tcContentHeader = tcProject.querySelector('contentHeader')
 
-	// ContentHeader
-	const contentHeader = tcProject.querySelector('contentHeader')
-	if (contentHeader) {
-		const ch = iecDoc.createElementNS(IEC_NS, 'ContentHeader')
-		for (const attr of contentHeader.attributes) ch.setAttribute(attr.name, attr.value)
-		iecProject.appendChild(ch)
-	}
+	// FileHeader — `Project` requires it. Copy only schema-allowed attributes (TC6
+	// may put `creationDateTime` here, which the IEC FileHeader forbids) and
+	// guarantee the required ones.
+	const fileHeader = iecDoc.createElementNS(IEC_NS, 'FileHeader')
+	copyAttributes(tcFileHeader, fileHeader, FILE_HEADER_ATTRS)
+	ensureAttribute(fileHeader, 'companyName', 'Unknown')
+	ensureAttribute(fileHeader, 'productName', 'Unnamed')
+	ensureAttribute(fileHeader, 'productVersion', '1')
+	iecProject.appendChild(fileHeader)
+
+	// ContentHeader — `Project` requires it, with a required `creationDateTime`
+	// that TC6 sometimes carries on `fileHeader` instead; source it from either.
+	const contentHeader = iecDoc.createElementNS(IEC_NS, 'ContentHeader')
+	copyAttributes(tcContentHeader, contentHeader, CONTENT_HEADER_ATTRS)
+	ensureAttribute(contentHeader, 'name', 'Unnamed')
+	ensureAttribute(
+		contentHeader,
+		'creationDateTime',
+		tcFileHeader?.getAttribute('creationDateTime') ||
+			tcContentHeader?.getAttribute('modificationDateTime') ||
+			FALLBACK_CREATION_DATE_TIME,
+	)
+	iecProject.appendChild(contentHeader)
 
 	// Types (POUs)
 	const types = tcProject.querySelector('types')
@@ -139,15 +186,40 @@ function convertInterface(doc: XMLDocument, iecPou: Element, iface: Element): vo
 
 	if (inputVars.length || outputVars.length || inOutVars.length) {
 		const parameters = doc.createElementNS(IEC_NS, 'Parameters')
-		appendVarSection(doc, parameters, 'InoutVars', inOutVars)
-		appendVarSection(doc, parameters, 'InputVars', inputVars)
-		appendVarSection(doc, parameters, 'OutputVars', outputVars)
+		// `orderWithinParamSet` is required and numbers parameters across the set.
+		let order = 0
+		order = appendParamSection(doc, parameters, 'InoutVars', inOutVars, order)
+		order = appendParamSection(doc, parameters, 'InputVars', inputVars, order)
+		appendParamSection(doc, parameters, 'OutputVars', outputVars, order)
 		iecPou.appendChild(parameters)
 	}
 
 	appendVarSection(doc, iecPou, 'ExternalVars', collectVarDecls(doc, iface, 'externalVars'))
 	appendVarSection(doc, iecPou, 'Vars', collectVarDecls(doc, iface, 'localVars'))
 	appendVarSection(doc, iecPou, 'TempVars', collectVarDecls(doc, iface, 'tempVars'))
+}
+
+/**
+ * Append a `Parameters` sub-section (`InoutVars`/`InputVars`/`OutputVars`),
+ * stamping each `Variable`'s required `orderWithinParamSet`. Numbering is
+ * continuous across the whole parameter set. Returns the next order index.
+ */
+function appendParamSection(
+	doc: XMLDocument,
+	parent: Element,
+	tagName: string,
+	vars: Element[],
+	startOrder: number,
+): number {
+	if (!vars.length) return startOrder
+	const section = doc.createElementNS(IEC_NS, tagName)
+	let order = startOrder
+	for (const v of vars) {
+		v.setAttribute('orderWithinParamSet', String(order++))
+		section.appendChild(v)
+	}
+	parent.appendChild(section)
+	return order
 }
 
 function appendVarSection(
@@ -158,6 +230,9 @@ function appendVarSection(
 ): void {
 	if (!vars.length) return
 	const section = doc.createElementNS(IEC_NS, tagName)
+	// `Vars` is a `VarListWithAccessSpec`; `accessSpecifier` is required. TC6 has
+	// no equivalent, so default local variables to `protected`.
+	if (tagName === 'Vars') section.setAttribute('accessSpecifier', 'protected')
 	for (const v of vars) section.appendChild(v)
 	parent.appendChild(section)
 }
@@ -434,7 +509,8 @@ function convertComment(doc: XMLDocument, el: Element): Element {
 	const content = el.querySelector('content')
 	const contentEl = doc.createElementNS(IEC_NS, 'Content')
 	contentEl.setAttributeNS(XSI_NS, 'xsi:type', 'SimpleText')
-	contentEl.setAttribute('value', content ? extractPlainText(content) : '')
+	// SimpleText is `mixed` with no `value` attribute — the text is element content.
+	contentEl.textContent = content ? extractPlainText(content) : ''
 	obj.appendChild(contentEl)
 
 	return obj

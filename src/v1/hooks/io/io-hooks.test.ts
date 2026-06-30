@@ -141,9 +141,10 @@ describe('normalizeTc6v201 comment / connector', () => {
 		),
 	)
 
-	it('maps comment to CommonObject with Content value', () => {
+	it('maps comment to CommonObject with Content text', () => {
 		const comment = firstByType(doc, 'CommonObject', 'Comment')
-		expect(byTag(comment, 'Content')[0].getAttribute('value')).toBe('note')
+		// SimpleText is mixed content — the comment text is element content, not a `value` attribute.
+		expect(byTag(comment, 'Content')[0].textContent).toBe('note')
 	})
 
 	it('links connector to continuation via connectionPointOutId', () => {
@@ -195,6 +196,43 @@ describe('normalizeTc6v201 variable declarations', () => {
 
 	it('does not emit an unsupported LocalVars element', () => {
 		expect(byTag(doc, 'LocalVars')).toHaveLength(0)
+	})
+
+	it('stamps the required orderWithinParamSet on parameter-set variables', () => {
+		const variable = byTag(byTag(doc, 'InputVars')[0], 'Variable')[0]
+		expect(variable.getAttribute('orderWithinParamSet')).toBe('0')
+	})
+
+	it('sets the required accessSpecifier on Vars', () => {
+		const accessSpecifier = byTag(doc, 'Vars')[0].getAttribute('accessSpecifier')
+		expect(['private', 'protected', 'internal', 'public']).toContain(accessSpecifier)
+	})
+})
+
+describe('normalizeTc6v201 headers', () => {
+	const doc = parse(
+		normalizeTc6v201(
+			`<?xml version="1.0" encoding="UTF-8"?>` +
+				`<project xmlns="${TC6_NS}" schemaVersion="2.01">` +
+				`<fileHeader companyName="ACME" productName="SET" productVersion="1" creationDateTime="2023-09-20T10:58:22"/>` +
+				`<contentHeader name="P51" modificationDateTime="2023-09-21T16:58:13"/>` +
+				`<types/>` +
+				`</project>`,
+		),
+	)
+
+	it('stamps the IEC 61131-10 schema version on Project', () => {
+		expect(doc.documentElement.getAttribute('schemaVersion')).toBe('1.0')
+	})
+
+	it('drops creationDateTime from FileHeader (the XSD forbids it there)', () => {
+		expect(byTag(doc, 'FileHeader')[0].getAttribute('creationDateTime')).toBeNull()
+	})
+
+	it('moves creationDateTime onto ContentHeader (required there)', () => {
+		expect(byTag(doc, 'ContentHeader')[0].getAttribute('creationDateTime')).toBe(
+			'2023-09-20T10:58:22',
+		)
 	})
 })
 
