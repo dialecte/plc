@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.11] - 2026-06-30
+
+### Fixed
+
+- TC6 v201 import now maps `inVariable`/`outVariable` to `DataSource`/`DataSink` with a `ConnectionPointOut`/`ConnectionPointIn` directly on the `FbdObject` instead of an `OutputVariables`/`InputVariables` wrapper, matching the IEC 61131-10 XSD (those wrappers are valid only on `xsi:type="Block"`).
+
 ## [0.0.10] - 2026-06-29
 
 - Bump `@dialecte/core` to `0.2.22` - fix withAllExtensions

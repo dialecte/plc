@@ -78,10 +78,22 @@ describe('normalizeTc6v201 FBD wiring', () => {
 	const block = firstByType(doc, 'FbdObject', 'Block')
 	const dataSink = firstByType(doc, 'FbdObject', 'DataSink')
 
-	it('maps inVariable to a DataSource with a "value" output pin', () => {
+	it('maps inVariable to a DataSource with a direct ConnectionPointOut (no OutputVariables wrapper)', () => {
 		expect(dataSource.getAttribute('identifier')).toBe('A')
-		const out = byTag(dataSource, 'OutputVariable')[0]
-		expect(out.getAttribute('parameterName')).toBe('value')
+		// The connection point sits directly on the FbdObject; the OutputVariables
+		// wrapper is only valid on xsi:type="Block".
+		const cpOut = Array.from(dataSource.children).find((c) => c.localName === 'ConnectionPointOut')
+		expect(cpOut).toBeTruthy()
+		expect(byTag(dataSource, 'OutputVariables')).toHaveLength(0)
+		expect(byTag(dataSource, 'OutputVariable')).toHaveLength(0)
+	})
+
+	it('maps outVariable to a DataSink with a direct ConnectionPointIn (no InputVariables wrapper)', () => {
+		expect(dataSink.getAttribute('identifier')).toBe('B')
+		const cpIn = Array.from(dataSink.children).find((c) => c.localName === 'ConnectionPointIn')
+		expect(cpIn).toBeTruthy()
+		expect(byTag(dataSink, 'InputVariables')).toHaveLength(0)
+		expect(byTag(dataSink, 'InputVariable')).toHaveLength(0)
 	})
 
 	it('maps block with positioned RelPosition and typed pins', () => {

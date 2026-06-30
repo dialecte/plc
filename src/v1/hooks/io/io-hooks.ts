@@ -17,8 +17,8 @@
  *    - `block`       → `FbdObject xsi:type="Block"` with `InputVariables >
  *      InputVariable[parameterName] > ConnectionPointIn > Connection` and
  *      `OutputVariables > OutputVariable[parameterName] > ConnectionPointOut`.
- *    - `inVariable`  → `FbdObject xsi:type="DataSource"` (`OutputVariable` "value").
- *    - `outVariable` → `FbdObject xsi:type="DataSink"`   (`InputVariable` "value").
+ *    - `inVariable`  → `FbdObject xsi:type="DataSource"` (direct `ConnectionPointOut`).
+ *    - `outVariable` → `FbdObject xsi:type="DataSink"`   (direct `ConnectionPointIn`).
  *    - `comment`     → `CommonObject xsi:type="Comment"`.
  *    - `connector`/`continuation` → `CommonObject xsi:type="Connector"|"Continuation"`.
  * 5. Wiring uses `connectionPointOutId`/`refConnectionPointOutId`: every output
@@ -402,10 +402,13 @@ function convertDataSource(doc: XMLDocument, el: Element, outIds: Map<string, st
 	fbdObj.setAttribute('identifier', expressionText(el))
 	appendPosition(doc, fbdObj, el)
 
+	// A DataSource carries its `ConnectionPointOut` directly (like a continuation),
+	// NOT wrapped in `OutputVariables` — the wrapper is only valid on `xsi:type="Block"`.
 	const localId = el.getAttribute('localId') ?? ''
-	const wrapper = doc.createElementNS(IEC_NS, 'OutputVariables')
-	wrapper.appendChild(convertOutputVariable(doc, 'value', outIds.get(`${localId}|`)))
-	fbdObj.appendChild(wrapper)
+	const cpOut = doc.createElementNS(IEC_NS, 'ConnectionPointOut')
+	const id = outIds.get(`${localId}|`)
+	if (id) cpOut.setAttribute('connectionPointOutId', id)
+	fbdObj.appendChild(cpOut)
 
 	return fbdObj
 }
@@ -416,14 +419,9 @@ function convertDataSink(doc: XMLDocument, el: Element, outIds: Map<string, stri
 	fbdObj.setAttribute('identifier', expressionText(el))
 	appendPosition(doc, fbdObj, el)
 
-	const inputVariable = doc.createElementNS(IEC_NS, 'InputVariable')
-	inputVariable.setAttribute('parameterName', 'value')
-	inputVariable.appendChild(
-		buildConnectionPointIn(doc, el.querySelector('connectionPointIn'), outIds),
-	)
-	const wrapper = doc.createElementNS(IEC_NS, 'InputVariables')
-	wrapper.appendChild(inputVariable)
-	fbdObj.appendChild(wrapper)
+	// A DataSink carries its `ConnectionPointIn` directly (like a connector),
+	// NOT wrapped in `InputVariables` — the wrapper is only valid on `xsi:type="Block"`.
+	fbdObj.appendChild(buildConnectionPointIn(doc, el.querySelector('connectionPointIn'), outIds))
 
 	return fbdObj
 }
