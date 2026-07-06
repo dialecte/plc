@@ -9,15 +9,13 @@ import {
 	ROOT_ELEMENT,
 	SINGLETON_ELEMENTS,
 } from '../definition'
-import { IO_HOOKS } from '../hooks'
 import { PLC_NAMESPACES } from './namespaces'
 
 import type { IOConfig, AnyDialecteConfig, DatabaseConfig } from '@dialecte/core'
 
-// PLC-specific IO configuration
+// PLC-specific IO configuration (hooks are provided on the Project instance, not here)
 export const PLC_IO_CONFIG = {
 	supportedFileExtensions: ['.xml'],
-	hooks: IO_HOOKS,
 } as const satisfies IOConfig
 
 // PLC database configuration

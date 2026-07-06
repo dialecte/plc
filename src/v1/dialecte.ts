@@ -1,6 +1,7 @@
 import { Plc } from './config'
 import { PLC_DIALECTE_CONFIG } from './config/dialecte.config'
 import { PLC_EXTENSION_MODULES } from './extensions'
+import { IO_HOOKS } from './hooks'
 
 import { Project } from '@dialecte/core'
 
@@ -23,5 +24,6 @@ export function createPlcProject<
 			base: PLC_EXTENSION_MODULES,
 			custom: extensions,
 		},
+		hooks: IO_HOOKS,
 	}) as Plc.Project<CustomModules>
 }

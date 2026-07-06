@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.13] - 2026-07-06
+
+### Changed
+
+- Bump `@dialecte/core` to `0.3.0`. Hooks are now provided on the `Project` instance instead of the config: `createPlcProject` passes `hooks: IO_HOOKS` and `PLC_IO_CONFIG` no longer carries them. Consumer usage is unchanged. Importing a file now standardizes each record via core — canonical attribute order/names and filled required attributes.
+
 ## [0.0.12] - 2026-06-30
 
 ### Fixed
