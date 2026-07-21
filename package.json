@@ -1,6 +1,6 @@
 {
 	"name": "@dialecte/plc",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "Dialecte - PLC (Programmable Logic Controller) sdk",
 	"license": "MIT",
 	"repository": {
@@ -50,7 +50,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@dialecte/core": "0.4.2"
+		"@dialecte/core": "0.4.5"
 	},
 	"devDependencies": {
 		"@dialecte/cli": "0.0.2",
