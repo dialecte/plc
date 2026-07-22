@@ -2,12 +2,18 @@ import type { Config } from './dialecte.config'
 import type { PLC_EXTENSION_MODULES } from '@/v1/extensions'
 import type * as Core from '@dialecte/core'
 
+type PlcModules = typeof PLC_EXTENSION_MODULES
 type PlcExtensions = Core.MergedExtensions<typeof PLC_EXTENSION_MODULES>
 
 export namespace Plc {
 	export type Project<GenericCustomModules extends Core.ExtensionModules = Record<never, never>> =
 		Core.Project<Config, PlcExtensions & GenericCustomModules>
 	export type Document = Core.Document<Config, PlcExtensions>
+
+	export type ExtendedDocument<
+		GenericCustomModules extends Core.ExtensionModules = Record<never, never>,
+	> = Core.ExtendedDocument<Config, PlcModules & GenericCustomModules>
+
 	export type Context = Core.Context<Config>
 
 	export type Query = Core.Query<Config> & Core.QueryExtensions<PlcExtensions>
