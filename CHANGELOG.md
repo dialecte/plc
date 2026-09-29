@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.1.0] - 2026-09-29
+
+### Added
+
+- The definitions describe types and structure: `type` on attributes and text, `contentModel`, `nillable`, `anyNamespace`, text `default` / `fixed`.
+- The attributes of an element as declared under each parent: `Plc.AttributesOf<'Address', 'Member'>`.
+
+### Changed
+
+- Requires `@dialecte/core` 0.5.1.
+
+### Removed
+
+- `children.choices` from the definitions: read the `choice` nodes of `contentModel`.
+
+### Fixed
+
+- An element declared several times with different content (`variable`, a structure under `struct` and a bare text under `coil`) is no longer typed as its first declaration.
+
 ## [0.0.19] - 2026-07-27
 
 - Bump `@dialecte/core` to `0.4.9`
