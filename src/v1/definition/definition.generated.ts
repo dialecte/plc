@@ -8,22 +8,19 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['alias', 'direction', 'globalId', 'instancePathAndName', 'pragma'],
 			details: {
-				alias: { required: true, facets: { whiteSpace: 'preserve' } },
+				alias: { required: true },
 				direction: {
-					facets: {
-						enumeration: ['readOnly', 'readWrite'],
-						pattern: ['[-.:0-9A-Z_a-z]+'],
-						whiteSpace: 'collapse',
-					},
+					type: { builtin: 'NMTOKEN' },
+					facets: { enumeration: ['readOnly', 'readWrite'], pattern: ['[-.:0-9A-Z_a-z]+'] },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				instancePathAndName: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				instancePathAndName: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -32,8 +29,77 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Type: { required: true, minOccurs: 1, maxOccurs: 1 },
+				Type: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['TypeName', 'InstantlyDefinedType'],
+						details: {
+							TypeName: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InstantlyDefinedType: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	AccessVars: {
@@ -52,21 +118,18 @@ export const DEFINITION = {
 			],
 			details: {
 				accessSpecifier: {
-					facets: {
-						enumeration: ['private', 'protected', 'internal', 'public'],
-						whiteSpace: 'preserve',
-					},
+					facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
 				},
-				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				constant: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+				pragma: {},
+				retain: { type: { builtin: 'boolean' }, default: 'false' },
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['VarListWithAccessSpec'] },
@@ -74,13 +137,193 @@ export const DEFINITION = {
 			},
 		},
 		children: {
-			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
+			sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable', 'AccessVariable'],
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+													{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'UsingDirective' }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+									{ kind: 'element', name: 'Address', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
+				AccessVariable: {},
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'Variable' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'AccessVariable' }],
+						},
+					],
+				},
+			],
 		},
 	},
 	Action: {
@@ -91,13 +334,13 @@ export const DEFINITION = {
 			sequence: ['globalId', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -106,8 +349,113 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Body: { required: true, minOccurs: 1, maxOccurs: 1 },
+				Body: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							BodyContent: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'BodyContent' }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Body', minOccurs: 1, maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	ActionBlock: {
@@ -118,12 +466,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'indicator'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				indicator: { facets: { whiteSpace: 'preserve' } },
+				indicator: {},
 			},
 		},
 		children: {
@@ -147,8 +495,55 @@ export const DEFINITION = {
 				ComplexOperand: { required: true, minOccurs: 1, maxOccurs: 1 },
 				ReferenceName: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ['ComplexOperand', 'Inline', 'ReferenceName'], minOccurs: 1, maxOccurs: 1 },
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+								{ kind: 'element', name: 'Size', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'ActionQualifier', maxOccurs: 1 },
+						{
+							kind: 'choice',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Inline', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'ComplexOperand', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'ReferenceName', minOccurs: 1, maxOccurs: 1 },
+							],
+						},
+					],
+				},
 			],
 		},
 	},
@@ -159,13 +554,13 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['duration', 'qualifier'],
 			details: {
-				duration: { facets: { whiteSpace: 'preserve' } },
+				duration: {},
 				qualifier: {
+					type: { builtin: 'NMTOKEN' },
 					default: 'N',
 					facets: {
 						enumeration: ['P1', 'N', 'P0', 'R', 'S', 'L', 'D', 'P', 'DS', 'DL', 'SD', 'SL'],
 						pattern: ['[-.:0-9A-Z_a-z]+'],
-						whiteSpace: 'collapse',
 					},
 				},
 			},
@@ -242,6 +637,12 @@ export const DEFINITION = {
 				Data: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Data' }],
+		},
 	},
 	AddDataInfo: {
 		tag: 'AddDataInfo',
@@ -257,6 +658,12 @@ export const DEFINITION = {
 				Info: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Info' }],
+		},
 	},
 	Address: {
 		tag: 'Address',
@@ -265,28 +672,22 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['address', 'globalId', 'location', 'notYetFixed', 'pragma', 'size', 'xsi:type'],
 			details: {
-				address: { facets: { whiteSpace: 'preserve' } },
+				address: {},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
 				location: {
-					facets: {
-						enumeration: ['I', 'Q', 'M'],
-						pattern: ['[-.:0-9A-Z_a-z]+'],
-						whiteSpace: 'collapse',
-					},
+					type: { builtin: 'NMTOKEN' },
+					facets: { enumeration: ['I', 'Q', 'M'], pattern: ['[-.:0-9A-Z_a-z]+'] },
 				},
-				notYetFixed: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				notYetFixed: { type: { builtin: 'boolean' }, default: 'false' },
+				pragma: {},
 				size: {
-					facets: {
-						enumeration: ['X', 'B', 'W', 'D', 'L'],
-						pattern: ['[-.:0-9A-Z_a-z]+'],
-						whiteSpace: 'collapse',
-					},
+					type: { builtin: 'NMTOKEN' },
+					facets: { enumeration: ['X', 'B', 'W', 'D', 'L'], pattern: ['[-.:0-9A-Z_a-z]+'] },
 				},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
@@ -302,6 +703,78 @@ export const DEFINITION = {
 				UsingDirective: {},
 			},
 		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+												{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+											],
+										},
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [{ kind: 'element', name: 'UsingDirective' }],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+			],
+		},
 	},
 	ArrayValue: {
 		tag: 'ArrayValue',
@@ -314,8 +787,62 @@ export const DEFINITION = {
 		children: {
 			sequence: ['Value'],
 			details: {
-				Value: { required: true, minOccurs: 1, maxOccurs: 1 },
+				Value: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['repetitionValue'],
+						details: {
+							repetitionValue: { default: '1' },
+						},
+					},
+					children: {
+						sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
+						details: {
+							SimpleValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ArrayValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							StructValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'choice',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+									{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+									{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			particles: [{ kind: 'element', name: 'Value', minOccurs: 1, maxOccurs: 1 }],
 		},
 	},
 	BaseType: {
@@ -329,10 +856,88 @@ export const DEFINITION = {
 		children: {
 			sequence: ['TypeName', 'InstantlyDefinedType'],
 			details: {
-				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
-				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
+				TypeName: { maxOccurs: 1 },
+				InstantlyDefinedType: { maxOccurs: 1 },
 			},
-			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+			],
+		},
+		textContent: {
+			type: {
+				union: [
+					{
+						builtin: 'string',
+						facets: {
+							enumeration: [
+								'BOOL',
+								'BYTE',
+								'WORD',
+								'DWORD',
+								'LWORD',
+								'SINT',
+								'INT',
+								'DINT',
+								'LINT',
+								'USINT',
+								'UINT',
+								'UDINT',
+								'ULINT',
+								'REAL',
+								'LREAL',
+								'TIME',
+								'LTIME',
+								'DT',
+								'LDT',
+								'TOD',
+								'LTOD',
+								'STRING',
+								'WSTRING',
+								'CHAR',
+								'WCHAR',
+							],
+						},
+					},
+					{ builtin: 'string', facets: { pattern: ['STRING\\[[A-Za-z0-9_]+\\]'] } },
+					{ builtin: 'string', facets: { pattern: ['WSTRING\\[[A-Za-z0-9_]+\\]'] } },
+				],
+			},
+			facets: {
+				enumeration: [
+					'BOOL',
+					'BYTE',
+					'WORD',
+					'DWORD',
+					'LWORD',
+					'SINT',
+					'INT',
+					'DINT',
+					'LINT',
+					'USINT',
+					'UINT',
+					'UDINT',
+					'ULINT',
+					'REAL',
+					'LREAL',
+					'TIME',
+					'LTIME',
+					'DT',
+					'LDT',
+					'TOD',
+					'LTOD',
+					'STRING',
+					'WSTRING',
+					'CHAR',
+					'WCHAR',
+				],
+				pattern: ['STRING\\[[A-Za-z0-9_]+\\]', 'WSTRING\\[[A-Za-z0-9_]+\\]'],
+			},
 		},
 	},
 	Body: {
@@ -343,12 +948,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -357,8 +962,94 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				BodyContent: {},
+				BodyContent: {
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: [],
+						details: {},
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'BodyContent' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'BodyContent' }],
+						},
+					],
+				},
+			],
 		},
 	},
 	BodyContent: {
@@ -404,17 +1095,17 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['abstract', 'final', 'globalId', 'internal', 'name', 'pragma'],
 			details: {
-				abstract: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				final: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				abstract: { type: { builtin: 'boolean' }, default: 'false' },
+				final: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -436,8 +1127,162 @@ export const DEFINITION = {
 				Implements: {},
 				ExternalVars: {},
 				Vars: {},
-				Method: {},
+				Method: {
+					attributes: {
+						sequence: [
+							'abstract',
+							'accessSpecifier',
+							'final',
+							'globalId',
+							'name',
+							'override',
+							'pragma',
+						],
+						details: {
+							abstract: { type: { builtin: 'boolean' }, default: 'false' },
+							accessSpecifier: {
+								required: true,
+								facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
+							},
+							final: { type: { builtin: 'boolean' }, default: 'false' },
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							override: { type: { builtin: 'boolean' }, default: 'false' },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'ResultType',
+							'Parameters',
+							'TempVars',
+							'Body',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ResultType: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Parameters: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							TempVars: { namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' } },
+							Body: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'ResultType', maxOccurs: 1 },
+									{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+									{ kind: 'element', name: 'TempVars' },
+									{ kind: 'element', name: 'Body', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Extends', maxOccurs: 1 },
+						{ kind: 'element', name: 'Implements' },
+						{ kind: 'element', name: 'ExternalVars' },
+						{ kind: 'element', name: 'Vars' },
+						{ kind: 'element', name: 'Method' },
+					],
+				},
+			],
 		},
 	},
 	CommonObject: {
@@ -448,12 +1293,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'label', 'xsi:type'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				label: { facets: { whiteSpace: 'preserve' } },
+				label: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['ActionBlocks', 'Comment', 'Connector', 'Continuation'] },
@@ -479,8 +1324,97 @@ export const DEFINITION = {
 				ConnectionPointIn: { maxOccurs: 1 },
 				ActionBlock: {},
 				Content: { maxOccurs: 1 },
-				ConnectionPointOut: { maxOccurs: 1 },
+				ConnectionPointOut: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['connectionPointOutId', 'globalId'],
+						details: {
+							connectionPointOutId: {
+								type: { builtin: 'unsignedLong' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'RelPosition'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							RelPosition: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+									{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+								{ kind: 'element', name: 'Size', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	ComplexOperand: {
@@ -500,28 +1434,95 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'preserve' } },
+		textContent: {},
 	},
 	Condition: {
 		tag: 'Condition',
 		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['SfcObject', 'Transition'],
 		attributes: {
-			sequence: [],
-			details: {},
+			sequence: ['globalId', 'pragma'],
+			details: {
+				globalId: {
+					type: { builtin: 'ID' },
+					facets: {
+						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+					},
+				},
+				pragma: {},
+			},
 		},
 		children: {
-			sequence: ['Reference', 'GraphicalPredicate', 'TextualPredicate'],
+			sequence: [
+				'Reference',
+				'GraphicalPredicate',
+				'TextualPredicate',
+				'Documentation',
+				'AddData',
+				'UsingDirective',
+				'PredicateContent',
+			],
 			details: {
-				Reference: { required: true, minOccurs: 1, maxOccurs: 1 },
-				GraphicalPredicate: { required: true, minOccurs: 1, maxOccurs: 1 },
-				TextualPredicate: { required: true, minOccurs: 1, maxOccurs: 1 },
+				Reference: { maxOccurs: 1 },
+				GraphicalPredicate: { maxOccurs: 1 },
+				TextualPredicate: { maxOccurs: 1 },
+				Documentation: { maxOccurs: 1 },
+				AddData: { maxOccurs: 1 },
+				UsingDirective: {},
+				PredicateContent: { maxOccurs: 1 },
 			},
-			choices: [
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
 				{
-					options: ['GraphicalPredicate', 'Reference', 'TextualPredicate'],
+					kind: 'choice',
 					minOccurs: 1,
 					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Reference', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'GraphicalPredicate', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'TextualPredicate', minOccurs: 1, maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'PredicateContent', minOccurs: 1, maxOccurs: 1 },
+							],
+						},
+					],
 				},
 			],
 		},
@@ -534,13 +1535,13 @@ export const DEFINITION = {
 			sequence: ['globalId', 'instancePathAndName', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				instancePathAndName: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				instancePathAndName: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -549,10 +1550,190 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Type: { required: true, minOccurs: 1, maxOccurs: 1 },
-				InitialValue: { maxOccurs: 1 },
-				Address: { maxOccurs: 1 },
+				Type: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['TypeName', 'InstantlyDefinedType'],
+						details: {
+							TypeName: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InstantlyDefinedType: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
+				InitialValue: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
+						details: {
+							SimpleValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ArrayValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							StructValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
+				Address: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['address', 'globalId', 'location', 'pragma', 'size'],
+						details: {
+							address: {},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							location: {
+								type: { builtin: 'NMTOKEN' },
+								facets: { enumeration: ['I', 'Q', 'M'], pattern: ['[-.:0-9A-Z_a-z]+'] },
+							},
+							pragma: {},
+							size: {
+								type: { builtin: 'NMTOKEN' },
+								facets: { enumeration: ['X', 'B', 'W', 'D', 'L'], pattern: ['[-.:0-9A-Z_a-z]+'] },
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+						{ kind: 'element', name: 'Address', maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	ConfigVars: {
@@ -563,12 +1744,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -580,6 +1761,41 @@ export const DEFINITION = {
 				ConfigVariable: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'ConfigVariable' }],
+				},
+			],
+		},
 	},
 	Configuration: {
 		tag: 'Configuration',
@@ -589,13 +1805,13 @@ export const DEFINITION = {
 			sequence: ['globalId', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -614,9 +1830,116 @@ export const DEFINITION = {
 				UsingDirective: {},
 				Resource: {},
 				GlobalVars: {},
-				AccessVars: {},
+				AccessVars: {
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'AccessVariable'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AccessVariable: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'AccessVariable' }],
+							},
+						],
+					},
+				},
 				ConfigVars: {},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Resource' },
+						{ kind: 'element', name: 'GlobalVars' },
+						{ kind: 'element', name: 'AccessVars' },
+						{ kind: 'element', name: 'ConfigVars' },
+					],
+				},
+			],
 		},
 	},
 	Connection: {
@@ -626,16 +1949,17 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['feedbackVariable', 'globalId', 'refConnectionPointOutId', 'xsi:type'],
 			details: {
-				feedbackVariable: { facets: { whiteSpace: 'preserve' } },
+				feedbackVariable: {},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
 				refConnectionPointOutId: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
@@ -650,6 +1974,28 @@ export const DEFINITION = {
 				AddData: { maxOccurs: 1 },
 				RelPosition: {},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+						{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'RelPosition' }],
+				},
+			],
 		},
 	},
 	ConnectionPointIn: {
@@ -668,9 +2014,9 @@ export const DEFINITION = {
 			sequence: ['globalId'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
 			},
@@ -684,7 +2030,39 @@ export const DEFINITION = {
 				Connection: {},
 				FeedbackConnection: {},
 			},
-			choices: [{ options: ['Connection', 'FeedbackConnection'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+						{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+						{
+							kind: 'choice',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Connection' },
+								{ kind: 'element', name: 'FeedbackConnection' },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	ConnectionPointOut: {
@@ -699,17 +2077,22 @@ export const DEFINITION = {
 			'SfcObject',
 		],
 		attributes: {
-			sequence: ['connectionPointOutId', 'globalId'],
+			sequence: ['connectionPointOutId', 'globalId', 'priority'],
 			details: {
 				connectionPointOutId: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
+				},
+				priority: {
+					type: { builtin: 'unsignedLong' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 			},
 		},
@@ -720,6 +2103,64 @@ export const DEFINITION = {
 				AddData: { maxOccurs: 1 },
 				RelPosition: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+								},
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	ConnectionPointOutAction: {
@@ -730,13 +2171,14 @@ export const DEFINITION = {
 			sequence: ['connectionPointOutId', 'globalId'],
 			details: {
 				connectionPointOutId: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
 			},
@@ -748,6 +2190,28 @@ export const DEFINITION = {
 				AddData: { maxOccurs: 1 },
 				RelPosition: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+						{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	Content: {
@@ -783,15 +2247,16 @@ export const DEFINITION = {
 				'version',
 			],
 			details: {
-				author: { facets: { whiteSpace: 'preserve' } },
-				creationDateTime: { required: true, facets: { whiteSpace: 'collapse' } },
+				author: {},
+				creationDateTime: { type: { builtin: 'dateTime' }, required: true },
 				language: {
-					facets: { pattern: ['[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*'], whiteSpace: 'collapse' },
+					type: { builtin: 'language' },
+					facets: { pattern: ['[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*'] },
 				},
-				modificationDateTime: { facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				organization: { facets: { whiteSpace: 'preserve' } },
-				version: { facets: { whiteSpace: 'preserve' } },
+				modificationDateTime: { type: { builtin: 'dateTime' } },
+				name: { required: true },
+				organization: {},
+				version: {},
 			},
 		},
 		children: {
@@ -801,6 +2266,16 @@ export const DEFINITION = {
 				AddDataInfo: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'CoordinateInfo', maxOccurs: 1 },
+				{ kind: 'element', name: 'AddDataInfo', maxOccurs: 1 },
+				{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+			],
 		},
 	},
 	CoordinateInfo: {
@@ -819,6 +2294,16 @@ export const DEFINITION = {
 				SfcScaling: { maxOccurs: 1 },
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'FbdScaling', maxOccurs: 1 },
+				{ kind: 'element', name: 'LdScaling', maxOccurs: 1 },
+				{ kind: 'element', name: 'SfcScaling', maxOccurs: 1 },
+			],
+		},
 	},
 	Data: {
 		tag: 'Data',
@@ -828,20 +2313,28 @@ export const DEFINITION = {
 			sequence: ['handleUnknown', 'name'],
 			details: {
 				handleUnknown: {
+					type: { builtin: 'NMTOKEN' },
 					required: true,
 					facets: {
 						enumeration: ['preserve', 'discard', 'implementation'],
 						pattern: ['[-.:0-9A-Z_a-z]+'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'collapse' } },
+				name: { type: { builtin: 'anyURI' }, required: true },
 			},
 		},
 		children: {
 			sequence: [],
 			any: true,
 			details: {},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'any', namespace: ['##any'], processContents: 'lax', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	DataTypeDecl: {
@@ -852,14 +2345,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -870,6 +2363,48 @@ export const DEFINITION = {
 				UsingDirective: {},
 				UserDefinedTypeSpec: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'UserDefinedTypeSpec', minOccurs: 1, maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	Description: {
@@ -898,8 +2433,9 @@ export const DEFINITION = {
 			sequence: ['dimensionNumber'],
 			details: {
 				dimensionNumber: {
+					type: { builtin: 'unsignedInt' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 4294967295, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 4294967295 },
 				},
 			},
 		},
@@ -909,7 +2445,15 @@ export const DEFINITION = {
 				IndexRange: { required: true, minOccurs: 1, maxOccurs: 1 },
 				VariableLength: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['IndexRange', 'VariableLength'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'IndexRange', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'VariableLength', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	Documentation: {
@@ -985,9 +2529,10 @@ export const DEFINITION = {
 		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['UserDefinedTypeSpec'],
 		attributes: {
-			sequence: ['name'],
+			sequence: ['name', 'value'],
 			details: {
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				value: {},
 			},
 		},
 		children: {
@@ -995,6 +2540,25 @@ export const DEFINITION = {
 			details: {
 				Documentation: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Documentation', maxOccurs: 1 }],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Documentation', maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	Extends: {
@@ -1011,7 +2575,15 @@ export const DEFINITION = {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	ExternalVars: {
@@ -1021,14 +2593,14 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['constant', 'globalId', 'pragma'],
 			details: {
-				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				constant: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1037,8 +2609,114 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'Type'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Variable' }],
+				},
+			],
 		},
 	},
 	FbInstTaskAssociation: {
@@ -1048,8 +2726,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['associatedTaskName', 'fbInstanceName'],
 			details: {
-				associatedTaskName: { required: true, facets: { whiteSpace: 'preserve' } },
-				fbInstanceName: { required: true, facets: { whiteSpace: 'preserve' } },
+				associatedTaskName: { required: true },
+				fbInstanceName: { required: true },
 			},
 		},
 		children: {
@@ -1072,17 +2750,17 @@ export const DEFINITION = {
 				'xsi:type',
 			],
 			details: {
-				complexIdentifier: { facets: { whiteSpace: 'preserve' } },
+				complexIdentifier: {},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				identifier: { facets: { whiteSpace: 'preserve' } },
-				instanceName: { facets: { whiteSpace: 'preserve' } },
-				targetNetworkLabel: { facets: { whiteSpace: 'preserve' } },
-				typeName: { facets: { whiteSpace: 'preserve' } },
+				identifier: {},
+				instanceName: {},
+				targetNetworkLabel: {},
+				typeName: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: {
@@ -1112,8 +2790,97 @@ export const DEFINITION = {
 				InputVariables: { maxOccurs: 1 },
 				OutputVariables: { maxOccurs: 1 },
 				ConnectionPointIn: { maxOccurs: 1 },
-				ConnectionPointOut: { maxOccurs: 1 },
+				ConnectionPointOut: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['connectionPointOutId', 'globalId'],
+						details: {
+							connectionPointOutId: {
+								type: { builtin: 'unsignedLong' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'RelPosition'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							RelPosition: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+									{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+								{ kind: 'element', name: 'Size', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	FbdScaling: {
@@ -1123,8 +2890,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: 'collapse' } },
-				y: { required: true, facets: { whiteSpace: 'collapse' } },
+				x: { type: { builtin: 'decimal' }, required: true },
+				y: { type: { builtin: 'decimal' }, required: true },
 			},
 		},
 		children: {
@@ -1139,16 +2906,17 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['feedbackVariable', 'globalId', 'refConnectionPointOutId'],
 			details: {
-				feedbackVariable: { required: true, facets: { whiteSpace: 'preserve' } },
+				feedbackVariable: { required: true },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
 				refConnectionPointOutId: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 			},
 		},
@@ -1160,6 +2928,35 @@ export const DEFINITION = {
 				RelPosition: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'RelPosition' }],
+						},
+					],
+				},
+			],
+		},
 	},
 	FileHeader: {
 		tag: 'FileHeader',
@@ -1168,11 +2965,11 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['companyName', 'companyURL', 'productName', 'productRelease', 'productVersion'],
 			details: {
-				companyName: { required: true, facets: { whiteSpace: 'preserve' } },
-				companyURL: { facets: { whiteSpace: 'collapse' } },
-				productName: { required: true, facets: { whiteSpace: 'preserve' } },
-				productRelease: { facets: { whiteSpace: 'preserve' } },
-				productVersion: { required: true, facets: { whiteSpace: 'preserve' } },
+				companyName: { required: true },
+				companyURL: { type: { builtin: 'anyURI' } },
+				productName: { required: true },
+				productRelease: {},
+				productVersion: { required: true },
 			},
 		},
 		children: {
@@ -1180,6 +2977,12 @@ export const DEFINITION = {
 			details: {
 				AddData: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'AddData', maxOccurs: 1 }],
 		},
 	},
 	Function: {
@@ -1190,14 +2993,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1219,8 +3022,124 @@ export const DEFINITION = {
 				Parameters: { maxOccurs: 1 },
 				ExternalVars: {},
 				TempVars: {},
-				MainBody: { maxOccurs: 1 },
+				MainBody: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							BodyContent: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'BodyContent' }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'ResultType', maxOccurs: 1 },
+						{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+						{ kind: 'element', name: 'ExternalVars' },
+						{ kind: 'element', name: 'TempVars' },
+						{ kind: 'element', name: 'MainBody', maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	FunctionBlock: {
@@ -1230,17 +3149,17 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['abstract', 'final', 'globalId', 'internal', 'name', 'pragma'],
 			details: {
-				abstract: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				final: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				abstract: { type: { builtin: 'boolean' }, default: 'false' },
+				final: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1269,11 +3188,238 @@ export const DEFINITION = {
 				ExternalVars: {},
 				Vars: {},
 				TempVars: {},
-				Method: {},
-				MainBody: { maxOccurs: 1 },
+				Method: {
+					attributes: {
+						sequence: [
+							'abstract',
+							'accessSpecifier',
+							'final',
+							'globalId',
+							'name',
+							'override',
+							'pragma',
+						],
+						details: {
+							abstract: { type: { builtin: 'boolean' }, default: 'false' },
+							accessSpecifier: {
+								required: true,
+								facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
+							},
+							final: { type: { builtin: 'boolean' }, default: 'false' },
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							override: { type: { builtin: 'boolean' }, default: 'false' },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'ResultType',
+							'Parameters',
+							'TempVars',
+							'Body',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ResultType: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Parameters: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							TempVars: { namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' } },
+							Body: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'ResultType', maxOccurs: 1 },
+									{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+									{ kind: 'element', name: 'TempVars' },
+									{ kind: 'element', name: 'Body', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
+				MainBody: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							BodyContent: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'BodyContent' }],
+							},
+						],
+					},
+				},
 				Action: {},
 				Transition: {},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Extends', maxOccurs: 1 },
+						{ kind: 'element', name: 'Implements' },
+						{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+						{ kind: 'element', name: 'ExternalVars' },
+						{ kind: 'element', name: 'Vars' },
+						{ kind: 'element', name: 'TempVars' },
+						{ kind: 'element', name: 'Method' },
+						{ kind: 'element', name: 'MainBody', maxOccurs: 1 },
+						{ kind: 'element', name: 'Action' },
+						{ kind: 'element', name: 'Transition' },
+					],
+				},
+			],
 		},
 	},
 	GlobalNamespace: {
@@ -1284,12 +3430,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1317,14 +3463,67 @@ export const DEFINITION = {
 				Function: { required: true, minOccurs: 1, maxOccurs: 1 },
 				Interface: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
 				{
-					options: ['Class', 'Function', 'FunctionBlock', 'Interface', 'Program'],
+					kind: 'sequence',
 					minOccurs: 1,
 					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
 				},
-				{ options: ['PouDecl'], minOccurs: 1, maxOccurs: 1 },
-				{ options: ['DataTypeDecl', 'NamespaceDecl', 'PouDecl'] },
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'choice',
+							particles: [
+								{ kind: 'element', name: 'NamespaceDecl', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'DataTypeDecl', minOccurs: 1, maxOccurs: 1 },
+								{
+									kind: 'choice',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'choice',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{ kind: 'element', name: 'Program', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'FunctionBlock', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'Class', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'Function', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'Interface', minOccurs: 1, maxOccurs: 1 },
+											],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
 			],
 		},
 	},
@@ -1344,21 +3543,18 @@ export const DEFINITION = {
 			],
 			details: {
 				accessSpecifier: {
-					facets: {
-						enumeration: ['private', 'protected', 'internal', 'public'],
-						whiteSpace: 'preserve',
-					},
+					facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
 				},
-				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				constant: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+				pragma: {},
+				retain: { type: { builtin: 'boolean' }, default: 'false' },
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['VarListWithAccessSpec'] },
@@ -1371,8 +3567,145 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+													{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'UsingDirective' }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+									{ kind: 'element', name: 'Address', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Variable' }],
+				},
+			],
 		},
 	},
 	GraphicalExpression: {
@@ -1383,16 +3716,17 @@ export const DEFINITION = {
 			sequence: ['evaluationOrder', 'globalId', 'label', 'xsi:type'],
 			details: {
 				evaluationOrder: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				label: { facets: { whiteSpace: 'preserve' } },
+				label: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['FbdNetwork', 'LadderRung'] },
@@ -1419,6 +3753,38 @@ export const DEFINITION = {
 				LdObject: { maxOccurs: 1 },
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+								{ kind: 'element', name: 'Size', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+			],
+		},
 	},
 	GraphicalPredicate: {
 		tag: 'GraphicalPredicate',
@@ -1434,6 +3800,15 @@ export const DEFINITION = {
 				ConnectionPointIn: { required: true, minOccurs: 1, maxOccurs: 1 },
 				GraphicalExpression: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'ConnectionPointIn', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'GraphicalExpression', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	IL: {
@@ -1453,7 +3828,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'preserve' } },
+		textContent: {},
 	},
 	Implements: {
 		tag: 'Implements',
@@ -1469,7 +3844,15 @@ export const DEFINITION = {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	InOutAssignment: {
@@ -1479,8 +3862,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['actualValue', 'formalParameter'],
 			details: {
-				actualValue: { required: true, facets: { whiteSpace: 'preserve' } },
-				formalParameter: { required: true, facets: { whiteSpace: 'preserve' } },
+				actualValue: { required: true },
+				formalParameter: { required: true },
 			},
 		},
 		children: {
@@ -1496,13 +3879,13 @@ export const DEFINITION = {
 			sequence: ['globalId', 'negated', 'parameterName'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				parameterName: { required: true, facets: { whiteSpace: 'preserve' } },
+				negated: { type: { builtin: 'boolean' }, default: 'false' },
+				parameterName: { required: true },
 			},
 		},
 		children: {
@@ -1511,8 +3894,90 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				ConnectionPointIn: { maxOccurs: 1 },
-				ConnectionPointOut: { maxOccurs: 1 },
+				ConnectionPointOut: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['connectionPointOutId', 'globalId'],
+						details: {
+							connectionPointOutId: {
+								type: { builtin: 'unsignedLong' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'RelPosition'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							RelPosition: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+									{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+						{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'ConnectionPointIn', maxOccurs: 1 },
+						{ kind: 'element', name: 'ConnectionPointOut', maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	InOutVariables: {
@@ -1529,6 +3994,12 @@ export const DEFINITION = {
 				InOutVariable: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'InOutVariable' }],
+		},
 	},
 	IndexRange: {
 		tag: 'IndexRange',
@@ -1537,8 +4008,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['lower', 'upper'],
 			details: {
-				lower: { required: true, facets: { whiteSpace: 'preserve' } },
-				upper: { required: true, facets: { whiteSpace: 'preserve' } },
+				lower: { required: true },
+				upper: { required: true },
 			},
 		},
 		children: {
@@ -1553,9 +4024,9 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['name', 'vendor', 'version'],
 			details: {
-				name: { required: true, facets: { whiteSpace: 'collapse' } },
-				vendor: { required: true, facets: { whiteSpace: 'collapse' } },
-				version: { facets: { whiteSpace: 'collapse' } },
+				name: { type: { builtin: 'anyURI' }, required: true },
+				vendor: { type: { builtin: 'anyURI' }, required: true },
+				version: { type: { builtin: 'decimal' } },
 			},
 		},
 		children: {
@@ -1563,6 +4034,12 @@ export const DEFINITION = {
 			details: {
 				Description: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Description', maxOccurs: 1 }],
 		},
 	},
 	InitialValue: {
@@ -1581,14 +4058,22 @@ export const DEFINITION = {
 		children: {
 			sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
 			details: {
-				SimpleValue: { required: true, minOccurs: 1, maxOccurs: 1 },
-				ArrayValue: { required: true, minOccurs: 1, maxOccurs: 1 },
-				StructValue: { required: true, minOccurs: 1, maxOccurs: 1 },
+				SimpleValue: { maxOccurs: 1 },
+				ArrayValue: { maxOccurs: 1 },
+				StructValue: { maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ['ArrayValue', 'SimpleValue', 'StructValue'], minOccurs: 1, maxOccurs: 1 },
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
 			],
 		},
+		textContent: {},
 	},
 	Inline: {
 		tag: 'Inline',
@@ -1598,12 +4083,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1612,8 +4097,52 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				BodyContent: {},
+				BodyContent: {
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: [],
+						details: {},
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'BodyContent' }],
+				},
+			],
 		},
 	},
 	InoutVars: {
@@ -1627,8 +4156,128 @@ export const DEFINITION = {
 		children: {
 			sequence: ['Variable'],
 			details: {
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'orderWithinParamSet', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							orderWithinParamSet: {
+								type: { builtin: 'unsignedInt' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 4294967295 },
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{
+														kind: 'sequence',
+														minOccurs: 1,
+														maxOccurs: 1,
+														particles: [
+															{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+															{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+														],
+													},
+													{
+														kind: 'sequence',
+														minOccurs: 1,
+														maxOccurs: 1,
+														particles: [{ kind: 'element', name: 'UsingDirective' }],
+													},
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+											{ kind: 'element', name: 'Address', maxOccurs: 1 },
+										],
+									},
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Variable' }],
 		},
 	},
 	InputAssignment: {
@@ -1638,8 +4287,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['actualValue', 'formalParameter'],
 			details: {
-				actualValue: { required: true, facets: { whiteSpace: 'preserve' } },
-				formalParameter: { required: true, facets: { whiteSpace: 'preserve' } },
+				actualValue: { required: true },
+				formalParameter: { required: true },
 			},
 		},
 		children: {
@@ -1654,19 +4303,16 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['edge', 'globalId', 'negated', 'parameterName', 'suppressName'],
 			details: {
-				edge: {
-					default: 'none',
-					facets: { enumeration: ['none', 'falling', 'rising'], whiteSpace: 'preserve' },
-				},
+				edge: { default: 'none', facets: { enumeration: ['none', 'falling', 'rising'] } },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				parameterName: { required: true, facets: { whiteSpace: 'preserve' } },
-				suppressName: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				negated: { type: { builtin: 'boolean' }, default: 'false' },
+				parameterName: { required: true },
+				suppressName: { type: { builtin: 'boolean' }, default: 'false' },
 			},
 		},
 		children: {
@@ -1676,6 +4322,28 @@ export const DEFINITION = {
 				AddData: { maxOccurs: 1 },
 				ConnectionPointIn: { maxOccurs: 1 },
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+						{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'ConnectionPointIn', maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	InputVariables: {
@@ -1692,6 +4360,12 @@ export const DEFINITION = {
 				InputVariable: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'InputVariable' }],
+		},
 	},
 	InputVars: {
 		tag: 'InputVars',
@@ -1700,15 +4374,139 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['non_retain', 'retain'],
 			details: {
-				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+				retain: { type: { builtin: 'boolean' }, default: 'false' },
 			},
 		},
 		children: {
 			sequence: ['Variable'],
 			details: {
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['edgeDetection', 'globalId', 'name', 'orderWithinParamSet', 'pragma'],
+						details: {
+							edgeDetection: {
+								default: 'none',
+								facets: { enumeration: ['none', 'falling', 'rising'] },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							orderWithinParamSet: {
+								type: { builtin: 'unsignedInt' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 4294967295 },
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{
+														kind: 'sequence',
+														minOccurs: 1,
+														maxOccurs: 1,
+														particles: [
+															{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+															{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+														],
+													},
+													{
+														kind: 'sequence',
+														minOccurs: 1,
+														maxOccurs: 1,
+														particles: [{ kind: 'element', name: 'UsingDirective' }],
+													},
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+											{ kind: 'element', name: 'Address', maxOccurs: 1 },
+										],
+									},
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Variable' }],
 		},
 	},
 	Instances: {
@@ -1724,6 +4522,12 @@ export const DEFINITION = {
 			details: {
 				Configuration: {},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Configuration' }],
 		},
 	},
 	InstantlyDefinedType: {
@@ -1742,7 +4546,39 @@ export const DEFINITION = {
 		children: {
 			sequence: ['BaseType', 'DimensionSpec', 'AddData', 'ReferenceTo'],
 			details: {
-				BaseType: { maxOccurs: 1 },
+				BaseType: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['TypeName', 'InstantlyDefinedType'],
+						details: {
+							TypeName: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InstantlyDefinedType: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
 				DimensionSpec: {},
 				AddData: { maxOccurs: 1 },
 				ReferenceTo: { maxOccurs: 1 },
@@ -1757,14 +4593,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1774,8 +4610,129 @@ export const DEFINITION = {
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
 				Extends: {},
-				Method: {},
+				Method: {
+					attributes: {
+						sequence: ['globalId', 'name', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'ResultType', 'Parameters'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ResultType: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Parameters: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'ResultType', maxOccurs: 1 },
+									{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Extends' },
+						{ kind: 'element', name: 'Method' },
+					],
+				},
+			],
 		},
 	},
 	LdObject: {
@@ -1795,27 +4752,19 @@ export const DEFINITION = {
 				'xsi:type',
 			],
 			details: {
-				compareOperator: {
-					facets: { enumeration: ['>', '>=', '=', '<=', '<', '<>'], whiteSpace: 'preserve' },
-				},
-				edge: {
-					default: 'none',
-					facets: { enumeration: ['none', 'falling', 'rising'], whiteSpace: 'preserve' },
-				},
+				compareOperator: { facets: { enumeration: ['>', '>=', '=', '<=', '<', '<>'] } },
+				edge: { default: 'none', facets: { enumeration: ['none', 'falling', 'rising'] } },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				latch: {
-					default: 'none',
-					facets: { enumeration: ['none', 'set', 'reset'], whiteSpace: 'preserve' },
-				},
-				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				operand: { facets: { whiteSpace: 'preserve' } },
-				operand1: { facets: { whiteSpace: 'preserve' } },
-				operand2: { facets: { whiteSpace: 'preserve' } },
+				latch: { default: 'none', facets: { enumeration: ['none', 'set', 'reset'] } },
+				negated: { default: 'false' },
+				operand: {},
+				operand1: {},
+				operand2: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: {
@@ -1840,9 +4789,178 @@ export const DEFINITION = {
 				RelPosition: { maxOccurs: 1 },
 				Size: { maxOccurs: 1 },
 				ConnectionPointIn: { maxOccurs: 1 },
-				ConnectionPointOut: { maxOccurs: 1 },
-				Type: { maxOccurs: 1 },
+				ConnectionPointOut: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['connectionPointOutId', 'globalId'],
+						details: {
+							connectionPointOutId: {
+								type: { builtin: 'unsignedLong' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'RelPosition'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							RelPosition: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+									{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+							},
+						],
+					},
+				},
+				Type: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: [],
+						details: {},
+					},
+					textContent: {
+						type: {
+							union: [
+								{
+									builtin: 'string',
+									facets: {
+										enumeration: [
+											'BOOL',
+											'BYTE',
+											'WORD',
+											'DWORD',
+											'LWORD',
+											'SINT',
+											'INT',
+											'DINT',
+											'LINT',
+											'USINT',
+											'UINT',
+											'UDINT',
+											'ULINT',
+											'REAL',
+											'LREAL',
+											'TIME',
+											'LTIME',
+											'DT',
+											'LDT',
+											'TOD',
+											'LTOD',
+											'STRING',
+											'WSTRING',
+											'CHAR',
+											'WCHAR',
+										],
+									},
+								},
+								{ builtin: 'string', facets: { pattern: ['STRING\\[[A-Za-z0-9_]+\\]'] } },
+								{ builtin: 'string', facets: { pattern: ['WSTRING\\[[A-Za-z0-9_]+\\]'] } },
+							],
+						},
+						facets: {
+							enumeration: [
+								'BOOL',
+								'BYTE',
+								'WORD',
+								'DWORD',
+								'LWORD',
+								'SINT',
+								'INT',
+								'DINT',
+								'LINT',
+								'USINT',
+								'UINT',
+								'UDINT',
+								'ULINT',
+								'REAL',
+								'LREAL',
+								'TIME',
+								'LTIME',
+								'DT',
+								'LDT',
+								'TOD',
+								'LTOD',
+								'STRING',
+								'WSTRING',
+								'CHAR',
+								'WCHAR',
+							],
+							pattern: ['STRING\\[[A-Za-z0-9_]+\\]', 'WSTRING\\[[A-Za-z0-9_]+\\]'],
+						},
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+								{ kind: 'element', name: 'Size', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	LdScaling: {
@@ -1852,8 +4970,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: 'collapse' } },
-				y: { required: true, facets: { whiteSpace: 'collapse' } },
+				x: { type: { builtin: 'decimal' }, required: true },
+				y: { type: { builtin: 'decimal' }, required: true },
 			},
 		},
 		children: {
@@ -1869,12 +4987,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1883,8 +5001,94 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				BodyContent: {},
+				BodyContent: {
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: [],
+						details: {},
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'BodyContent' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'BodyContent' }],
+						},
+					],
+				},
+			],
 		},
 	},
 	Member: {
@@ -1895,13 +5099,13 @@ export const DEFINITION = {
 			sequence: ['globalId', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1910,10 +5114,210 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Type: { required: true, minOccurs: 1, maxOccurs: 1 },
-				InitialValue: { maxOccurs: 1 },
-				Address: { maxOccurs: 1 },
+				Type: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['TypeName', 'InstantlyDefinedType'],
+						details: {
+							TypeName: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InstantlyDefinedType: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
+				InitialValue: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
+						details: {
+							SimpleValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ArrayValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							StructValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
+				Address: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['address', 'globalId', 'location', 'notYetFixed', 'pragma', 'size'],
+						details: {
+							address: {},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							location: {
+								type: { builtin: 'NMTOKEN' },
+								facets: { enumeration: ['I', 'Q', 'M'], pattern: ['[-.:0-9A-Z_a-z]+'] },
+							},
+							notYetFixed: { type: { builtin: 'boolean' }, default: 'false' },
+							pragma: {},
+							size: {
+								type: { builtin: 'NMTOKEN' },
+								facets: { enumeration: ['X', 'B', 'W', 'D', 'L'], pattern: ['[-.:0-9A-Z_a-z]+'] },
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+													{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'UsingDirective' }],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+						{ kind: 'element', name: 'Address', maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	Method: {
@@ -1923,24 +5327,20 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['abstract', 'accessSpecifier', 'final', 'globalId', 'name', 'override', 'pragma'],
 			details: {
-				abstract: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				abstract: { type: { builtin: 'boolean' }, default: 'false' },
 				accessSpecifier: {
-					required: true,
-					facets: {
-						enumeration: ['private', 'protected', 'internal', 'public'],
-						whiteSpace: 'preserve',
-					},
+					facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
 				},
-				final: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				final: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				override: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				override: { type: { builtin: 'boolean' }, default: 'false' },
+				pragma: {},
 			},
 		},
 		children: {
@@ -1960,8 +5360,161 @@ export const DEFINITION = {
 				ResultType: { maxOccurs: 1 },
 				Parameters: { maxOccurs: 1 },
 				TempVars: {},
-				Body: { maxOccurs: 1 },
+				Body: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							BodyContent: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'BodyContent' }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'ResultType', maxOccurs: 1 },
+								{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+								{ kind: 'element', name: 'TempVars' },
+								{ kind: 'element', name: 'Body', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'ResultType', maxOccurs: 1 },
+								{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	NamespaceDecl: {
@@ -1972,14 +5525,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -2007,14 +5560,74 @@ export const DEFINITION = {
 				Function: { required: true, minOccurs: 1, maxOccurs: 1 },
 				Interface: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
 				{
-					options: ['Class', 'Function', 'FunctionBlock', 'Interface', 'Program'],
+					kind: 'sequence',
 					minOccurs: 1,
 					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
 				},
-				{ options: ['PouDecl'], minOccurs: 1, maxOccurs: 1 },
-				{ options: ['DataTypeDecl', 'NamespaceDecl', 'PouDecl'] },
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'choice',
+							particles: [
+								{ kind: 'element', name: 'NamespaceDecl', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'DataTypeDecl', minOccurs: 1, maxOccurs: 1 },
+								{
+									kind: 'choice',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'choice',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{ kind: 'element', name: 'Program', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'FunctionBlock', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'Class', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'Function', minOccurs: 1, maxOccurs: 1 },
+												{ kind: 'element', name: 'Interface', minOccurs: 1, maxOccurs: 1 },
+											],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
 			],
 		},
 	},
@@ -2026,16 +5639,17 @@ export const DEFINITION = {
 			sequence: ['evaluationOrder', 'globalId', 'label'],
 			details: {
 				evaluationOrder: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				label: { facets: { whiteSpace: 'preserve' } },
+				label: {},
 			},
 		},
 		children: {
@@ -2048,7 +5662,52 @@ export const DEFINITION = {
 				CommonObject: { required: true, minOccurs: 1, maxOccurs: 1 },
 				FbdObject: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['CommonObject', 'FbdObject'] }],
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+										{ kind: 'element', name: 'Size', maxOccurs: 1 },
+									],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'choice',
+					particles: [
+						{ kind: 'element', name: 'CommonObject', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'FbdObject', minOccurs: 1, maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	OutputAssignment: {
@@ -2058,8 +5717,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['actualValue', 'formalParameter'],
 			details: {
-				actualValue: { required: true, facets: { whiteSpace: 'preserve' } },
-				formalParameter: { required: true, facets: { whiteSpace: 'preserve' } },
+				actualValue: { required: true },
+				formalParameter: { required: true },
 			},
 		},
 		children: {
@@ -2075,14 +5734,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'negated', 'parameterName', 'suppressName'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				negated: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				parameterName: { required: true, facets: { whiteSpace: 'preserve' } },
-				suppressName: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				negated: { type: { builtin: 'boolean' }, default: 'false' },
+				parameterName: { required: true },
+				suppressName: { type: { builtin: 'boolean' }, default: 'false' },
 			},
 		},
 		children: {
@@ -2090,8 +5749,87 @@ export const DEFINITION = {
 			details: {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
-				ConnectionPointOut: { maxOccurs: 1 },
+				ConnectionPointOut: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['connectionPointOutId', 'globalId'],
+						details: {
+							connectionPointOutId: {
+								type: { builtin: 'unsignedLong' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'RelPosition'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							RelPosition: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+									{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+						{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'ConnectionPointOut', maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	OutputVariables: {
@@ -2108,6 +5846,12 @@ export const DEFINITION = {
 				OutputVariable: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'OutputVariable' }],
+		},
 	},
 	OutputVars: {
 		tag: 'OutputVars',
@@ -2116,15 +5860,135 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['non_retain', 'retain'],
 			details: {
-				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+				retain: { type: { builtin: 'boolean' }, default: 'false' },
 			},
 		},
 		children: {
 			sequence: ['Variable'],
 			details: {
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'orderWithinParamSet', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							orderWithinParamSet: {
+								type: { builtin: 'unsignedInt' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 4294967295 },
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{
+														kind: 'sequence',
+														minOccurs: 1,
+														maxOccurs: 1,
+														particles: [
+															{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+															{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+														],
+													},
+													{
+														kind: 'sequence',
+														minOccurs: 1,
+														maxOccurs: 1,
+														particles: [{ kind: 'element', name: 'UsingDirective' }],
+													},
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+											{ kind: 'element', name: 'Address', maxOccurs: 1 },
+										],
+									},
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'Variable' }],
 		},
 	},
 	Parameters: {
@@ -2142,7 +6006,21 @@ export const DEFINITION = {
 				InputVars: { required: true, minOccurs: 1, maxOccurs: 1 },
 				OutputVars: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['InoutVars', 'InputVars', 'OutputVars'] }],
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'choice',
+					particles: [
+						{ kind: 'element', name: 'InoutVars', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'InputVars', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'OutputVars', minOccurs: 1, maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	PredicateContent: {
@@ -2176,14 +6054,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'internal', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				internal: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				internal: { type: { builtin: 'boolean' }, default: 'false' },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -2205,16 +6083,204 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				AccessVars: {},
+				AccessVars: {
+					attributes: {
+						sequence: ['constant', 'globalId', 'non_retain', 'pragma', 'retain'],
+						details: {
+							constant: { type: { builtin: 'boolean' }, default: 'false' },
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+							pragma: {},
+							retain: { type: { builtin: 'boolean' }, default: 'false' },
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'Variable'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Variable: { namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' } },
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'Variable' }],
+							},
+						],
+					},
+				},
 				GlobalVars: {},
 				Parameters: { maxOccurs: 1 },
 				ExternalVars: {},
 				Vars: {},
 				TempVars: {},
-				MainBody: { maxOccurs: 1 },
+				MainBody: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'BodyContent'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							BodyContent: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'BodyContent' }],
+							},
+						],
+					},
+				},
 				Action: {},
 				Transition: {},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'AccessVars' },
+						{ kind: 'element', name: 'GlobalVars' },
+						{ kind: 'element', name: 'Parameters', maxOccurs: 1 },
+						{ kind: 'element', name: 'ExternalVars' },
+						{ kind: 'element', name: 'Vars' },
+						{ kind: 'element', name: 'TempVars' },
+						{ kind: 'element', name: 'MainBody', maxOccurs: 1 },
+						{ kind: 'element', name: 'Action' },
+						{ kind: 'element', name: 'Transition' },
+					],
+				},
+			],
 		},
 	},
 	ProgramInstance: {
@@ -2224,19 +6290,20 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['associatedTaskName', 'evaluationOrder', 'globalId', 'name', 'pragma', 'typeName'],
 			details: {
-				associatedTaskName: { facets: { whiteSpace: 'preserve' } },
+				associatedTaskName: {},
 				evaluationOrder: {
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					type: { builtin: 'unsignedLong' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				typeName: { required: true, facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				pragma: {},
+				typeName: { required: true },
 			},
 		},
 		children: {
@@ -2259,6 +6326,46 @@ export const DEFINITION = {
 				FbInstTaskAssociation: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'InputAssignment' },
+						{ kind: 'element', name: 'OutputAssignment' },
+						{ kind: 'element', name: 'InOutAssignment' },
+						{ kind: 'element', name: 'FbInstTaskAssociation' },
+					],
+				},
+			],
+		},
 	},
 	Project: {
 		tag: 'Project',
@@ -2267,7 +6374,7 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['schemaVersion'],
 			details: {
-				schemaVersion: { required: true, facets: { whiteSpace: 'collapse' } },
+				schemaVersion: { type: { builtin: 'decimal' }, required: true },
 			},
 		},
 		children: {
@@ -2281,6 +6388,19 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'FileHeader', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'ContentHeader', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'Types', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'Instances', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+				{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+			],
+		},
 	},
 	Range: {
 		tag: 'Range',
@@ -2289,8 +6409,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['lower', 'upper'],
 			details: {
-				lower: { required: true, facets: { whiteSpace: 'preserve' } },
-				upper: { required: true, facets: { whiteSpace: 'preserve' } },
+				lower: { required: true },
+				upper: { required: true },
 			},
 		},
 		children: {
@@ -2305,7 +6425,7 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['name'],
 			details: {
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
 			},
 		},
 		children: {
@@ -2330,7 +6450,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'preserve' } },
+		textContent: {},
 	},
 	ReferenceTo: {
 		tag: 'ReferenceTo',
@@ -2346,7 +6466,15 @@ export const DEFINITION = {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	RelPosition: {
@@ -2370,8 +6498,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: 'collapse' } },
-				y: { required: true, facets: { whiteSpace: 'collapse' } },
+				x: { type: { builtin: 'decimal' }, required: true },
+				y: { type: { builtin: 'decimal' }, required: true },
 			},
 		},
 		children: {
@@ -2387,14 +6515,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'name', 'pragma', 'resourceTypeName'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				resourceTypeName: { required: true, facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				pragma: {},
+				resourceTypeName: { required: true },
 			},
 		},
 		children: {
@@ -2415,6 +6543,45 @@ export const DEFINITION = {
 				ProgramInstance: {},
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{ kind: 'element', name: 'GlobalVars' },
+						{ kind: 'element', name: 'Task' },
+						{ kind: 'element', name: 'ProgramInstance' },
+					],
+				},
+			],
+		},
 	},
 	ResultType: {
 		tag: 'ResultType',
@@ -2430,7 +6597,15 @@ export const DEFINITION = {
 				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
 				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+			],
 		},
 	},
 	Rung: {
@@ -2441,16 +6616,17 @@ export const DEFINITION = {
 			sequence: ['evaluationOrder', 'globalId', 'label'],
 			details: {
 				evaluationOrder: {
+					type: { builtin: 'unsignedLong' },
 					required: true,
-					facets: { minInclusive: 0, maxInclusive: 18446744073709551615, whiteSpace: 'collapse' },
+					facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
 				},
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				label: { facets: { whiteSpace: 'preserve' } },
+				label: {},
 			},
 		},
 		children: {
@@ -2472,7 +6648,53 @@ export const DEFINITION = {
 				LdObject: { required: true, minOccurs: 1, maxOccurs: 1 },
 				FbdObject: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [{ options: ['CommonObject', 'FbdObject', 'LdObject'] }],
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+										{ kind: 'element', name: 'Size', maxOccurs: 1 },
+									],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'choice',
+					particles: [
+						{ kind: 'element', name: 'CommonObject', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'LdObject', minOccurs: 1, maxOccurs: 1 },
+						{ kind: 'element', name: 'FbdObject', minOccurs: 1, maxOccurs: 1 },
+					],
+				},
+			],
 		},
 	},
 	ST: {
@@ -2492,7 +6714,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'preserve' } },
+		textContent: {},
 	},
 	SfcObject: {
 		tag: 'SfcObject',
@@ -2502,14 +6724,14 @@ export const DEFINITION = {
 			sequence: ['globalId', 'initialStep', 'mutualExclusion', 'name', 'xsi:type'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				initialStep: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				mutualExclusion: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				name: { facets: { whiteSpace: 'preserve' } },
+				initialStep: { default: 'false' },
+				mutualExclusion: { default: 'false' },
+				name: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: {
@@ -2542,10 +6764,138 @@ export const DEFINITION = {
 				RelPosition: { maxOccurs: 1 },
 				Size: { maxOccurs: 1 },
 				ConnectionPointIn: {},
-				ConnectionPointOut: { maxOccurs: 1 },
+				ConnectionPointOut: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['connectionPointOutId', 'globalId'],
+						details: {
+							connectionPointOutId: {
+								type: { builtin: 'unsignedLong' },
+								required: true,
+								facets: { minInclusive: 0, maxInclusive: 18446744073709551615 },
+							},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'RelPosition'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							RelPosition: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+									{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [{ kind: 'element', name: 'RelPosition', maxOccurs: 1 }],
+							},
+						],
+					},
+				},
 				ConnectionPointOutAction: { maxOccurs: 1 },
-				Condition: { maxOccurs: 1 },
+				Condition: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['Reference', 'GraphicalPredicate', 'TextualPredicate'],
+						details: {
+							Reference: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							GraphicalPredicate: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							TextualPredicate: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'Reference', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'GraphicalPredicate', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'TextualPredicate', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'RelPosition', maxOccurs: 1 },
+								{ kind: 'element', name: 'Size', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 	SfcScaling: {
@@ -2555,8 +6905,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: 'collapse' } },
-				y: { required: true, facets: { whiteSpace: 'collapse' } },
+				x: { type: { builtin: 'decimal' }, required: true },
+				y: { type: { builtin: 'decimal' }, required: true },
 			},
 		},
 		children: {
@@ -2571,7 +6921,7 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['value'],
 			details: {
-				value: { facets: { whiteSpace: 'preserve' } },
+				value: {},
 			},
 		},
 		children: {
@@ -2595,8 +6945,8 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['x', 'y'],
 			details: {
-				x: { required: true, facets: { whiteSpace: 'collapse' } },
-				y: { required: true, facets: { whiteSpace: 'collapse' } },
+				x: { type: { builtin: 'decimal' }, required: true },
+				y: { type: { builtin: 'decimal' }, required: true },
 			},
 		},
 		children: {
@@ -2615,8 +6965,62 @@ export const DEFINITION = {
 		children: {
 			sequence: ['Value'],
 			details: {
-				Value: { required: true, minOccurs: 1, maxOccurs: 1 },
+				Value: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['member'],
+						details: {
+							member: { required: true },
+						},
+					},
+					children: {
+						sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
+						details: {
+							SimpleValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ArrayValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							StructValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'choice',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+									{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+									{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			particles: [{ kind: 'element', name: 'Value', minOccurs: 1, maxOccurs: 1 }],
 		},
 	},
 	Task: {
@@ -2627,16 +7031,16 @@ export const DEFINITION = {
 			sequence: ['globalId', 'interval', 'name', 'pragma', 'priority', 'single', 'xsi:type'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				interval: { facets: { whiteSpace: 'preserve' } },
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				priority: { facets: { minInclusive: 0, maxInclusive: 65535, whiteSpace: 'collapse' } },
-				single: { facets: { whiteSpace: 'preserve' } },
+				interval: {},
+				name: { required: true },
+				pragma: {},
+				priority: { facets: { minInclusive: 0, maxInclusive: 65535 } },
+				single: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['StandardTask'] },
@@ -2650,6 +7054,35 @@ export const DEFINITION = {
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+			],
 		},
 	},
 	TempVars: {
@@ -2668,21 +7101,18 @@ export const DEFINITION = {
 			],
 			details: {
 				accessSpecifier: {
-					facets: {
-						enumeration: ['private', 'protected', 'internal', 'public'],
-						whiteSpace: 'preserve',
-					},
+					facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
 				},
-				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				constant: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+				pragma: {},
+				retain: { type: { builtin: 'boolean' }, default: 'false' },
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['VarListWithAccessSpec'] },
@@ -2695,8 +7125,145 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+													{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'UsingDirective' }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+									{ kind: 'element', name: 'Address', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Variable' }],
+				},
+			],
 		},
 	},
 	TextualPredicate: {
@@ -2707,12 +7274,12 @@ export const DEFINITION = {
 			sequence: ['globalId', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				pragma: {},
 			},
 		},
 		children: {
@@ -2724,6 +7291,41 @@ export const DEFINITION = {
 				PredicateContent: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'PredicateContent', minOccurs: 1, maxOccurs: 1 }],
+				},
+			],
+		},
 	},
 	Transition: {
 		tag: 'Transition',
@@ -2733,13 +7335,13 @@ export const DEFINITION = {
 			sequence: ['globalId', 'name', 'pragma'],
 			details: {
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				pragma: {},
 			},
 		},
 		children: {
@@ -2748,8 +7350,118 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Condition: { required: true, minOccurs: 1, maxOccurs: 1 },
+				Condition: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['globalId', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective', 'PredicateContent'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							PredicateContent: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+											{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'UsingDirective' }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'PredicateContent', minOccurs: 1, maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+								{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'UsingDirective' }],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [{ kind: 'element', name: 'Condition', minOccurs: 1, maxOccurs: 1 }],
+				},
+			],
 		},
 	},
 	Type: {
@@ -2763,10 +7475,88 @@ export const DEFINITION = {
 		children: {
 			sequence: ['TypeName', 'InstantlyDefinedType'],
 			details: {
-				TypeName: { required: true, minOccurs: 1, maxOccurs: 1 },
-				InstantlyDefinedType: { required: true, minOccurs: 1, maxOccurs: 1 },
+				TypeName: { maxOccurs: 1 },
+				InstantlyDefinedType: { maxOccurs: 1 },
 			},
-			choices: [{ options: ['InstantlyDefinedType', 'TypeName'], minOccurs: 1, maxOccurs: 1 }],
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+			],
+		},
+		textContent: {
+			type: {
+				union: [
+					{
+						builtin: 'string',
+						facets: {
+							enumeration: [
+								'BOOL',
+								'BYTE',
+								'WORD',
+								'DWORD',
+								'LWORD',
+								'SINT',
+								'INT',
+								'DINT',
+								'LINT',
+								'USINT',
+								'UINT',
+								'UDINT',
+								'ULINT',
+								'REAL',
+								'LREAL',
+								'TIME',
+								'LTIME',
+								'DT',
+								'LDT',
+								'TOD',
+								'LTOD',
+								'STRING',
+								'WSTRING',
+								'CHAR',
+								'WCHAR',
+							],
+						},
+					},
+					{ builtin: 'string', facets: { pattern: ['STRING\\[[A-Za-z0-9_]+\\]'] } },
+					{ builtin: 'string', facets: { pattern: ['WSTRING\\[[A-Za-z0-9_]+\\]'] } },
+				],
+			},
+			facets: {
+				enumeration: [
+					'BOOL',
+					'BYTE',
+					'WORD',
+					'DWORD',
+					'LWORD',
+					'SINT',
+					'INT',
+					'DINT',
+					'LINT',
+					'USINT',
+					'UINT',
+					'UDINT',
+					'ULINT',
+					'REAL',
+					'LREAL',
+					'TIME',
+					'LTIME',
+					'DT',
+					'LDT',
+					'TOD',
+					'LTOD',
+					'STRING',
+					'WSTRING',
+					'CHAR',
+					'WCHAR',
+				],
+				pattern: ['STRING\\[[A-Za-z0-9_]+\\]', 'WSTRING\\[[A-Za-z0-9_]+\\]'],
+			},
 		},
 	},
 	TypeName: {
@@ -2786,7 +7576,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'preserve' } },
+		textContent: {},
 	},
 	Types: {
 		tag: 'Types',
@@ -2802,6 +7592,12 @@ export const DEFINITION = {
 				GlobalNamespace: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
 		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [{ kind: 'element', name: 'GlobalNamespace', minOccurs: 1, maxOccurs: 1 }],
+		},
 	},
 	UserDefinedTypeSpec: {
 		tag: 'UserDefinedTypeSpec',
@@ -2810,7 +7606,7 @@ export const DEFINITION = {
 		attributes: {
 			sequence: ['overlap', 'xsi:type'],
 			details: {
-				overlap: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				overlap: { default: 'false' },
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: {
@@ -2839,11 +7635,77 @@ export const DEFINITION = {
 				'Range',
 			],
 			details: {
-				BaseType: { maxOccurs: 1 },
+				BaseType: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['TypeName', 'InstantlyDefinedType'],
+						details: {
+							TypeName: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InstantlyDefinedType: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
 				DimensionSpec: {},
 				AddData: { maxOccurs: 1 },
-				InitialValue: { maxOccurs: 1 },
-				Enumerator: {},
+				InitialValue: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: [],
+						details: {},
+					},
+					textContent: {},
+				},
+				Enumerator: {
+					attributes: {
+						sequence: ['name', 'value'],
+						details: {
+							name: { required: true },
+							value: { required: true },
+						},
+					},
+					children: {
+						sequence: ['Documentation'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [{ kind: 'element', name: 'Documentation', maxOccurs: 1 }],
+					},
+				},
 				ReferenceTo: { maxOccurs: 1 },
 				Member: {},
 				Range: { maxOccurs: 1 },
@@ -2899,16 +7761,17 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'preserve' } },
+		textContent: {},
 	},
 	Value: {
 		tag: 'Value',
 		namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
 		parents: ['ArrayValue', 'StructValue'],
 		attributes: {
-			sequence: ['repetitionValue'],
+			sequence: ['repetitionValue', 'member'],
 			details: {
-				repetitionValue: { default: '1', facets: { whiteSpace: 'preserve' } },
+				repetitionValue: { default: '1' },
+				member: {},
 			},
 		},
 		children: {
@@ -2918,8 +7781,46 @@ export const DEFINITION = {
 				ArrayValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 				StructValue: { required: true, minOccurs: 1, maxOccurs: 1 },
 			},
-			choices: [
-				{ options: ['ArrayValue', 'SimpleValue', 'StructValue'], minOccurs: 1, maxOccurs: 1 },
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'choice',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'choice',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+								{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+							],
+						},
+					],
+				},
 			],
 		},
 	},
@@ -2937,16 +7838,21 @@ export const DEFINITION = {
 			'TempVars',
 		],
 		attributes: {
-			sequence: ['globalId', 'name', 'pragma', 'xsi:type'],
+			sequence: ['edgeDetection', 'globalId', 'name', 'orderWithinParamSet', 'pragma', 'xsi:type'],
 			details: {
+				edgeDetection: { default: 'none', facets: { enumeration: ['none', 'falling', 'rising'] } },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				name: { required: true, facets: { whiteSpace: 'preserve' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
+				name: { required: true },
+				orderWithinParamSet: {
+					type: { builtin: 'unsignedInt' },
+					facets: { minInclusive: 0, maxInclusive: 4294967295 },
+				},
+				pragma: {},
 				'xsi:type': {
 					namespace: { prefix: 'xsi', uri: 'http://www.w3.org/2001/XMLSchema-instance' },
 					facets: { enumeration: ['VariableDecl'] },
@@ -2959,10 +7865,426 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Type: { required: true, minOccurs: 1, maxOccurs: 1 },
-				InitialValue: { maxOccurs: 1 },
-				Address: { maxOccurs: 1 },
+				Type: {
+					required: true,
+					minOccurs: 1,
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['TypeName', 'InstantlyDefinedType'],
+						details: {
+							TypeName: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InstantlyDefinedType: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'TypeName', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
+				InitialValue: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: [],
+						details: {},
+					},
+					children: {
+						sequence: ['SimpleValue', 'ArrayValue', 'StructValue'],
+						details: {
+							SimpleValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							ArrayValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							StructValue: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'choice',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{ kind: 'element', name: 'SimpleValue', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'ArrayValue', minOccurs: 1, maxOccurs: 1 },
+							{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
+						],
+					},
+				},
+				Address: {
+					maxOccurs: 1,
+					attributes: {
+						sequence: ['address', 'globalId', 'location', 'notYetFixed', 'pragma', 'size'],
+						details: {
+							address: {},
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							location: {
+								type: { builtin: 'NMTOKEN' },
+								facets: { enumeration: ['I', 'Q', 'M'], pattern: ['[-.:0-9A-Z_a-z]+'] },
+							},
+							notYetFixed: { type: { builtin: 'boolean' }, default: 'false' },
+							pragma: {},
+							size: {
+								type: { builtin: 'NMTOKEN' },
+								facets: { enumeration: ['X', 'B', 'W', 'D', 'L'], pattern: ['[-.:0-9A-Z_a-z]+'] },
+							},
+						},
+					},
+					children: {
+						sequence: ['Documentation', 'AddData', 'UsingDirective'],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+													{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'UsingDirective' }],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'choice',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+												{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+											],
+										},
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [{ kind: 'element', name: 'UsingDirective' }],
+										},
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+								{ kind: 'element', name: 'Address', maxOccurs: 1 },
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{
+													kind: 'sequence',
+													minOccurs: 1,
+													maxOccurs: 1,
+													particles: [
+														{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+														{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+													],
+												},
+												{
+													kind: 'sequence',
+													minOccurs: 1,
+													maxOccurs: 1,
+													particles: [{ kind: 'element', name: 'UsingDirective' }],
+												},
+											],
+										},
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+										},
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+										{ kind: 'element', name: 'Address', maxOccurs: 1 },
+									],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{
+													kind: 'sequence',
+													minOccurs: 1,
+													maxOccurs: 1,
+													particles: [
+														{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+														{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+													],
+												},
+												{
+													kind: 'sequence',
+													minOccurs: 1,
+													maxOccurs: 1,
+													particles: [{ kind: 'element', name: 'UsingDirective' }],
+												},
+											],
+										},
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+										},
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+										{ kind: 'element', name: 'Address', maxOccurs: 1 },
+									],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [
+												{
+													kind: 'sequence',
+													minOccurs: 1,
+													maxOccurs: 1,
+													particles: [
+														{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+														{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+													],
+												},
+												{
+													kind: 'sequence',
+													minOccurs: 1,
+													maxOccurs: 1,
+													particles: [{ kind: 'element', name: 'UsingDirective' }],
+												},
+											],
+										},
+										{
+											kind: 'sequence',
+											minOccurs: 1,
+											maxOccurs: 1,
+											particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+										},
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+										{ kind: 'element', name: 'Address', maxOccurs: 1 },
+									],
+								},
+							],
+						},
+					],
+				},
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+						},
+					],
+				},
+			],
 		},
 	},
 	VariableLength: {
@@ -2977,7 +8299,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
-		textContent: { facets: { whiteSpace: 'collapse' } },
+		textContent: { fixed: 'true', type: { builtin: 'boolean' } },
 	},
 	Vars: {
 		tag: 'Vars',
@@ -2988,21 +8310,18 @@ export const DEFINITION = {
 			details: {
 				accessSpecifier: {
 					required: true,
-					facets: {
-						enumeration: ['private', 'protected', 'internal', 'public'],
-						whiteSpace: 'preserve',
-					},
+					facets: { enumeration: ['private', 'protected', 'internal', 'public'] },
 				},
-				constant: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				constant: { type: { builtin: 'boolean' }, default: 'false' },
 				globalId: {
+					type: { builtin: 'ID' },
 					facets: {
 						pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
-						whiteSpace: 'collapse',
 					},
 				},
-				non_retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
-				pragma: { facets: { whiteSpace: 'preserve' } },
-				retain: { default: 'false', facets: { whiteSpace: 'collapse' } },
+				non_retain: { type: { builtin: 'boolean' }, default: 'false' },
+				pragma: {},
+				retain: { type: { builtin: 'boolean' }, default: 'false' },
 			},
 		},
 		children: {
@@ -3011,8 +8330,152 @@ export const DEFINITION = {
 				Documentation: { maxOccurs: 1 },
 				AddData: { maxOccurs: 1 },
 				UsingDirective: {},
-				Variable: {},
+				Variable: {
+					attributes: {
+						sequence: ['globalId', 'name', 'pragma'],
+						details: {
+							globalId: {
+								type: { builtin: 'ID' },
+								facets: {
+									pattern: ['[[A-Za-z_:]-[:]][[-.:0-9A-Z_a-z]-[:]]*', '[A-Za-z_:][-.:0-9A-Z_a-z]*'],
+								},
+							},
+							name: { required: true },
+							pragma: {},
+						},
+					},
+					children: {
+						sequence: [
+							'Documentation',
+							'AddData',
+							'UsingDirective',
+							'Type',
+							'InitialValue',
+							'Address',
+						],
+						details: {
+							Documentation: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							AddData: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							UsingDirective: {
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Type: {
+								required: true,
+								minOccurs: 1,
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							InitialValue: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+							Address: {
+								maxOccurs: 1,
+								namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
+							},
+						},
+					},
+					contentModel: {
+						kind: 'sequence',
+						minOccurs: 1,
+						maxOccurs: 1,
+						particles: [
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [
+													{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+													{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+												],
+											},
+											{
+												kind: 'sequence',
+												minOccurs: 1,
+												maxOccurs: 1,
+												particles: [{ kind: 'element', name: 'UsingDirective' }],
+											},
+										],
+									},
+									{
+										kind: 'sequence',
+										minOccurs: 1,
+										maxOccurs: 1,
+										particles: [{ kind: 'element', name: 'Type', minOccurs: 1, maxOccurs: 1 }],
+									},
+								],
+							},
+							{
+								kind: 'sequence',
+								minOccurs: 1,
+								maxOccurs: 1,
+								particles: [
+									{ kind: 'element', name: 'InitialValue', maxOccurs: 1 },
+									{ kind: 'element', name: 'Address', maxOccurs: 1 },
+								],
+							},
+						],
+					},
+				},
 			},
+		},
+		contentModel: {
+			kind: 'sequence',
+			minOccurs: 1,
+			maxOccurs: 1,
+			particles: [
+				{
+					kind: 'sequence',
+					minOccurs: 1,
+					maxOccurs: 1,
+					particles: [
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [
+										{ kind: 'element', name: 'Documentation', maxOccurs: 1 },
+										{ kind: 'element', name: 'AddData', maxOccurs: 1 },
+									],
+								},
+								{
+									kind: 'sequence',
+									minOccurs: 1,
+									maxOccurs: 1,
+									particles: [{ kind: 'element', name: 'UsingDirective' }],
+								},
+							],
+						},
+						{
+							kind: 'sequence',
+							minOccurs: 1,
+							maxOccurs: 1,
+							particles: [{ kind: 'element', name: 'Variable' }],
+						},
+					],
+				},
+			],
 		},
 	},
 } as const

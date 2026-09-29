@@ -91,7 +91,67 @@ export type AttributesaccessVars = {
 	retain?: string
 }
 
+export type AttributesaccessVarsInconfiguration = {}
+
+export type AttributesaccessVarsIninterface = {
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+}
+
 export type Attributesaction = {
+	globalId?: string
+	name?: string
+	localId?: string
+	qualifier?:
+		| 'P1'
+		| 'N'
+		| 'P0'
+		| 'R'
+		| 'S'
+		| 'L'
+		| 'D'
+		| 'P'
+		| 'DS'
+		| 'DL'
+		| 'SD'
+		| 'SL'
+		| (string & {})
+	width?: string
+	height?: string
+	duration?: string
+	indicator?: string
+	executionOrderId?: string
+}
+
+export type AttributesactionInactionBlock = {
+	duration?: string
+	executionOrderId?: string
+	globalId?: string
+	height?: string
+	indicator?: string
+	localId: string
+	qualifier?:
+		| 'P1'
+		| 'N'
+		| 'P0'
+		| 'R'
+		| 'S'
+		| 'L'
+		| 'D'
+		| 'P'
+		| 'DS'
+		| 'DL'
+		| 'SD'
+		| 'SL'
+		| (string & {})
+	width?: string
+}
+
+export type AttributesactionInactions = {
 	globalId?: string
 	name: string
 }
@@ -180,7 +240,148 @@ export type AttributesconnectionPointIn = {
 	globalId?: string
 }
 
+export type AttributesconnectionPointInInactionBlock = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInIncoil = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInIncondition = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInconnector = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInIncontact = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInIninOutVariable = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInjump = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInjumpStep = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInmacroStep = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInoutVariable = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInreturn = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInrightPowerRail = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInselectionConvergence = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInselectionDivergence = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInsimultaneousConvergence = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInsimultaneousDivergence = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInstep = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInIntransition = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointInInvariable = {
+	globalId?: string
+}
+
 export type AttributesconnectionPointOut = {
+	globalId?: string
+	formalParameter?: string
+}
+
+export type AttributesconnectionPointOutInaction = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutIncoil = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutIncontact = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutIncontinuation = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutIninOutVariable = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutIninVariable = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInleftPowerRail = {
+	formalParameter: string
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInmacroStep = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInselectionConvergence = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInselectionDivergence = {
+	formalParameter: string
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInsimultaneousConvergence = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInsimultaneousDivergence = {
+	formalParameter: string
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInstep = {
+	formalParameter: string
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutIntransition = {
+	globalId?: string
+}
+
+export type AttributesconnectionPointOutInvariable = {
 	globalId?: string
 }
 
@@ -296,6 +497,33 @@ export type AttributesglobalVars = {
 	retain?: string
 }
 
+export type AttributesglobalVarsInconfiguration = {
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+}
+
+export type AttributesglobalVarsIninterface = {
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+}
+
+export type AttributesglobalVarsInresource = {
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+}
+
 export type AttributesinOutVariable = {
 	edgeIn?: 'none' | 'falling' | 'rising' | (string & {})
 	edgeOut?: 'none' | 'falling' | 'rising' | (string & {})
@@ -311,6 +539,10 @@ export type AttributesinOutVariable = {
 }
 
 export type AttributesinOutVariables = {}
+
+export type AttributesinOutVariablesInblock = {}
+
+export type AttributesinOutVariablesInvendorElement = {}
 
 export type AttributesinOutVars = {
 	constant?: string
@@ -343,9 +575,25 @@ export type AttributesinitialValue = {}
 export type Attributesinline = {
 	WorksheetName?: string
 	globalId?: string
+	name?: string
+}
+
+export type AttributesinlineInaction = {
+	WorksheetName?: string
+	globalId?: string
+}
+
+export type AttributesinlineIncondition = {
+	WorksheetName?: string
+	globalId?: string
+	name: string
 }
 
 export type AttributesinputVariables = {}
+
+export type AttributesinputVariablesInblock = {}
+
+export type AttributesinputVariablesInvendorElement = {}
 
 export type AttributesinputVars = {
 	constant?: string
@@ -428,6 +676,10 @@ export type AttributesoutVariable = {
 
 export type AttributesoutputVariables = {}
 
+export type AttributesoutputVariablesInblock = {}
+
+export type AttributesoutputVariablesInvendorElement = {}
+
 export type AttributesoutputVars = {
 	constant?: string
 	name?: string
@@ -470,7 +722,25 @@ export type Attributesrange = {
 	upper: string
 }
 
+export type AttributesrangeInsubrangeSigned = {
+	lower: string
+	upper: string
+}
+
+export type AttributesrangeInsubrangeUnsigned = {
+	lower: string
+	upper: string
+}
+
 export type Attributesreference = {
+	name: string
+}
+
+export type AttributesreferenceInaction = {
+	name: string
+}
+
+export type AttributesreferenceIncondition = {
 	name: string
 }
 
@@ -503,6 +773,21 @@ export type AttributesrightPowerRail = {
 }
 
 export type Attributesscaling = {
+	x: string
+	y: string
+}
+
+export type AttributesscalingInfbd = {
+	x: string
+	y: string
+}
+
+export type AttributesscalingInld = {
+	x: string
+	y: string
+}
+
+export type AttributesscalingInsfc = {
 	x: string
 	y: string
 }
@@ -594,9 +879,24 @@ export type Attributestransition = {
 	executionOrderId?: string
 	globalId?: string
 	height?: string
+	localId?: string
+	priority?: string
+	width?: string
+	name?: string
+}
+
+export type AttributestransitionInSFC = {
+	executionOrderId?: string
+	globalId?: string
+	height?: string
 	localId: string
 	priority?: string
 	width?: string
+}
+
+export type AttributestransitionIntransitions = {
+	globalId?: string
+	name: string
 }
 
 export type Attributestransitions = {}
@@ -606,6 +906,21 @@ export type Attributestype = {}
 export type Attributestypes = {}
 
 export type Attributesvalue = {
+	name?: string
+	value?: string
+	repetitionValue?: string
+	member?: string
+}
+
+export type AttributesvalueInarrayValue = {
+	repetitionValue?: string
+}
+
+export type AttributesvalueInstructValue = {
+	member: string
+}
+
+export type AttributesvalueInvalues = {
 	name: string
 	value?: string
 }
@@ -614,9 +929,96 @@ export type Attributesvalues = {}
 
 export type Attributesvariable = {
 	address?: string
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	formalParameter?: string
+	globalId?: string
+	hidden?: string
+	name?: string
+	negated?: string
+	storage?: 'none' | 'set' | 'reset' | (string & {})
+	'xsi:type'?: 'edgeModifierType' | 'storageModifierType' | (string & {})
+}
+
+export type AttributesvariableInaccessVars = {
+	address?: string
 	globalId?: string
 	name: string
-	'xsi:type'?: 'edgeModifierType' | 'storageModifierType' | (string & {})
+}
+
+export type AttributesvariableIncoil = {}
+
+export type AttributesvariableIncontact = {}
+
+export type AttributesvariableInexternalVars = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableInglobalVars = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableIninOutVariables = {
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	formalParameter: string
+	hidden?: string
+	negated?: string
+	storage?: 'none' | 'set' | 'reset' | (string & {})
+}
+
+export type AttributesvariableIninOutVars = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableIninputVariables = {
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	formalParameter: string
+	hidden?: string
+	negated?: string
+	storage?: 'none' | 'set' | 'reset' | (string & {})
+}
+
+export type AttributesvariableIninputVars = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableInlocalVars = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableInoutputVariables = {
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	formalParameter: string
+	hidden?: string
+	negated?: string
+	storage?: 'none' | 'set' | 'reset' | (string & {})
+}
+
+export type AttributesvariableInoutputVars = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableInstruct = {
+	address?: string
+	globalId?: string
+	name: string
+}
+
+export type AttributesvariableIntempVars = {
+	address?: string
+	globalId?: string
+	name: string
 }
 
 export type AttributesvendorElement = {
@@ -773,6 +1175,652 @@ export type AttributesMap = {
 }
 
 export type AttributesOf<T extends AvailableElement> = AttributesMap[T]
+
+/**
+ * The attributes of a child AS DECLARED UNDER each parent. An element declared once has the
+ * same type under every parent; a homonym has the type of its declaration under each. Read
+ * through the dialecte's `AttributesOf<Element, Parent>`; the constant `ATTRIBUTES.byParent`
+ * is checked against this map.
+ */
+export type AttributesByParent = {
+	FBD: {
+		comment: Attributescomment
+		error: Attributeserror
+		connector: Attributesconnector
+		continuation: Attributescontinuation
+		actionBlock: AttributesactionBlock
+		vendorElement: AttributesvendorElement
+		block: Attributesblock
+		inVariable: AttributesinVariable
+		outVariable: AttributesoutVariable
+		inOutVariable: AttributesinOutVariable
+		label: Attributeslabel
+		jump: Attributesjump
+		return: Attributesreturn
+	}
+	LD: {
+		comment: Attributescomment
+		error: Attributeserror
+		connector: Attributesconnector
+		continuation: Attributescontinuation
+		actionBlock: AttributesactionBlock
+		vendorElement: AttributesvendorElement
+		block: Attributesblock
+		inVariable: AttributesinVariable
+		outVariable: AttributesoutVariable
+		inOutVariable: AttributesinOutVariable
+		label: Attributeslabel
+		jump: Attributesjump
+		return: Attributesreturn
+		leftPowerRail: AttributesleftPowerRail
+		rightPowerRail: AttributesrightPowerRail
+		coil: Attributescoil
+		contact: Attributescontact
+	}
+	SFC: {
+		comment: Attributescomment
+		error: Attributeserror
+		connector: Attributesconnector
+		continuation: Attributescontinuation
+		actionBlock: AttributesactionBlock
+		vendorElement: AttributesvendorElement
+		block: Attributesblock
+		inVariable: AttributesinVariable
+		outVariable: AttributesoutVariable
+		inOutVariable: AttributesinOutVariable
+		label: Attributeslabel
+		jump: Attributesjump
+		return: Attributesreturn
+		leftPowerRail: AttributesleftPowerRail
+		rightPowerRail: AttributesrightPowerRail
+		coil: Attributescoil
+		contact: Attributescontact
+		step: Attributesstep
+		macroStep: AttributesmacroStep
+		jumpStep: AttributesjumpStep
+		transition: AttributestransitionInSFC
+		selectionDivergence: AttributesselectionDivergence
+		selectionConvergence: AttributesselectionConvergence
+		simultaneousDivergence: AttributessimultaneousDivergence
+		simultaneousConvergence: AttributessimultaneousConvergence
+	}
+	accessVariable: {
+		type: Attributestype
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	accessVars: {
+		variable: AttributesvariableInaccessVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+		accessVariable: AttributesaccessVariable
+	}
+	action: {
+		body: Attributesbody
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+		relPosition: AttributesrelPosition
+		reference: AttributesreferenceInaction
+		inline: AttributesinlineInaction
+		connectionPointOut: AttributesconnectionPointOutInaction
+	}
+	actionBlock: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInactionBlock
+		action: AttributesactionInactionBlock
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	actions: {
+		action: AttributesactionInactions
+	}
+	addData: {
+		data: Attributesdata
+	}
+	addDataInfo: {
+		info: Attributesinfo
+	}
+	array: {
+		dimension: Attributesdimension
+		baseType: AttributesbaseType
+	}
+	arrayValue: {
+		value: AttributesvalueInarrayValue
+	}
+	baseType: {
+		BOOL: AttributesBOOL
+		BYTE: AttributesBYTE
+		WORD: AttributesWORD
+		DWORD: AttributesDWORD
+		LWORD: AttributesLWORD
+		SINT: AttributesSINT
+		INT: AttributesINT
+		DINT: AttributesDINT
+		LINT: AttributesLINT
+		USINT: AttributesUSINT
+		UINT: AttributesUINT
+		UDINT: AttributesUDINT
+		ULINT: AttributesULINT
+		REAL: AttributesREAL
+		LREAL: AttributesLREAL
+		TIME: AttributesTIME
+		DATE: AttributesDATE
+		DT: AttributesDT
+		TOD: AttributesTOD
+		string: Attributesstring
+		wstring: Attributeswstring
+		ANY: AttributesANY
+		ANY_DERIVED: AttributesANY_DERIVED
+		ANY_ELEMENTARY: AttributesANY_ELEMENTARY
+		ANY_MAGNITUDE: AttributesANY_MAGNITUDE
+		ANY_NUM: AttributesANY_NUM
+		ANY_REAL: AttributesANY_REAL
+		ANY_INT: AttributesANY_INT
+		ANY_BIT: AttributesANY_BIT
+		ANY_STRING: AttributesANY_STRING
+		ANY_DATE: AttributesANY_DATE
+		array: Attributesarray
+		derived: Attributesderived
+		enum: Attributesenum
+		struct: Attributesstruct
+		subrangeSigned: AttributessubrangeSigned
+		subrangeUnsigned: AttributessubrangeUnsigned
+		pointer: Attributespointer
+	}
+	block: {
+		position: Attributesposition
+		inputVariables: AttributesinputVariablesInblock
+		inOutVariables: AttributesinOutVariablesInblock
+		outputVariables: AttributesoutputVariablesInblock
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	body: {
+		IL: AttributesIL
+		ST: AttributesST
+		FBD: AttributesFBD
+		LD: AttributesLD
+		SFC: AttributesSFC
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	coil: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInIncoil
+		connectionPointOut: AttributesconnectionPointOutIncoil
+		variable: AttributesvariableIncoil
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	comment: {
+		position: Attributesposition
+		content: Attributescontent
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	condition: {
+		reference: AttributesreferenceIncondition
+		connectionPointIn: AttributesconnectionPointInIncondition
+		inline: AttributesinlineIncondition
+	}
+	configVariable: {
+		type: Attributestype
+		initialValue: AttributesinitialValue
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	configVars: {
+		configVariable: AttributesconfigVariable
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	configuration: {
+		resource: Attributesresource
+		globalVars: AttributesglobalVarsInconfiguration
+		accessVars: AttributesaccessVarsInconfiguration
+		configVars: AttributesconfigVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	configurations: {
+		configuration: Attributesconfiguration
+	}
+	connection: {
+		position: Attributesposition
+		addData: AttributesaddData
+	}
+	connectionPointIn: {
+		relPosition: AttributesrelPosition
+		connection: Attributesconnection
+		expression: Attributesexpression
+		addData: AttributesaddData
+	}
+	connectionPointOut: {
+		relPosition: AttributesrelPosition
+		expression: Attributesexpression
+		addData: AttributesaddData
+	}
+	connectionPointOutAction: {
+		relPosition: AttributesrelPosition
+		expression: Attributesexpression
+		addData: AttributesaddData
+	}
+	connector: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInconnector
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	contact: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInIncontact
+		connectionPointOut: AttributesconnectionPointOutIncontact
+		variable: AttributesvariableIncontact
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	contentHeader: {
+		Comment: AttributesComment
+		coordinateInfo: AttributescoordinateInfo
+		addDataInfo: AttributesaddDataInfo
+		addData: AttributesaddData
+	}
+	continuation: {
+		position: Attributesposition
+		connectionPointOut: AttributesconnectionPointOutIncontinuation
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	coordinateInfo: {
+		pageSize: AttributespageSize
+		fbd: Attributesfbd
+		ld: Attributesld
+		sfc: Attributessfc
+	}
+	dataType: {
+		baseType: AttributesbaseType
+		initialValue: AttributesinitialValue
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	dataTypes: {
+		dataType: AttributesdataType
+	}
+	derived: {
+		addData: AttributesaddData
+	}
+	enum: {
+		values: Attributesvalues
+		baseType: AttributesbaseType
+	}
+	error: {
+		position: Attributesposition
+		content: Attributescontent
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	externalVars: {
+		variable: AttributesvariableInexternalVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	fbd: {
+		scaling: AttributesscalingInfbd
+	}
+	globalVars: {
+		variable: AttributesvariableInglobalVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	inOutVariable: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInIninOutVariable
+		connectionPointOut: AttributesconnectionPointOutIninOutVariable
+		expression: Attributesexpression
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	inOutVariables: {
+		variable: AttributesvariableIninOutVariables
+	}
+	inOutVars: {
+		variable: AttributesvariableIninOutVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	inVariable: {
+		position: Attributesposition
+		connectionPointOut: AttributesconnectionPointOutIninVariable
+		expression: Attributesexpression
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	info: {
+		description: Attributesdescription
+	}
+	initialValue: {
+		simpleValue: AttributessimpleValue
+		arrayValue: AttributesarrayValue
+		structValue: AttributesstructValue
+	}
+	inline: {
+		IL: AttributesIL
+		ST: AttributesST
+		FBD: AttributesFBD
+		LD: AttributesLD
+		SFC: AttributesSFC
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	inputVariables: {
+		variable: AttributesvariableIninputVariables
+	}
+	inputVars: {
+		variable: AttributesvariableIninputVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	instances: {
+		configurations: Attributesconfigurations
+	}
+	interface: {
+		returnType: AttributesreturnType
+		localVars: AttributeslocalVars
+		tempVars: AttributestempVars
+		inputVars: AttributesinputVars
+		outputVars: AttributesoutputVars
+		inOutVars: AttributesinOutVars
+		externalVars: AttributesexternalVars
+		globalVars: AttributesglobalVarsIninterface
+		accessVars: AttributesaccessVarsIninterface
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	jump: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInjump
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	jumpStep: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInjumpStep
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	label: {
+		position: Attributesposition
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	ld: {
+		scaling: AttributesscalingInld
+	}
+	leftPowerRail: {
+		position: Attributesposition
+		connectionPointOut: AttributesconnectionPointOutInleftPowerRail
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	localVars: {
+		variable: AttributesvariableInlocalVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	macroStep: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInmacroStep
+		connectionPointOut: AttributesconnectionPointOutInmacroStep
+		body: Attributesbody
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	outVariable: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInoutVariable
+		expression: Attributesexpression
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	outputVariables: {
+		variable: AttributesvariableInoutputVariables
+	}
+	outputVars: {
+		variable: AttributesvariableInoutputVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	pointer: {
+		baseType: AttributesbaseType
+	}
+	pou: {
+		interface: Attributesinterface
+		actions: Attributesactions
+		transitions: Attributestransitions
+		body: Attributesbody
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	pouInstance: {
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	pous: {
+		pou: Attributespou
+	}
+	project: {
+		fileHeader: AttributesfileHeader
+		contentHeader: AttributescontentHeader
+		types: Attributestypes
+		instances: Attributesinstances
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	resource: {
+		task: Attributestask
+		globalVars: AttributesglobalVarsInresource
+		pouInstance: AttributespouInstance
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	return: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInreturn
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	returnType: {
+		BOOL: AttributesBOOL
+		BYTE: AttributesBYTE
+		WORD: AttributesWORD
+		DWORD: AttributesDWORD
+		LWORD: AttributesLWORD
+		SINT: AttributesSINT
+		INT: AttributesINT
+		DINT: AttributesDINT
+		LINT: AttributesLINT
+		USINT: AttributesUSINT
+		UINT: AttributesUINT
+		UDINT: AttributesUDINT
+		ULINT: AttributesULINT
+		REAL: AttributesREAL
+		LREAL: AttributesLREAL
+		TIME: AttributesTIME
+		DATE: AttributesDATE
+		DT: AttributesDT
+		TOD: AttributesTOD
+		string: Attributesstring
+		wstring: Attributeswstring
+		ANY: AttributesANY
+		ANY_DERIVED: AttributesANY_DERIVED
+		ANY_ELEMENTARY: AttributesANY_ELEMENTARY
+		ANY_MAGNITUDE: AttributesANY_MAGNITUDE
+		ANY_NUM: AttributesANY_NUM
+		ANY_REAL: AttributesANY_REAL
+		ANY_INT: AttributesANY_INT
+		ANY_BIT: AttributesANY_BIT
+		ANY_STRING: AttributesANY_STRING
+		ANY_DATE: AttributesANY_DATE
+		array: Attributesarray
+		derived: Attributesderived
+		enum: Attributesenum
+		struct: Attributesstruct
+		subrangeSigned: AttributessubrangeSigned
+		subrangeUnsigned: AttributessubrangeUnsigned
+		pointer: Attributespointer
+	}
+	rightPowerRail: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInrightPowerRail
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	selectionConvergence: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInselectionConvergence
+		connectionPointOut: AttributesconnectionPointOutInselectionConvergence
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	selectionDivergence: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInselectionDivergence
+		connectionPointOut: AttributesconnectionPointOutInselectionDivergence
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	sfc: {
+		scaling: AttributesscalingInsfc
+	}
+	simultaneousConvergence: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInsimultaneousConvergence
+		connectionPointOut: AttributesconnectionPointOutInsimultaneousConvergence
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	simultaneousDivergence: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInsimultaneousDivergence
+		connectionPointOut: AttributesconnectionPointOutInsimultaneousDivergence
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	step: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInInstep
+		connectionPointOut: AttributesconnectionPointOutInstep
+		connectionPointOutAction: AttributesconnectionPointOutAction
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	struct: {
+		variable: AttributesvariableInstruct
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	structValue: {
+		value: AttributesvalueInstructValue
+	}
+	subrangeSigned: {
+		range: AttributesrangeInsubrangeSigned
+		baseType: AttributesbaseType
+	}
+	subrangeUnsigned: {
+		range: AttributesrangeInsubrangeUnsigned
+		baseType: AttributesbaseType
+	}
+	task: {
+		pouInstance: AttributespouInstance
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	tempVars: {
+		variable: AttributesvariableIntempVars
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+	}
+	transition: {
+		position: Attributesposition
+		connectionPointIn: AttributesconnectionPointInIntransition
+		connectionPointOut: AttributesconnectionPointOutIntransition
+		condition: Attributescondition
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+		body: Attributesbody
+	}
+	transitions: {
+		transition: AttributestransitionIntransitions
+	}
+	type: {
+		BOOL: AttributesBOOL
+		BYTE: AttributesBYTE
+		WORD: AttributesWORD
+		DWORD: AttributesDWORD
+		LWORD: AttributesLWORD
+		SINT: AttributesSINT
+		INT: AttributesINT
+		DINT: AttributesDINT
+		LINT: AttributesLINT
+		USINT: AttributesUSINT
+		UINT: AttributesUINT
+		UDINT: AttributesUDINT
+		ULINT: AttributesULINT
+		REAL: AttributesREAL
+		LREAL: AttributesLREAL
+		TIME: AttributesTIME
+		DATE: AttributesDATE
+		DT: AttributesDT
+		TOD: AttributesTOD
+		string: Attributesstring
+		wstring: Attributeswstring
+		ANY: AttributesANY
+		ANY_DERIVED: AttributesANY_DERIVED
+		ANY_ELEMENTARY: AttributesANY_ELEMENTARY
+		ANY_MAGNITUDE: AttributesANY_MAGNITUDE
+		ANY_NUM: AttributesANY_NUM
+		ANY_REAL: AttributesANY_REAL
+		ANY_INT: AttributesANY_INT
+		ANY_BIT: AttributesANY_BIT
+		ANY_STRING: AttributesANY_STRING
+		ANY_DATE: AttributesANY_DATE
+		array: Attributesarray
+		derived: Attributesderived
+		enum: Attributesenum
+		struct: Attributesstruct
+		subrangeSigned: AttributessubrangeSigned
+		subrangeUnsigned: AttributessubrangeUnsigned
+		pointer: Attributespointer
+	}
+	types: {
+		dataTypes: AttributesdataTypes
+		pous: Attributespous
+	}
+	value: {
+		simpleValue: AttributessimpleValue
+		arrayValue: AttributesarrayValue
+		structValue: AttributesstructValue
+	}
+	values: {
+		value: AttributesvalueInvalues
+	}
+	variable: {
+		type: Attributestype
+		initialValue: AttributesinitialValue
+		addData: AttributesaddData
+		documentation: Attributesdocumentation
+		connectionPointIn: AttributesconnectionPointInInvariable
+		connectionPointOut: AttributesconnectionPointOutInvariable
+	}
+	vendorElement: {
+		position: Attributesposition
+		alternativeText: AttributesalternativeText
+		inputVariables: AttributesinputVariablesInvendorElement
+		inOutVariables: AttributesinOutVariablesInvendorElement
+		outputVariables: AttributesoutputVariablesInvendorElement
+		addData: AttributesaddData
+	}
+}
 
 export type RequiredAttributeNames<T extends AvailableElement> =
 	(typeof REQUIRED_ATTRIBUTES)[T][number]

@@ -22,6 +22,19 @@ export type AttributesAccessVars = {
 	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
 }
 
+export type AttributesAccessVarsInConfiguration = {
+	globalId?: string
+	pragma?: string
+}
+
+export type AttributesAccessVarsInProgram = {
+	constant?: string
+	globalId?: string
+	non_retain?: string
+	pragma?: string
+	retain?: string
+}
+
 export type AttributesAction = {
 	globalId?: string
 	name: string
@@ -65,11 +78,51 @@ export type AttributesAddress = {
 	'xsi:type'?: 'AddressExpression' | (string & {})
 }
 
+export type AttributesAddressInConfigVariable = {
+	address?: string
+	globalId?: string
+	location?: 'I' | 'Q' | 'M' | (string & {})
+	pragma?: string
+	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
+}
+
+export type AttributesAddressInMember = {
+	address?: string
+	globalId?: string
+	location?: 'I' | 'Q' | 'M' | (string & {})
+	notYetFixed?: string
+	pragma?: string
+	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
+}
+
+export type AttributesAddressInVariable = {
+	address?: string
+	globalId?: string
+	location?: 'I' | 'Q' | 'M' | (string & {})
+	notYetFixed?: string
+	pragma?: string
+	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
+}
+
 export type AttributesArrayValue = {}
 
 export type AttributesBaseType = {}
 
+export type AttributesBaseTypeInInstantlyDefinedType = {}
+
+export type AttributesBaseTypeInUserDefinedTypeSpec = {}
+
 export type AttributesBody = {
+	globalId?: string
+	pragma?: string
+}
+
+export type AttributesBodyInAction = {
+	globalId?: string
+	pragma?: string
+}
+
+export type AttributesBodyInMethod = {
 	globalId?: string
 	pragma?: string
 }
@@ -77,6 +130,12 @@ export type AttributesBody = {
 export type AttributesBodyContent = {
 	'xsi:type'?: 'FBD' | 'IL' | 'LD' | 'SFC' | 'ST' | (string & {})
 }
+
+export type AttributesBodyContentInBody = {}
+
+export type AttributesBodyContentInInline = {}
+
+export type AttributesBodyContentInMainBody = {}
 
 export type AttributesClass = {
 	abstract?: string
@@ -97,7 +156,17 @@ export type AttributesComplexOperand = {
 	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
 }
 
-export type AttributesCondition = {}
+export type AttributesCondition = {
+	globalId?: string
+	pragma?: string
+}
+
+export type AttributesConditionInSfcObject = {}
+
+export type AttributesConditionInTransition = {
+	globalId?: string
+	pragma?: string
+}
 
 export type AttributesConfigVariable = {
 	globalId?: string
@@ -128,6 +197,37 @@ export type AttributesConnectionPointIn = {
 }
 
 export type AttributesConnectionPointOut = {
+	connectionPointOutId: string
+	globalId?: string
+	priority?: string
+}
+
+export type AttributesConnectionPointOutInCommonObject = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesConnectionPointOutInFbdObject = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesConnectionPointOutInInOutVariable = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesConnectionPointOutInLdObject = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesConnectionPointOutInOutputVariable = {
+	connectionPointOutId: string
+	globalId?: string
+}
+
+export type AttributesConnectionPointOutInSfcObject = {
 	connectionPointOutId: string
 	globalId?: string
 }
@@ -179,6 +279,12 @@ export type AttributesDocumentation = {
 
 export type AttributesEnumerator = {
 	name: string
+	value?: string
+}
+
+export type AttributesEnumeratorInUserDefinedTypeSpec = {
+	name: string
+	value: string
 }
 
 export type AttributesExtends = {}
@@ -304,6 +410,14 @@ export type AttributesInitialValue = {
 	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
 }
 
+export type AttributesInitialValueInConfigVariable = {}
+
+export type AttributesInitialValueInMember = {}
+
+export type AttributesInitialValueInUserDefinedTypeSpec = {}
+
+export type AttributesInitialValueInVariable = {}
+
 export type AttributesInline = {
 	globalId?: string
 	pragma?: string
@@ -372,6 +486,21 @@ export type AttributesMainBody = {
 	pragma?: string
 }
 
+export type AttributesMainBodyInFunction = {
+	globalId?: string
+	pragma?: string
+}
+
+export type AttributesMainBodyInFunctionBlock = {
+	globalId?: string
+	pragma?: string
+}
+
+export type AttributesMainBodyInProgram = {
+	globalId?: string
+	pragma?: string
+}
+
 export type AttributesMember = {
 	globalId?: string
 	name: string
@@ -380,11 +509,37 @@ export type AttributesMember = {
 
 export type AttributesMethod = {
 	abstract?: string
+	accessSpecifier?: 'private' | 'protected' | 'internal' | 'public' | (string & {})
+	final?: string
+	globalId?: string
+	name: string
+	override?: string
+	pragma?: string
+}
+
+export type AttributesMethodInClass = {
+	abstract?: string
 	accessSpecifier: 'private' | 'protected' | 'internal' | 'public' | (string & {})
 	final?: string
 	globalId?: string
 	name: string
 	override?: string
+	pragma?: string
+}
+
+export type AttributesMethodInFunctionBlock = {
+	abstract?: string
+	accessSpecifier: 'private' | 'protected' | 'internal' | 'public' | (string & {})
+	final?: string
+	globalId?: string
+	name: string
+	override?: string
+	pragma?: string
+}
+
+export type AttributesMethodInInterface = {
+	globalId?: string
+	name: string
 	pragma?: string
 }
 
@@ -549,6 +704,16 @@ export type AttributesTransition = {
 
 export type AttributesType = {}
 
+export type AttributesTypeInAccessVariable = {}
+
+export type AttributesTypeInConfigVariable = {}
+
+export type AttributesTypeInLdObject = {}
+
+export type AttributesTypeInMember = {}
+
+export type AttributesTypeInVariable = {}
+
 export type AttributesTypeName = {
 	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
 }
@@ -574,13 +739,76 @@ export type AttributesUsingDirective = {
 
 export type AttributesValue = {
 	repetitionValue?: string
+	member?: string
+}
+
+export type AttributesValueInArrayValue = {
+	repetitionValue?: string
+}
+
+export type AttributesValueInStructValue = {
+	member: string
 }
 
 export type AttributesVariable = {
+	edgeDetection?: 'none' | 'falling' | 'rising' | (string & {})
+	globalId?: string
+	name: string
+	orderWithinParamSet?: string
+	pragma?: string
+	'xsi:type'?: 'VariableDecl' | (string & {})
+}
+
+export type AttributesVariableInAccessVars = {
 	globalId?: string
 	name: string
 	pragma?: string
-	'xsi:type'?: 'VariableDecl' | (string & {})
+}
+
+export type AttributesVariableInExternalVars = {
+	globalId?: string
+	name: string
+	pragma?: string
+}
+
+export type AttributesVariableInGlobalVars = {
+	globalId?: string
+	name: string
+	pragma?: string
+}
+
+export type AttributesVariableInInoutVars = {
+	globalId?: string
+	name: string
+	orderWithinParamSet: string
+	pragma?: string
+}
+
+export type AttributesVariableInInputVars = {
+	edgeDetection?: 'none' | 'falling' | 'rising' | (string & {})
+	globalId?: string
+	name: string
+	orderWithinParamSet: string
+	pragma?: string
+}
+
+export type AttributesVariableInOutputVars = {
+	globalId?: string
+	name: string
+	orderWithinParamSet: string
+	pragma?: string
+}
+
+export type AttributesVariableInTempVars = {
+	globalId?: string
+	name: string
+	pragma?: string
+}
+
+export type AttributesVariableInVars = {
+	globalId?: string
+	name: string
+	pragma?: string
 }
 
 export type AttributesVariableLength = {}
@@ -703,6 +931,519 @@ export type AttributesMap = {
 }
 
 export type AttributesOf<T extends AvailableElement> = AttributesMap[T]
+
+/**
+ * The attributes of a child AS DECLARED UNDER each parent. An element declared once has the
+ * same type under every parent; a homonym has the type of its declaration under each. Read
+ * through the dialecte's `AttributesOf<Element, Parent>`; the constant `ATTRIBUTES.byParent`
+ * is checked against this map.
+ */
+export type AttributesByParent = {
+	AccessVariable: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Type: AttributesTypeInAccessVariable
+	}
+	AccessVars: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Variable: AttributesVariableInAccessVars
+		AccessVariable: AttributesAccessVariable
+	}
+	Action: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Body: AttributesBodyInAction
+	}
+	ActionBlock: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		ActionQualifier: AttributesActionQualifier
+		Inline: AttributesInline
+		ComplexOperand: AttributesComplexOperand
+		ReferenceName: AttributesReferenceName
+	}
+	AddData: {
+		Data: AttributesData
+	}
+	AddDataInfo: {
+		Info: AttributesInfo
+	}
+	Address: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+	}
+	ArrayValue: {
+		Value: AttributesValueInArrayValue
+	}
+	BaseType: {
+		TypeName: AttributesTypeName
+		InstantlyDefinedType: AttributesInstantlyDefinedType
+	}
+	Body: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		BodyContent: AttributesBodyContentInBody
+	}
+	BodyContent: {
+		Network: AttributesNetwork
+		IL: AttributesIL
+		Rung: AttributesRung
+		CommonObject: AttributesCommonObject
+		LdObject: AttributesLdObject
+		FbdObject: AttributesFbdObject
+		SfcObject: AttributesSfcObject
+		ST: AttributesST
+	}
+	Class: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Extends: AttributesExtends
+		Implements: AttributesImplements
+		ExternalVars: AttributesExternalVars
+		Vars: AttributesVars
+		Method: AttributesMethodInClass
+	}
+	CommonObject: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		ConnectionPointIn: AttributesConnectionPointIn
+		ActionBlock: AttributesActionBlock
+		Content: AttributesContent
+		ConnectionPointOut: AttributesConnectionPointOutInCommonObject
+	}
+	Condition: {
+		Reference: AttributesReference
+		GraphicalPredicate: AttributesGraphicalPredicate
+		TextualPredicate: AttributesTextualPredicate
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		PredicateContent: AttributesPredicateContent
+	}
+	ConfigVariable: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Type: AttributesTypeInConfigVariable
+		InitialValue: AttributesInitialValueInConfigVariable
+		Address: AttributesAddressInConfigVariable
+	}
+	ConfigVars: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		ConfigVariable: AttributesConfigVariable
+	}
+	Configuration: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Resource: AttributesResource
+		GlobalVars: AttributesGlobalVars
+		AccessVars: AttributesAccessVarsInConfiguration
+		ConfigVars: AttributesConfigVars
+	}
+	Connection: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+	}
+	ConnectionPointIn: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Connection: AttributesConnection
+		FeedbackConnection: AttributesFeedbackConnection
+	}
+	ConnectionPointOut: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+	}
+	ConnectionPointOutAction: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+	}
+	ContentHeader: {
+		CoordinateInfo: AttributesCoordinateInfo
+		AddDataInfo: AttributesAddDataInfo
+		AddData: AttributesAddData
+	}
+	CoordinateInfo: {
+		FbdScaling: AttributesFbdScaling
+		LdScaling: AttributesLdScaling
+		SfcScaling: AttributesSfcScaling
+	}
+	DataTypeDecl: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		UserDefinedTypeSpec: AttributesUserDefinedTypeSpec
+	}
+	DimensionSpec: {
+		IndexRange: AttributesIndexRange
+		VariableLength: AttributesVariableLength
+	}
+	Enumerator: {
+		Documentation: AttributesDocumentation
+	}
+	Extends: {
+		TypeName: AttributesTypeName
+		InstantlyDefinedType: AttributesInstantlyDefinedType
+	}
+	ExternalVars: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Variable: AttributesVariableInExternalVars
+	}
+	FbdObject: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		InOutVariables: AttributesInOutVariables
+		InputVariables: AttributesInputVariables
+		OutputVariables: AttributesOutputVariables
+		ConnectionPointIn: AttributesConnectionPointIn
+		ConnectionPointOut: AttributesConnectionPointOutInFbdObject
+	}
+	FeedbackConnection: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+	}
+	FileHeader: {
+		AddData: AttributesAddData
+	}
+	Function: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		ResultType: AttributesResultType
+		Parameters: AttributesParameters
+		ExternalVars: AttributesExternalVars
+		TempVars: AttributesTempVars
+		MainBody: AttributesMainBodyInFunction
+	}
+	FunctionBlock: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Extends: AttributesExtends
+		Implements: AttributesImplements
+		Parameters: AttributesParameters
+		ExternalVars: AttributesExternalVars
+		Vars: AttributesVars
+		TempVars: AttributesTempVars
+		Method: AttributesMethodInFunctionBlock
+		MainBody: AttributesMainBodyInFunctionBlock
+		Action: AttributesAction
+		Transition: AttributesTransition
+	}
+	GlobalNamespace: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		NamespaceDecl: AttributesNamespaceDecl
+		DataTypeDecl: AttributesDataTypeDecl
+		Program: AttributesProgram
+		FunctionBlock: AttributesFunctionBlock
+		Class: AttributesClass
+		Function: AttributesFunction
+		Interface: AttributesInterface
+	}
+	GlobalVars: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Variable: AttributesVariableInGlobalVars
+	}
+	GraphicalExpression: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		CommonObject: AttributesCommonObject
+		FbdObject: AttributesFbdObject
+		LdObject: AttributesLdObject
+	}
+	GraphicalPredicate: {
+		ConnectionPointIn: AttributesConnectionPointIn
+		GraphicalExpression: AttributesGraphicalExpression
+	}
+	Implements: {
+		TypeName: AttributesTypeName
+		InstantlyDefinedType: AttributesInstantlyDefinedType
+	}
+	InOutVariable: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		ConnectionPointIn: AttributesConnectionPointIn
+		ConnectionPointOut: AttributesConnectionPointOutInInOutVariable
+	}
+	InOutVariables: {
+		InOutVariable: AttributesInOutVariable
+	}
+	Info: {
+		Description: AttributesDescription
+	}
+	InitialValue: {
+		SimpleValue: AttributesSimpleValue
+		ArrayValue: AttributesArrayValue
+		StructValue: AttributesStructValue
+	}
+	Inline: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		BodyContent: AttributesBodyContentInInline
+	}
+	InoutVars: {
+		Variable: AttributesVariableInInoutVars
+	}
+	InputVariable: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		ConnectionPointIn: AttributesConnectionPointIn
+	}
+	InputVariables: {
+		InputVariable: AttributesInputVariable
+	}
+	InputVars: {
+		Variable: AttributesVariableInInputVars
+	}
+	Instances: {
+		Configuration: AttributesConfiguration
+	}
+	InstantlyDefinedType: {
+		BaseType: AttributesBaseTypeInInstantlyDefinedType
+		DimensionSpec: AttributesDimensionSpec
+		AddData: AttributesAddData
+		ReferenceTo: AttributesReferenceTo
+	}
+	Interface: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Extends: AttributesExtends
+		Method: AttributesMethodInInterface
+	}
+	LdObject: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		ConnectionPointIn: AttributesConnectionPointIn
+		ConnectionPointOut: AttributesConnectionPointOutInLdObject
+		Type: AttributesTypeInLdObject
+	}
+	MainBody: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		BodyContent: AttributesBodyContentInMainBody
+	}
+	Member: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Type: AttributesTypeInMember
+		InitialValue: AttributesInitialValueInMember
+		Address: AttributesAddressInMember
+	}
+	Method: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		ResultType: AttributesResultType
+		Parameters: AttributesParameters
+		TempVars: AttributesTempVars
+		Body: AttributesBodyInMethod
+	}
+	NamespaceDecl: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		NamespaceDecl: AttributesNamespaceDecl
+		DataTypeDecl: AttributesDataTypeDecl
+		Program: AttributesProgram
+		FunctionBlock: AttributesFunctionBlock
+		Class: AttributesClass
+		Function: AttributesFunction
+		Interface: AttributesInterface
+	}
+	Network: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		CommonObject: AttributesCommonObject
+		FbdObject: AttributesFbdObject
+	}
+	OutputVariable: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		ConnectionPointOut: AttributesConnectionPointOutInOutputVariable
+	}
+	OutputVariables: {
+		OutputVariable: AttributesOutputVariable
+	}
+	OutputVars: {
+		Variable: AttributesVariableInOutputVars
+	}
+	Parameters: {
+		InoutVars: AttributesInoutVars
+		InputVars: AttributesInputVars
+		OutputVars: AttributesOutputVars
+	}
+	PredicateContent: {
+		Network: AttributesNetwork
+		IL: AttributesIL
+		Rung: AttributesRung
+		ST: AttributesST
+	}
+	Program: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		AccessVars: AttributesAccessVarsInProgram
+		GlobalVars: AttributesGlobalVars
+		Parameters: AttributesParameters
+		ExternalVars: AttributesExternalVars
+		Vars: AttributesVars
+		TempVars: AttributesTempVars
+		MainBody: AttributesMainBodyInProgram
+		Action: AttributesAction
+		Transition: AttributesTransition
+	}
+	ProgramInstance: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		InputAssignment: AttributesInputAssignment
+		OutputAssignment: AttributesOutputAssignment
+		InOutAssignment: AttributesInOutAssignment
+		FbInstTaskAssociation: AttributesFbInstTaskAssociation
+	}
+	Project: {
+		FileHeader: AttributesFileHeader
+		ContentHeader: AttributesContentHeader
+		Types: AttributesTypes
+		Instances: AttributesInstances
+		AddData: AttributesAddData
+		Documentation: AttributesDocumentation
+	}
+	ReferenceTo: {
+		TypeName: AttributesTypeName
+		InstantlyDefinedType: AttributesInstantlyDefinedType
+	}
+	Resource: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		GlobalVars: AttributesGlobalVars
+		Task: AttributesTask
+		ProgramInstance: AttributesProgramInstance
+	}
+	ResultType: {
+		TypeName: AttributesTypeName
+		InstantlyDefinedType: AttributesInstantlyDefinedType
+	}
+	Rung: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		CommonObject: AttributesCommonObject
+		LdObject: AttributesLdObject
+		FbdObject: AttributesFbdObject
+	}
+	SfcObject: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		RelPosition: AttributesRelPosition
+		Size: AttributesSize
+		ConnectionPointIn: AttributesConnectionPointIn
+		ConnectionPointOut: AttributesConnectionPointOutInSfcObject
+		ConnectionPointOutAction: AttributesConnectionPointOutAction
+		Condition: AttributesConditionInSfcObject
+	}
+	StructValue: {
+		Value: AttributesValueInStructValue
+	}
+	Task: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+	}
+	TempVars: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Variable: AttributesVariableInTempVars
+	}
+	TextualPredicate: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		PredicateContent: AttributesPredicateContent
+	}
+	Transition: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Condition: AttributesConditionInTransition
+	}
+	Type: {
+		TypeName: AttributesTypeName
+		InstantlyDefinedType: AttributesInstantlyDefinedType
+	}
+	Types: {
+		GlobalNamespace: AttributesGlobalNamespace
+	}
+	UserDefinedTypeSpec: {
+		BaseType: AttributesBaseTypeInUserDefinedTypeSpec
+		DimensionSpec: AttributesDimensionSpec
+		AddData: AttributesAddData
+		InitialValue: AttributesInitialValueInUserDefinedTypeSpec
+		Enumerator: AttributesEnumeratorInUserDefinedTypeSpec
+		ReferenceTo: AttributesReferenceTo
+		Member: AttributesMember
+		Range: AttributesRange
+	}
+	Value: {
+		SimpleValue: AttributesSimpleValue
+		ArrayValue: AttributesArrayValue
+		StructValue: AttributesStructValue
+	}
+	Variable: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Type: AttributesTypeInVariable
+		InitialValue: AttributesInitialValueInVariable
+		Address: AttributesAddressInVariable
+	}
+	Vars: {
+		Documentation: AttributesDocumentation
+		AddData: AttributesAddData
+		UsingDirective: AttributesUsingDirective
+		Variable: AttributesVariableInVars
+	}
+}
 
 export type RequiredAttributeNames<T extends AvailableElement> =
 	(typeof REQUIRED_ATTRIBUTES)[T][number]
