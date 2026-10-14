@@ -19,7 +19,7 @@ $ pnpm add @dialecte/plc
 `createPlcProject` returns a [`Project`](https://dialecte.github.io/core/api/project) pre-configured with the PLC config and extensions. Call `.open(name)` to initialize storage and hydrate state.
 
 ```ts
-import { createPlcProject } from '@dialecte/plc'
+import { createPlcProject } from '@dialecte/plc/v1'
 
 const project = await createPlcProject({ storage: { type: 'local' } }).open('my-project')
 ```
@@ -28,7 +28,7 @@ const project = await createPlcProject({ storage: { type: 'local' } }).open('my-
 
 `project.import` parses one or more PLCopen XML files and stores each one as a document in the project.
 
-Supports `.xml`.
+Supports `.xml`. A PLCopen TC6 v201 file is normalised to IEC 61131-10 on import.
 
 ```ts
 // Browser File object - e.g. from an <input type="file">

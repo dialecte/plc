@@ -16,10 +16,17 @@ PLCopen XML files are the exchange format for PLC code across vendors — enabli
 
 ### 1. Generated definition
 
-The PLC definition is produced from the **IEC 61131-10 Ed1.0 XSD**. Every element, attribute, parent-child constraint, and namespace declared in the standard is captured in a typed config object.
+The PLC definition is generated from the **IEC 61131-10 Ed1.0 XSD** by `@dialecte/create`. Every element, attribute, parent-child constraint and namespace declared in the standard is captured in a typed config object:
+
+- a tag the schema declares several ways lists its declarations
+- a value's facets sit in its datatype
+- the content model and the identity fields sit on the declaration that declares them
+- `TYPES` holds the types an element may take with `xsi:type`; the config carries it as `PLC_DIALECTE_CONFIG.types`
+
+Read an element's definition through `query.getDefinition(ref)`: it returns the declaration that applies under the element's parent, and what the type it names with `xsi:type` lets it hold. Code that reads `DEFINITION` directly must handle the declarations itself.
 
 ```ts
-import { createPlcProject } from '@dialecte/plc'
+import { createPlcProject } from '@dialecte/plc/v1'
 ```
 
 ### 2. Domain extensions
@@ -34,6 +41,6 @@ const project = await createPlcProject({
 
 ### 3. IO
 
-`project.import` accepts `.xml` files and streams them into IndexedDB. `project.export` serializes back to PLCopen XML.
+`project.import` accepts `.xml` files and streams them into IndexedDB. A PLCopen TC6 v201 file (root `project` in the namespace `http://www.plcopen.org/xml/tc6_0201`) is normalised to IEC 61131-10 before import by the bundled `beforeImport` hook; an IEC 61131-10 file is imported as is. `project.export` serializes back to IEC 61131-10 XML.
 
 Supported file extensions: `.xml`
