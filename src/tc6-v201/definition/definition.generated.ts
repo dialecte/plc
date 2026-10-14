@@ -22,6 +22,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -67,6 +68,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -112,6 +114,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -157,6 +160,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -202,6 +206,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -247,6 +252,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -292,6 +298,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -337,6 +344,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -382,6 +390,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -427,6 +436,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -472,6 +482,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -517,6 +528,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -554,6 +566,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}edgeModifierType',
@@ -582,6 +595,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -627,6 +641,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -672,6 +687,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -717,6 +733,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -841,6 +858,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}formattedText',
 	},
 	INT: {
 		tag: 'INT',
@@ -863,6 +881,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1003,6 +1022,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1048,6 +1068,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1093,6 +1114,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1138,6 +1160,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1318,6 +1341,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1369,6 +1393,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}formattedText',
 	},
 	TIME: {
 		tag: 'TIME',
@@ -1391,6 +1416,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1436,6 +1462,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1481,6 +1508,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1526,6 +1554,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1571,6 +1600,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1616,6 +1646,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1661,6 +1692,7 @@ export const DEFINITION = {
 			particles: [{ kind: 'any', notNamespace: [], processContents: 'lax' }],
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}anyType',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}addData',
@@ -1809,6 +1841,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}varList',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'http://www.plcopen.org/xml/tc6_0201' },
@@ -1830,6 +1863,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'documentation', maxOccurs: 1 },
 					],
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}varListAccess',
 			},
 		},
 	},
@@ -2160,6 +2194,7 @@ export const DEFINITION = {
 			maxOccurs: 1,
 			particles: [{ kind: 'element', name: 'data' }],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}addData',
 	},
 	addDataInfo: {
 		tag: 'addDataInfo',
@@ -2179,6 +2214,7 @@ export const DEFINITION = {
 			maxOccurs: 1,
 			particles: [{ kind: 'element', name: 'info' }],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}addDataInfo',
 	},
 	alternativeText: {
 		tag: 'alternativeText',
@@ -2209,6 +2245,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}formattedText',
 	},
 	array: {
 		tag: 'array',
@@ -2389,6 +2426,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}dataType',
 	},
 	block: {
 		tag: 'block',
@@ -2498,6 +2536,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'documentation', maxOccurs: 1 },
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}body',
 	},
 	coil: {
 		tag: 'coil',
@@ -2719,6 +2758,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'documentation', maxOccurs: 1 },
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}varListConfig',
 	},
 	configuration: {
 		tag: 'configuration',
@@ -2807,6 +2847,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'addData', maxOccurs: 1 },
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}connection',
 	},
 	connectionPointIn: {
 		tag: 'connectionPointIn',
@@ -2876,6 +2917,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'addData', maxOccurs: 1 },
 					],
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}connectionPointIn',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'http://www.plcopen.org/xml/tc6_0201' },
@@ -2976,6 +3018,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'addData', maxOccurs: 1 },
 					],
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}connectionPointOut',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'http://www.plcopen.org/xml/tc6_0201' },
@@ -3303,6 +3346,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}formattedText',
 	},
 	contentHeader: {
 		tag: 'contentHeader',
@@ -3536,6 +3580,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}formattedText',
 	},
 	dimension: {
 		tag: 'dimension',
@@ -3552,6 +3597,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}rangeSigned',
 	},
 	documentation: {
 		tag: 'documentation',
@@ -3630,6 +3676,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}formattedText',
 	},
 	enum: {
 		tag: 'enum',
@@ -3715,6 +3762,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{http://www.plcopen.org/xml/tc6_0201}accessType',
 			'{http://www.plcopen.org/xml/tc6_0201}edgeModifierType',
@@ -3936,6 +3984,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}varList',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'http://www.plcopen.org/xml/tc6_0201' },
@@ -4366,6 +4415,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'structValue', minOccurs: 1, maxOccurs: 1 },
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}value',
 	},
 	inline: {
 		tag: 'inline',
@@ -4424,6 +4474,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'documentation', maxOccurs: 1 },
 					],
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}body',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'http://www.plcopen.org/xml/tc6_0201' },
@@ -5303,6 +5354,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}position',
 	},
 	pou: {
 		tag: 'pou',
@@ -5369,6 +5421,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'documentation', maxOccurs: 1 },
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}pouInstance',
 	},
 	pous: {
 		tag: 'pous',
@@ -5446,6 +5499,7 @@ export const DEFINITION = {
 					sequence: [],
 					details: {},
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}rangeSigned',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'http://www.plcopen.org/xml/tc6_0201' },
@@ -5460,6 +5514,7 @@ export const DEFINITION = {
 					sequence: [],
 					details: {},
 				},
+				type: '{http://www.plcopen.org/xml/tc6_0201}rangeUnsigned',
 			},
 		},
 	},
@@ -5531,6 +5586,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}position',
 	},
 	resource: {
 		tag: 'resource',
@@ -5747,6 +5803,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}dataType',
 	},
 	rightPowerRail: {
 		tag: 'rightPowerRail',
@@ -6220,6 +6277,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'documentation', maxOccurs: 1 },
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}varListPlain',
 		variants: ['{http://www.plcopen.org/xml/tc6_0201}varList'],
 	},
 	structValue: {
@@ -6688,6 +6746,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{http://www.plcopen.org/xml/tc6_0201}dataType',
 	},
 	types: {
 		tag: 'types',
@@ -6921,6 +6980,7 @@ export const DEFINITION = {
 					details: {},
 				},
 				textContent: {},
+				type: '{http://www.w3.org/2001/XMLSchema}string',
 				variants: [
 					'{http://www.plcopen.org/xml/tc6_0201}accessType',
 					'{http://www.plcopen.org/xml/tc6_0201}edgeModifierType',

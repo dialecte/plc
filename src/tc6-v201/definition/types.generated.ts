@@ -4,772 +4,12859 @@ import type { ELEMENT_NAMES, REQUIRED_ATTRIBUTES } from './constants.generated'
 
 export type AvailableElement = (typeof ELEMENT_NAMES)[number]
 
-export type AttributesANY = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY =
+	| AttributesANY_Own
+	| AttributesANY_accessType
+	| AttributesANY_addData
+	| AttributesANY_addDataInfo
+	| AttributesANY_body
+	| AttributesANY_connection
+	| AttributesANY_connectionPointIn
+	| AttributesANY_connectionPointOut
+	| AttributesANY_dataType
+	| AttributesANY_edgeModifierType
+	| AttributesANY_formattedText
+	| AttributesANY_position
+	| AttributesANY_pouInstance
+	| AttributesANY_pouType
+	| AttributesANY_rangeSigned
+	| AttributesANY_rangeUnsigned
+	| AttributesANY_storageModifierType
+	| AttributesANY_value
+	| AttributesANY_varList
+	| AttributesANY_varListAccess
+	| AttributesANY_varListConfig
+	| AttributesANY_varListPlain
+
+export type AttributesANY_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_BIT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_DATE = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_DERIVED = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_ELEMENTARY = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_INT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_MAGNITUDE = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_NUM = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_REAL = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesANY_STRING = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesBOOL = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesBYTE = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesComment = {
-	'xsi:type'?: 'accessType' | 'edgeModifierType' | 'pouType' | 'storageModifierType' | (string & {})
+export type AttributesANY_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesDATE = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesDINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesDT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesDWORD = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesANY_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT =
+	| AttributesANY_BIT_Own
+	| AttributesANY_BIT_accessType
+	| AttributesANY_BIT_addData
+	| AttributesANY_BIT_addDataInfo
+	| AttributesANY_BIT_body
+	| AttributesANY_BIT_connection
+	| AttributesANY_BIT_connectionPointIn
+	| AttributesANY_BIT_connectionPointOut
+	| AttributesANY_BIT_dataType
+	| AttributesANY_BIT_edgeModifierType
+	| AttributesANY_BIT_formattedText
+	| AttributesANY_BIT_position
+	| AttributesANY_BIT_pouInstance
+	| AttributesANY_BIT_pouType
+	| AttributesANY_BIT_rangeSigned
+	| AttributesANY_BIT_rangeUnsigned
+	| AttributesANY_BIT_storageModifierType
+	| AttributesANY_BIT_value
+	| AttributesANY_BIT_varList
+	| AttributesANY_BIT_varListAccess
+	| AttributesANY_BIT_varListConfig
+	| AttributesANY_BIT_varListPlain
+
+export type AttributesANY_BIT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_BIT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_BIT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE =
+	| AttributesANY_DATE_Own
+	| AttributesANY_DATE_accessType
+	| AttributesANY_DATE_addData
+	| AttributesANY_DATE_addDataInfo
+	| AttributesANY_DATE_body
+	| AttributesANY_DATE_connection
+	| AttributesANY_DATE_connectionPointIn
+	| AttributesANY_DATE_connectionPointOut
+	| AttributesANY_DATE_dataType
+	| AttributesANY_DATE_edgeModifierType
+	| AttributesANY_DATE_formattedText
+	| AttributesANY_DATE_position
+	| AttributesANY_DATE_pouInstance
+	| AttributesANY_DATE_pouType
+	| AttributesANY_DATE_rangeSigned
+	| AttributesANY_DATE_rangeUnsigned
+	| AttributesANY_DATE_storageModifierType
+	| AttributesANY_DATE_value
+	| AttributesANY_DATE_varList
+	| AttributesANY_DATE_varListAccess
+	| AttributesANY_DATE_varListConfig
+	| AttributesANY_DATE_varListPlain
+
+export type AttributesANY_DATE_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_DATE_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DATE_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED =
+	| AttributesANY_DERIVED_Own
+	| AttributesANY_DERIVED_accessType
+	| AttributesANY_DERIVED_addData
+	| AttributesANY_DERIVED_addDataInfo
+	| AttributesANY_DERIVED_body
+	| AttributesANY_DERIVED_connection
+	| AttributesANY_DERIVED_connectionPointIn
+	| AttributesANY_DERIVED_connectionPointOut
+	| AttributesANY_DERIVED_dataType
+	| AttributesANY_DERIVED_edgeModifierType
+	| AttributesANY_DERIVED_formattedText
+	| AttributesANY_DERIVED_position
+	| AttributesANY_DERIVED_pouInstance
+	| AttributesANY_DERIVED_pouType
+	| AttributesANY_DERIVED_rangeSigned
+	| AttributesANY_DERIVED_rangeUnsigned
+	| AttributesANY_DERIVED_storageModifierType
+	| AttributesANY_DERIVED_value
+	| AttributesANY_DERIVED_varList
+	| AttributesANY_DERIVED_varListAccess
+	| AttributesANY_DERIVED_varListConfig
+	| AttributesANY_DERIVED_varListPlain
+
+export type AttributesANY_DERIVED_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_DERIVED_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_DERIVED_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY =
+	| AttributesANY_ELEMENTARY_Own
+	| AttributesANY_ELEMENTARY_accessType
+	| AttributesANY_ELEMENTARY_addData
+	| AttributesANY_ELEMENTARY_addDataInfo
+	| AttributesANY_ELEMENTARY_body
+	| AttributesANY_ELEMENTARY_connection
+	| AttributesANY_ELEMENTARY_connectionPointIn
+	| AttributesANY_ELEMENTARY_connectionPointOut
+	| AttributesANY_ELEMENTARY_dataType
+	| AttributesANY_ELEMENTARY_edgeModifierType
+	| AttributesANY_ELEMENTARY_formattedText
+	| AttributesANY_ELEMENTARY_position
+	| AttributesANY_ELEMENTARY_pouInstance
+	| AttributesANY_ELEMENTARY_pouType
+	| AttributesANY_ELEMENTARY_rangeSigned
+	| AttributesANY_ELEMENTARY_rangeUnsigned
+	| AttributesANY_ELEMENTARY_storageModifierType
+	| AttributesANY_ELEMENTARY_value
+	| AttributesANY_ELEMENTARY_varList
+	| AttributesANY_ELEMENTARY_varListAccess
+	| AttributesANY_ELEMENTARY_varListConfig
+	| AttributesANY_ELEMENTARY_varListPlain
+
+export type AttributesANY_ELEMENTARY_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_ELEMENTARY_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT =
+	| AttributesANY_INT_Own
+	| AttributesANY_INT_accessType
+	| AttributesANY_INT_addData
+	| AttributesANY_INT_addDataInfo
+	| AttributesANY_INT_body
+	| AttributesANY_INT_connection
+	| AttributesANY_INT_connectionPointIn
+	| AttributesANY_INT_connectionPointOut
+	| AttributesANY_INT_dataType
+	| AttributesANY_INT_edgeModifierType
+	| AttributesANY_INT_formattedText
+	| AttributesANY_INT_position
+	| AttributesANY_INT_pouInstance
+	| AttributesANY_INT_pouType
+	| AttributesANY_INT_rangeSigned
+	| AttributesANY_INT_rangeUnsigned
+	| AttributesANY_INT_storageModifierType
+	| AttributesANY_INT_value
+	| AttributesANY_INT_varList
+	| AttributesANY_INT_varListAccess
+	| AttributesANY_INT_varListConfig
+	| AttributesANY_INT_varListPlain
+
+export type AttributesANY_INT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_INT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_INT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE =
+	| AttributesANY_MAGNITUDE_Own
+	| AttributesANY_MAGNITUDE_accessType
+	| AttributesANY_MAGNITUDE_addData
+	| AttributesANY_MAGNITUDE_addDataInfo
+	| AttributesANY_MAGNITUDE_body
+	| AttributesANY_MAGNITUDE_connection
+	| AttributesANY_MAGNITUDE_connectionPointIn
+	| AttributesANY_MAGNITUDE_connectionPointOut
+	| AttributesANY_MAGNITUDE_dataType
+	| AttributesANY_MAGNITUDE_edgeModifierType
+	| AttributesANY_MAGNITUDE_formattedText
+	| AttributesANY_MAGNITUDE_position
+	| AttributesANY_MAGNITUDE_pouInstance
+	| AttributesANY_MAGNITUDE_pouType
+	| AttributesANY_MAGNITUDE_rangeSigned
+	| AttributesANY_MAGNITUDE_rangeUnsigned
+	| AttributesANY_MAGNITUDE_storageModifierType
+	| AttributesANY_MAGNITUDE_value
+	| AttributesANY_MAGNITUDE_varList
+	| AttributesANY_MAGNITUDE_varListAccess
+	| AttributesANY_MAGNITUDE_varListConfig
+	| AttributesANY_MAGNITUDE_varListPlain
+
+export type AttributesANY_MAGNITUDE_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_MAGNITUDE_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM =
+	| AttributesANY_NUM_Own
+	| AttributesANY_NUM_accessType
+	| AttributesANY_NUM_addData
+	| AttributesANY_NUM_addDataInfo
+	| AttributesANY_NUM_body
+	| AttributesANY_NUM_connection
+	| AttributesANY_NUM_connectionPointIn
+	| AttributesANY_NUM_connectionPointOut
+	| AttributesANY_NUM_dataType
+	| AttributesANY_NUM_edgeModifierType
+	| AttributesANY_NUM_formattedText
+	| AttributesANY_NUM_position
+	| AttributesANY_NUM_pouInstance
+	| AttributesANY_NUM_pouType
+	| AttributesANY_NUM_rangeSigned
+	| AttributesANY_NUM_rangeUnsigned
+	| AttributesANY_NUM_storageModifierType
+	| AttributesANY_NUM_value
+	| AttributesANY_NUM_varList
+	| AttributesANY_NUM_varListAccess
+	| AttributesANY_NUM_varListConfig
+	| AttributesANY_NUM_varListPlain
+
+export type AttributesANY_NUM_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_NUM_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_NUM_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL =
+	| AttributesANY_REAL_Own
+	| AttributesANY_REAL_accessType
+	| AttributesANY_REAL_addData
+	| AttributesANY_REAL_addDataInfo
+	| AttributesANY_REAL_body
+	| AttributesANY_REAL_connection
+	| AttributesANY_REAL_connectionPointIn
+	| AttributesANY_REAL_connectionPointOut
+	| AttributesANY_REAL_dataType
+	| AttributesANY_REAL_edgeModifierType
+	| AttributesANY_REAL_formattedText
+	| AttributesANY_REAL_position
+	| AttributesANY_REAL_pouInstance
+	| AttributesANY_REAL_pouType
+	| AttributesANY_REAL_rangeSigned
+	| AttributesANY_REAL_rangeUnsigned
+	| AttributesANY_REAL_storageModifierType
+	| AttributesANY_REAL_value
+	| AttributesANY_REAL_varList
+	| AttributesANY_REAL_varListAccess
+	| AttributesANY_REAL_varListConfig
+	| AttributesANY_REAL_varListPlain
+
+export type AttributesANY_REAL_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_REAL_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_REAL_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING =
+	| AttributesANY_STRING_Own
+	| AttributesANY_STRING_accessType
+	| AttributesANY_STRING_addData
+	| AttributesANY_STRING_addDataInfo
+	| AttributesANY_STRING_body
+	| AttributesANY_STRING_connection
+	| AttributesANY_STRING_connectionPointIn
+	| AttributesANY_STRING_connectionPointOut
+	| AttributesANY_STRING_dataType
+	| AttributesANY_STRING_edgeModifierType
+	| AttributesANY_STRING_formattedText
+	| AttributesANY_STRING_position
+	| AttributesANY_STRING_pouInstance
+	| AttributesANY_STRING_pouType
+	| AttributesANY_STRING_rangeSigned
+	| AttributesANY_STRING_rangeUnsigned
+	| AttributesANY_STRING_storageModifierType
+	| AttributesANY_STRING_value
+	| AttributesANY_STRING_varList
+	| AttributesANY_STRING_varListAccess
+	| AttributesANY_STRING_varListConfig
+	| AttributesANY_STRING_varListPlain
+
+export type AttributesANY_STRING_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesANY_STRING_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesANY_STRING_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL =
+	| AttributesBOOL_Own
+	| AttributesBOOL_accessType
+	| AttributesBOOL_addData
+	| AttributesBOOL_addDataInfo
+	| AttributesBOOL_body
+	| AttributesBOOL_connection
+	| AttributesBOOL_connectionPointIn
+	| AttributesBOOL_connectionPointOut
+	| AttributesBOOL_dataType
+	| AttributesBOOL_edgeModifierType
+	| AttributesBOOL_formattedText
+	| AttributesBOOL_position
+	| AttributesBOOL_pouInstance
+	| AttributesBOOL_pouType
+	| AttributesBOOL_rangeSigned
+	| AttributesBOOL_rangeUnsigned
+	| AttributesBOOL_storageModifierType
+	| AttributesBOOL_value
+	| AttributesBOOL_varList
+	| AttributesBOOL_varListAccess
+	| AttributesBOOL_varListConfig
+	| AttributesBOOL_varListPlain
+
+export type AttributesBOOL_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesBOOL_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBOOL_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE =
+	| AttributesBYTE_Own
+	| AttributesBYTE_accessType
+	| AttributesBYTE_addData
+	| AttributesBYTE_addDataInfo
+	| AttributesBYTE_body
+	| AttributesBYTE_connection
+	| AttributesBYTE_connectionPointIn
+	| AttributesBYTE_connectionPointOut
+	| AttributesBYTE_dataType
+	| AttributesBYTE_edgeModifierType
+	| AttributesBYTE_formattedText
+	| AttributesBYTE_position
+	| AttributesBYTE_pouInstance
+	| AttributesBYTE_pouType
+	| AttributesBYTE_rangeSigned
+	| AttributesBYTE_rangeUnsigned
+	| AttributesBYTE_storageModifierType
+	| AttributesBYTE_value
+	| AttributesBYTE_varList
+	| AttributesBYTE_varListAccess
+	| AttributesBYTE_varListConfig
+	| AttributesBYTE_varListPlain
+
+export type AttributesBYTE_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesBYTE_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesBYTE_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesComment =
+	| AttributesComment_Own
+	| AttributesComment_accessType
+	| AttributesComment_edgeModifierType
+	| AttributesComment_pouType
+	| AttributesComment_storageModifierType
+
+export type AttributesComment_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesComment_accessType = {
+	'xsi:type': 'accessType'
+}
+
+export type AttributesComment_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+}
+
+export type AttributesComment_pouType = {
+	'xsi:type': 'pouType'
+}
+
+export type AttributesComment_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+}
+
+export type AttributesDATE =
+	| AttributesDATE_Own
+	| AttributesDATE_accessType
+	| AttributesDATE_addData
+	| AttributesDATE_addDataInfo
+	| AttributesDATE_body
+	| AttributesDATE_connection
+	| AttributesDATE_connectionPointIn
+	| AttributesDATE_connectionPointOut
+	| AttributesDATE_dataType
+	| AttributesDATE_edgeModifierType
+	| AttributesDATE_formattedText
+	| AttributesDATE_position
+	| AttributesDATE_pouInstance
+	| AttributesDATE_pouType
+	| AttributesDATE_rangeSigned
+	| AttributesDATE_rangeUnsigned
+	| AttributesDATE_storageModifierType
+	| AttributesDATE_value
+	| AttributesDATE_varList
+	| AttributesDATE_varListAccess
+	| AttributesDATE_varListConfig
+	| AttributesDATE_varListPlain
+
+export type AttributesDATE_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesDATE_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDATE_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT =
+	| AttributesDINT_Own
+	| AttributesDINT_accessType
+	| AttributesDINT_addData
+	| AttributesDINT_addDataInfo
+	| AttributesDINT_body
+	| AttributesDINT_connection
+	| AttributesDINT_connectionPointIn
+	| AttributesDINT_connectionPointOut
+	| AttributesDINT_dataType
+	| AttributesDINT_edgeModifierType
+	| AttributesDINT_formattedText
+	| AttributesDINT_position
+	| AttributesDINT_pouInstance
+	| AttributesDINT_pouType
+	| AttributesDINT_rangeSigned
+	| AttributesDINT_rangeUnsigned
+	| AttributesDINT_storageModifierType
+	| AttributesDINT_value
+	| AttributesDINT_varList
+	| AttributesDINT_varListAccess
+	| AttributesDINT_varListConfig
+	| AttributesDINT_varListPlain
+
+export type AttributesDINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesDINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT =
+	| AttributesDT_Own
+	| AttributesDT_accessType
+	| AttributesDT_addData
+	| AttributesDT_addDataInfo
+	| AttributesDT_body
+	| AttributesDT_connection
+	| AttributesDT_connectionPointIn
+	| AttributesDT_connectionPointOut
+	| AttributesDT_dataType
+	| AttributesDT_edgeModifierType
+	| AttributesDT_formattedText
+	| AttributesDT_position
+	| AttributesDT_pouInstance
+	| AttributesDT_pouType
+	| AttributesDT_rangeSigned
+	| AttributesDT_rangeUnsigned
+	| AttributesDT_storageModifierType
+	| AttributesDT_value
+	| AttributesDT_varList
+	| AttributesDT_varListAccess
+	| AttributesDT_varListConfig
+	| AttributesDT_varListPlain
+
+export type AttributesDT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesDT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD =
+	| AttributesDWORD_Own
+	| AttributesDWORD_accessType
+	| AttributesDWORD_addData
+	| AttributesDWORD_addDataInfo
+	| AttributesDWORD_body
+	| AttributesDWORD_connection
+	| AttributesDWORD_connectionPointIn
+	| AttributesDWORD_connectionPointOut
+	| AttributesDWORD_dataType
+	| AttributesDWORD_edgeModifierType
+	| AttributesDWORD_formattedText
+	| AttributesDWORD_position
+	| AttributesDWORD_pouInstance
+	| AttributesDWORD_pouType
+	| AttributesDWORD_rangeSigned
+	| AttributesDWORD_rangeUnsigned
+	| AttributesDWORD_storageModifierType
+	| AttributesDWORD_value
+	| AttributesDWORD_varList
+	| AttributesDWORD_varListAccess
+	| AttributesDWORD_varListConfig
+	| AttributesDWORD_varListPlain
+
+export type AttributesDWORD_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesDWORD_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesDWORD_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
 export type AttributesFBD = {}
 
 export type AttributesIL = {}
 
-export type AttributesINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesINT =
+	| AttributesINT_Own
+	| AttributesINT_accessType
+	| AttributesINT_addData
+	| AttributesINT_addDataInfo
+	| AttributesINT_body
+	| AttributesINT_connection
+	| AttributesINT_connectionPointIn
+	| AttributesINT_connectionPointOut
+	| AttributesINT_dataType
+	| AttributesINT_edgeModifierType
+	| AttributesINT_formattedText
+	| AttributesINT_position
+	| AttributesINT_pouInstance
+	| AttributesINT_pouType
+	| AttributesINT_rangeSigned
+	| AttributesINT_rangeUnsigned
+	| AttributesINT_storageModifierType
+	| AttributesINT_value
+	| AttributesINT_varList
+	| AttributesINT_varListAccess
+	| AttributesINT_varListConfig
+	| AttributesINT_varListPlain
+
+export type AttributesINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
 export type AttributesLD = {}
 
-export type AttributesLINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesLINT =
+	| AttributesLINT_Own
+	| AttributesLINT_accessType
+	| AttributesLINT_addData
+	| AttributesLINT_addDataInfo
+	| AttributesLINT_body
+	| AttributesLINT_connection
+	| AttributesLINT_connectionPointIn
+	| AttributesLINT_connectionPointOut
+	| AttributesLINT_dataType
+	| AttributesLINT_edgeModifierType
+	| AttributesLINT_formattedText
+	| AttributesLINT_position
+	| AttributesLINT_pouInstance
+	| AttributesLINT_pouType
+	| AttributesLINT_rangeSigned
+	| AttributesLINT_rangeUnsigned
+	| AttributesLINT_storageModifierType
+	| AttributesLINT_value
+	| AttributesLINT_varList
+	| AttributesLINT_varListAccess
+	| AttributesLINT_varListConfig
+	| AttributesLINT_varListPlain
+
+export type AttributesLINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesLREAL = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesLINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesLWORD = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesLINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesREAL = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesLINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesLINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL =
+	| AttributesLREAL_Own
+	| AttributesLREAL_accessType
+	| AttributesLREAL_addData
+	| AttributesLREAL_addDataInfo
+	| AttributesLREAL_body
+	| AttributesLREAL_connection
+	| AttributesLREAL_connectionPointIn
+	| AttributesLREAL_connectionPointOut
+	| AttributesLREAL_dataType
+	| AttributesLREAL_edgeModifierType
+	| AttributesLREAL_formattedText
+	| AttributesLREAL_position
+	| AttributesLREAL_pouInstance
+	| AttributesLREAL_pouType
+	| AttributesLREAL_rangeSigned
+	| AttributesLREAL_rangeUnsigned
+	| AttributesLREAL_storageModifierType
+	| AttributesLREAL_value
+	| AttributesLREAL_varList
+	| AttributesLREAL_varListAccess
+	| AttributesLREAL_varListConfig
+	| AttributesLREAL_varListPlain
+
+export type AttributesLREAL_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesLREAL_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLREAL_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD =
+	| AttributesLWORD_Own
+	| AttributesLWORD_accessType
+	| AttributesLWORD_addData
+	| AttributesLWORD_addDataInfo
+	| AttributesLWORD_body
+	| AttributesLWORD_connection
+	| AttributesLWORD_connectionPointIn
+	| AttributesLWORD_connectionPointOut
+	| AttributesLWORD_dataType
+	| AttributesLWORD_edgeModifierType
+	| AttributesLWORD_formattedText
+	| AttributesLWORD_position
+	| AttributesLWORD_pouInstance
+	| AttributesLWORD_pouType
+	| AttributesLWORD_rangeSigned
+	| AttributesLWORD_rangeUnsigned
+	| AttributesLWORD_storageModifierType
+	| AttributesLWORD_value
+	| AttributesLWORD_varList
+	| AttributesLWORD_varListAccess
+	| AttributesLWORD_varListConfig
+	| AttributesLWORD_varListPlain
+
+export type AttributesLWORD_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesLWORD_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesLWORD_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL =
+	| AttributesREAL_Own
+	| AttributesREAL_accessType
+	| AttributesREAL_addData
+	| AttributesREAL_addDataInfo
+	| AttributesREAL_body
+	| AttributesREAL_connection
+	| AttributesREAL_connectionPointIn
+	| AttributesREAL_connectionPointOut
+	| AttributesREAL_dataType
+	| AttributesREAL_edgeModifierType
+	| AttributesREAL_formattedText
+	| AttributesREAL_position
+	| AttributesREAL_pouInstance
+	| AttributesREAL_pouType
+	| AttributesREAL_rangeSigned
+	| AttributesREAL_rangeUnsigned
+	| AttributesREAL_storageModifierType
+	| AttributesREAL_value
+	| AttributesREAL_varList
+	| AttributesREAL_varListAccess
+	| AttributesREAL_varListConfig
+	| AttributesREAL_varListPlain
+
+export type AttributesREAL_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesREAL_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesREAL_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
 export type AttributesSFC = {}
 
-export type AttributesSINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesSINT =
+	| AttributesSINT_Own
+	| AttributesSINT_accessType
+	| AttributesSINT_addData
+	| AttributesSINT_addDataInfo
+	| AttributesSINT_body
+	| AttributesSINT_connection
+	| AttributesSINT_connectionPointIn
+	| AttributesSINT_connectionPointOut
+	| AttributesSINT_dataType
+	| AttributesSINT_edgeModifierType
+	| AttributesSINT_formattedText
+	| AttributesSINT_position
+	| AttributesSINT_pouInstance
+	| AttributesSINT_pouType
+	| AttributesSINT_rangeSigned
+	| AttributesSINT_rangeUnsigned
+	| AttributesSINT_storageModifierType
+	| AttributesSINT_value
+	| AttributesSINT_varList
+	| AttributesSINT_varListAccess
+	| AttributesSINT_varListConfig
+	| AttributesSINT_varListPlain
+
+export type AttributesSINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesSINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesSINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
 export type AttributesST = {}
 
-export type AttributesTIME = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME =
+	| AttributesTIME_Own
+	| AttributesTIME_accessType
+	| AttributesTIME_addData
+	| AttributesTIME_addDataInfo
+	| AttributesTIME_body
+	| AttributesTIME_connection
+	| AttributesTIME_connectionPointIn
+	| AttributesTIME_connectionPointOut
+	| AttributesTIME_dataType
+	| AttributesTIME_edgeModifierType
+	| AttributesTIME_formattedText
+	| AttributesTIME_position
+	| AttributesTIME_pouInstance
+	| AttributesTIME_pouType
+	| AttributesTIME_rangeSigned
+	| AttributesTIME_rangeUnsigned
+	| AttributesTIME_storageModifierType
+	| AttributesTIME_value
+	| AttributesTIME_varList
+	| AttributesTIME_varListAccess
+	| AttributesTIME_varListConfig
+	| AttributesTIME_varListPlain
+
+export type AttributesTIME_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesTOD = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesUDINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesUINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesULINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesUSINT = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
-export type AttributesWORD = {
-	'xsi:type'?:
-		| 'accessType'
-		| 'addData'
-		| 'addDataInfo'
-		| 'body'
-		| 'connection'
-		| 'connectionPointIn'
-		| 'connectionPointOut'
-		| 'dataType'
-		| 'edgeModifierType'
-		| 'formattedText'
-		| 'position'
-		| 'pouInstance'
-		| 'pouType'
-		| 'rangeSigned'
-		| 'rangeUnsigned'
-		| 'storageModifierType'
-		| 'value'
-		| 'varList'
-		| 'varListAccess'
-		| 'varListConfig'
-		| 'varListPlain'
-		| (string & {})
+export type AttributesTIME_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesTIME_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTIME_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD =
+	| AttributesTOD_Own
+	| AttributesTOD_accessType
+	| AttributesTOD_addData
+	| AttributesTOD_addDataInfo
+	| AttributesTOD_body
+	| AttributesTOD_connection
+	| AttributesTOD_connectionPointIn
+	| AttributesTOD_connectionPointOut
+	| AttributesTOD_dataType
+	| AttributesTOD_edgeModifierType
+	| AttributesTOD_formattedText
+	| AttributesTOD_position
+	| AttributesTOD_pouInstance
+	| AttributesTOD_pouType
+	| AttributesTOD_rangeSigned
+	| AttributesTOD_rangeUnsigned
+	| AttributesTOD_storageModifierType
+	| AttributesTOD_value
+	| AttributesTOD_varList
+	| AttributesTOD_varListAccess
+	| AttributesTOD_varListConfig
+	| AttributesTOD_varListPlain
+
+export type AttributesTOD_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesTOD_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesTOD_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT =
+	| AttributesUDINT_Own
+	| AttributesUDINT_accessType
+	| AttributesUDINT_addData
+	| AttributesUDINT_addDataInfo
+	| AttributesUDINT_body
+	| AttributesUDINT_connection
+	| AttributesUDINT_connectionPointIn
+	| AttributesUDINT_connectionPointOut
+	| AttributesUDINT_dataType
+	| AttributesUDINT_edgeModifierType
+	| AttributesUDINT_formattedText
+	| AttributesUDINT_position
+	| AttributesUDINT_pouInstance
+	| AttributesUDINT_pouType
+	| AttributesUDINT_rangeSigned
+	| AttributesUDINT_rangeUnsigned
+	| AttributesUDINT_storageModifierType
+	| AttributesUDINT_value
+	| AttributesUDINT_varList
+	| AttributesUDINT_varListAccess
+	| AttributesUDINT_varListConfig
+	| AttributesUDINT_varListPlain
+
+export type AttributesUDINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesUDINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUDINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT =
+	| AttributesUINT_Own
+	| AttributesUINT_accessType
+	| AttributesUINT_addData
+	| AttributesUINT_addDataInfo
+	| AttributesUINT_body
+	| AttributesUINT_connection
+	| AttributesUINT_connectionPointIn
+	| AttributesUINT_connectionPointOut
+	| AttributesUINT_dataType
+	| AttributesUINT_edgeModifierType
+	| AttributesUINT_formattedText
+	| AttributesUINT_position
+	| AttributesUINT_pouInstance
+	| AttributesUINT_pouType
+	| AttributesUINT_rangeSigned
+	| AttributesUINT_rangeUnsigned
+	| AttributesUINT_storageModifierType
+	| AttributesUINT_value
+	| AttributesUINT_varList
+	| AttributesUINT_varListAccess
+	| AttributesUINT_varListConfig
+	| AttributesUINT_varListPlain
+
+export type AttributesUINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesUINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT =
+	| AttributesULINT_Own
+	| AttributesULINT_accessType
+	| AttributesULINT_addData
+	| AttributesULINT_addDataInfo
+	| AttributesULINT_body
+	| AttributesULINT_connection
+	| AttributesULINT_connectionPointIn
+	| AttributesULINT_connectionPointOut
+	| AttributesULINT_dataType
+	| AttributesULINT_edgeModifierType
+	| AttributesULINT_formattedText
+	| AttributesULINT_position
+	| AttributesULINT_pouInstance
+	| AttributesULINT_pouType
+	| AttributesULINT_rangeSigned
+	| AttributesULINT_rangeUnsigned
+	| AttributesULINT_storageModifierType
+	| AttributesULINT_value
+	| AttributesULINT_varList
+	| AttributesULINT_varListAccess
+	| AttributesULINT_varListConfig
+	| AttributesULINT_varListPlain
+
+export type AttributesULINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesULINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesULINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT =
+	| AttributesUSINT_Own
+	| AttributesUSINT_accessType
+	| AttributesUSINT_addData
+	| AttributesUSINT_addDataInfo
+	| AttributesUSINT_body
+	| AttributesUSINT_connection
+	| AttributesUSINT_connectionPointIn
+	| AttributesUSINT_connectionPointOut
+	| AttributesUSINT_dataType
+	| AttributesUSINT_edgeModifierType
+	| AttributesUSINT_formattedText
+	| AttributesUSINT_position
+	| AttributesUSINT_pouInstance
+	| AttributesUSINT_pouType
+	| AttributesUSINT_rangeSigned
+	| AttributesUSINT_rangeUnsigned
+	| AttributesUSINT_storageModifierType
+	| AttributesUSINT_value
+	| AttributesUSINT_varList
+	| AttributesUSINT_varListAccess
+	| AttributesUSINT_varListConfig
+	| AttributesUSINT_varListPlain
+
+export type AttributesUSINT_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesUSINT_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesUSINT_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD =
+	| AttributesWORD_Own
+	| AttributesWORD_accessType
+	| AttributesWORD_addData
+	| AttributesWORD_addDataInfo
+	| AttributesWORD_body
+	| AttributesWORD_connection
+	| AttributesWORD_connectionPointIn
+	| AttributesWORD_connectionPointOut
+	| AttributesWORD_dataType
+	| AttributesWORD_edgeModifierType
+	| AttributesWORD_formattedText
+	| AttributesWORD_position
+	| AttributesWORD_pouInstance
+	| AttributesWORD_pouType
+	| AttributesWORD_rangeSigned
+	| AttributesWORD_rangeUnsigned
+	| AttributesWORD_storageModifierType
+	| AttributesWORD_value
+	| AttributesWORD_varList
+	| AttributesWORD_varListAccess
+	| AttributesWORD_varListConfig
+	| AttributesWORD_varListPlain
+
+export type AttributesWORD_Own = {
+	'xsi:type'?: never
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_accessType = {
+	'xsi:type': 'accessType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_addData = {
+	'xsi:type': 'addData'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_addDataInfo = {
+	'xsi:type': 'addDataInfo'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_body = {
+	'xsi:type': 'body'
+	WorksheetName?: string
+	globalId?: string
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_connection = {
+	'xsi:type': 'connection'
+	formalParameter?: string
+	globalId?: string
+	refLocalId: string
+	WorksheetName?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_connectionPointIn = {
+	'xsi:type': 'connectionPointIn'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_connectionPointOut = {
+	'xsi:type': 'connectionPointOut'
+	globalId?: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_dataType = {
+	'xsi:type': 'dataType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_formattedText = {
+	'xsi:type': 'formattedText'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_position = {
+	'xsi:type': 'position'
+	x: string
+	y: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_pouInstance = {
+	'xsi:type': 'pouInstance'
+	globalId?: string
+	name: string
+	typeName: string
+	WorksheetName?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_pouType = {
+	'xsi:type': 'pouType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_rangeSigned = {
+	'xsi:type': 'rangeSigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_rangeUnsigned = {
+	'xsi:type': 'rangeUnsigned'
+	lower: string
+	upper: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_value = {
+	'xsi:type': 'value'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+}
+
+export type AttributesWORD_varListAccess = {
+	'xsi:type': 'varListAccess'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_varListConfig = {
+	'xsi:type': 'varListConfig'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type AttributesWORD_varListPlain = {
+	'xsi:type': 'varListPlain'
+	WorksheetName?: undefined
+	globalId?: undefined
+	formalParameter?: undefined
+	refLocalId?: undefined
+	x?: undefined
+	y?: undefined
+	name?: undefined
+	typeName?: undefined
+	lower?: undefined
+	upper?: undefined
+	constant?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
 }
 
 export type AttributesaccessVariable = {
@@ -1074,8 +13161,31 @@ export type Attributeserror = {
 	width: string
 }
 
-export type Attributesexpression = {
-	'xsi:type'?: 'accessType' | 'edgeModifierType' | 'pouType' | 'storageModifierType' | (string & {})
+export type Attributesexpression =
+	| Attributesexpression_Own
+	| Attributesexpression_accessType
+	| Attributesexpression_edgeModifierType
+	| Attributesexpression_pouType
+	| Attributesexpression_storageModifierType
+
+export type Attributesexpression_Own = {
+	'xsi:type'?: never
+}
+
+export type Attributesexpression_accessType = {
+	'xsi:type': 'accessType'
+}
+
+export type Attributesexpression_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+}
+
+export type Attributesexpression_pouType = {
+	'xsi:type': 'pouType'
+}
+
+export type Attributesexpression_storageModifierType = {
+	'xsi:type': 'storageModifierType'
 }
 
 export type AttributesexternalVars = {
@@ -1381,8 +13491,26 @@ export type Attributesstring = {
 	length?: string
 }
 
-export type Attributesstruct = {
-	'xsi:type'?: 'varList' | (string & {})
+export type Attributesstruct = Attributesstruct_Own | Attributesstruct_varList
+
+export type Attributesstruct_Own = {
+	'xsi:type'?: 'varListPlain'
+	constant?: undefined
+	name?: undefined
+	nonpersistent?: undefined
+	nonretain?: undefined
+	persistent?: undefined
+	retain?: undefined
+}
+
+export type Attributesstruct_varList = {
+	'xsi:type': 'varList'
+	constant?: string
+	name?: string
+	nonpersistent?: string
+	nonretain?: string
+	persistent?: string
+	retain?: string
 }
 
 export type AttributesstructValue = {}
@@ -1460,7 +13588,15 @@ export type AttributesvalueInvalues = {
 
 export type Attributesvalues = {}
 
-export type Attributesvariable = {
+export type Attributesvariable =
+	| Attributesvariable_Own
+	| Attributesvariable_accessType
+	| Attributesvariable_edgeModifierType
+	| Attributesvariable_pouType
+	| Attributesvariable_storageModifierType
+
+export type Attributesvariable_Own = {
+	'xsi:type'?: never
 	address?: string
 	edge?: 'none' | 'falling' | 'rising' | (string & {})
 	formalParameter?: string
@@ -1469,7 +13605,54 @@ export type Attributesvariable = {
 	name?: string
 	negated?: string
 	storage?: 'none' | 'set' | 'reset' | (string & {})
-	'xsi:type'?: 'accessType' | 'edgeModifierType' | 'pouType' | 'storageModifierType' | (string & {})
+}
+
+export type Attributesvariable_accessType = {
+	'xsi:type': 'accessType'
+	address?: undefined
+	edge?: undefined
+	formalParameter?: undefined
+	globalId?: undefined
+	hidden?: undefined
+	name?: undefined
+	negated?: undefined
+	storage?: undefined
+}
+
+export type Attributesvariable_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+	address?: undefined
+	edge?: undefined
+	formalParameter?: undefined
+	globalId?: undefined
+	hidden?: undefined
+	name?: undefined
+	negated?: undefined
+	storage?: undefined
+}
+
+export type Attributesvariable_pouType = {
+	'xsi:type': 'pouType'
+	address?: undefined
+	edge?: undefined
+	formalParameter?: undefined
+	globalId?: undefined
+	hidden?: undefined
+	name?: undefined
+	negated?: undefined
+	storage?: undefined
+}
+
+export type Attributesvariable_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+	address?: undefined
+	edge?: undefined
+	formalParameter?: undefined
+	globalId?: undefined
+	hidden?: undefined
+	name?: undefined
+	negated?: undefined
+	storage?: undefined
 }
 
 export type AttributesvariableInaccessVars = {
@@ -1478,12 +13661,58 @@ export type AttributesvariableInaccessVars = {
 	name: string
 }
 
-export type AttributesvariableIncoil = {
-	'xsi:type'?: 'accessType' | 'edgeModifierType' | 'pouType' | 'storageModifierType' | (string & {})
+export type AttributesvariableIncoil =
+	| AttributesvariableIncoil_Own
+	| AttributesvariableIncoil_accessType
+	| AttributesvariableIncoil_edgeModifierType
+	| AttributesvariableIncoil_pouType
+	| AttributesvariableIncoil_storageModifierType
+
+export type AttributesvariableIncoil_Own = {
+	'xsi:type'?: never
 }
 
-export type AttributesvariableIncontact = {
-	'xsi:type'?: 'accessType' | 'edgeModifierType' | 'pouType' | 'storageModifierType' | (string & {})
+export type AttributesvariableIncoil_accessType = {
+	'xsi:type': 'accessType'
+}
+
+export type AttributesvariableIncoil_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+}
+
+export type AttributesvariableIncoil_pouType = {
+	'xsi:type': 'pouType'
+}
+
+export type AttributesvariableIncoil_storageModifierType = {
+	'xsi:type': 'storageModifierType'
+}
+
+export type AttributesvariableIncontact =
+	| AttributesvariableIncontact_Own
+	| AttributesvariableIncontact_accessType
+	| AttributesvariableIncontact_edgeModifierType
+	| AttributesvariableIncontact_pouType
+	| AttributesvariableIncontact_storageModifierType
+
+export type AttributesvariableIncontact_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesvariableIncontact_accessType = {
+	'xsi:type': 'accessType'
+}
+
+export type AttributesvariableIncontact_edgeModifierType = {
+	'xsi:type': 'edgeModifierType'
+}
+
+export type AttributesvariableIncontact_pouType = {
+	'xsi:type': 'pouType'
+}
+
+export type AttributesvariableIncontact_storageModifierType = {
+	'xsi:type': 'storageModifierType'
 }
 
 export type AttributesvariableInexternalVars = {
@@ -2337,7 +14566,8 @@ export type AttributesByParent = {
 
 export type RequiredAttributeNames<T extends AvailableElement> =
 	(typeof REQUIRED_ATTRIBUTES)[T][number]
+/** Every attribute name a member of the type offers, but the required ones. */
 export type OptionalAttributeNames<T extends AvailableElement> = Exclude<
-	keyof AttributesOf<T>,
+	AttributesOf<T> extends infer Member ? (Member extends unknown ? keyof Member : never) : never,
 	RequiredAttributeNames<T>
 >

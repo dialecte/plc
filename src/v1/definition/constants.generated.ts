@@ -5074,12 +5074,13 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'AccessVariable'>,
 	AccessVars: {
-		constant: '' as string,
-		globalId: '' as string,
-		non_retain: '' as string,
-		pragma: '' as string,
-		retain: '' as string,
-		'xsi:type': '' as string,
+		constant: '' as string | undefined,
+		globalId: '' as string | undefined,
+		non_retain: '' as string | undefined,
+		pragma: '' as string | undefined,
+		retain: '' as string | undefined,
+		'xsi:type': '' as string | undefined,
+		accessSpecifier: '' as string | undefined,
 	} as AttributesOf<'AccessVars'>,
 	Action: {
 		globalId: '' as string,
@@ -5097,13 +5098,13 @@ const ATTRIBUTES_BY_TAG = {
 	AddData: {} as AttributesOf<'AddData'>,
 	AddDataInfo: {} as AttributesOf<'AddDataInfo'>,
 	Address: {
-		address: '' as string,
-		globalId: '' as string,
-		location: '' as string,
-		notYetFixed: '' as string,
-		pragma: '' as string,
-		size: '' as string,
-		'xsi:type': '' as string,
+		address: '' as string | undefined,
+		globalId: '' as string | undefined,
+		location: '' as string | undefined,
+		notYetFixed: '' as string | undefined,
+		pragma: '' as string | undefined,
+		size: '' as string | undefined,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'Address'>,
 	ArrayValue: {} as AttributesOf<'ArrayValue'>,
 	BaseType: {} as AttributesOf<'BaseType'>,
@@ -5112,7 +5113,7 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'Body'>,
 	BodyContent: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'BodyContent'>,
 	Class: {
 		abstract: '' as string,
@@ -5123,11 +5124,12 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'Class'>,
 	CommonObject: {
-		globalId: '' as string,
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		globalId: '' as string | undefined,
+		label: '' as string | undefined,
 	} as AttributesOf<'CommonObject'>,
 	ComplexOperand: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'ComplexOperand'>,
 	Condition: {
 		globalId: '' as string,
@@ -5148,9 +5150,10 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'Configuration'>,
 	Connection: {
-		globalId: '' as string,
-		refConnectionPointOutId: '' as string,
-		'xsi:type': '' as string,
+		globalId: '' as string | undefined,
+		refConnectionPointOutId: '' as string | undefined,
+		'xsi:type': '' as string | undefined,
+		feedbackVariable: '' as string | undefined,
 	} as AttributesOf<'Connection'>,
 	ConnectionPointIn: {
 		globalId: '' as string,
@@ -5165,7 +5168,7 @@ const ATTRIBUTES_BY_TAG = {
 		globalId: '' as string,
 	} as AttributesOf<'ConnectionPointOutAction'>,
 	Content: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'Content'>,
 	ContentHeader: {
 		author: '' as string,
@@ -5188,13 +5191,13 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'DataTypeDecl'>,
 	Description: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'Description'>,
 	DimensionSpec: {
 		dimensionNumber: '' as string,
 	} as AttributesOf<'DimensionSpec'>,
 	Documentation: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'Documentation'>,
 	Enumerator: {
 		name: '' as string,
@@ -5211,8 +5214,13 @@ const ATTRIBUTES_BY_TAG = {
 		fbInstanceName: '' as string,
 	} as AttributesOf<'FbInstTaskAssociation'>,
 	FbdObject: {
-		globalId: '' as string,
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		globalId: '' as string | undefined,
+		instanceName: '' as string | undefined,
+		typeName: '' as string | undefined,
+		identifier: '' as string | undefined,
+		targetNetworkLabel: '' as string | undefined,
+		complexIdentifier: '' as string | undefined,
 	} as AttributesOf<'FbdObject'>,
 	FbdScaling: {
 		x: '' as string,
@@ -5249,22 +5257,23 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'GlobalNamespace'>,
 	GlobalVars: {
-		constant: '' as string,
-		globalId: '' as string,
-		non_retain: '' as string,
-		pragma: '' as string,
-		retain: '' as string,
-		'xsi:type': '' as string,
+		constant: '' as string | undefined,
+		globalId: '' as string | undefined,
+		non_retain: '' as string | undefined,
+		pragma: '' as string | undefined,
+		retain: '' as string | undefined,
+		'xsi:type': '' as string | undefined,
+		accessSpecifier: '' as string | undefined,
 	} as AttributesOf<'GlobalVars'>,
 	GraphicalExpression: {
-		evaluationOrder: '' as string,
-		globalId: '' as string,
-		label: '' as string,
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		evaluationOrder: '' as string | undefined,
+		globalId: '' as string | undefined,
+		label: '' as string | undefined,
 	} as AttributesOf<'GraphicalExpression'>,
 	GraphicalPredicate: {} as AttributesOf<'GraphicalPredicate'>,
 	IL: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'IL'>,
 	Implements: {} as AttributesOf<'Implements'>,
 	InOutAssignment: {
@@ -5287,7 +5296,7 @@ const ATTRIBUTES_BY_TAG = {
 		version: '' as string,
 	} as AttributesOf<'Info'>,
 	InitialValue: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'InitialValue'>,
 	Inline: {
 		globalId: '' as string,
@@ -5312,7 +5321,7 @@ const ATTRIBUTES_BY_TAG = {
 	} as AttributesOf<'InputVars'>,
 	Instances: {} as AttributesOf<'Instances'>,
 	InstantlyDefinedType: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'InstantlyDefinedType'>,
 	Interface: {
 		globalId: '' as string,
@@ -5321,8 +5330,15 @@ const ATTRIBUTES_BY_TAG = {
 		pragma: '' as string,
 	} as AttributesOf<'Interface'>,
 	LdObject: {
-		globalId: '' as string,
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		edge: '' as string | undefined,
+		globalId: '' as string | undefined,
+		latch: '' as string | undefined,
+		negated: '' as string | undefined,
+		operand: '' as string | undefined,
+		compareOperator: '' as string | undefined,
+		operand1: '' as string | undefined,
+		operand2: '' as string | undefined,
 	} as AttributesOf<'LdObject'>,
 	LdScaling: {
 		x: '' as string,
@@ -5374,7 +5390,7 @@ const ATTRIBUTES_BY_TAG = {
 	} as AttributesOf<'OutputVars'>,
 	Parameters: {} as AttributesOf<'Parameters'>,
 	PredicateContent: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'PredicateContent'>,
 	Program: {
 		globalId: '' as string,
@@ -5401,7 +5417,7 @@ const ATTRIBUTES_BY_TAG = {
 		name: '' as string,
 	} as AttributesOf<'Reference'>,
 	ReferenceName: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'ReferenceName'>,
 	ReferenceTo: {} as AttributesOf<'ReferenceTo'>,
 	RelPosition: {
@@ -5421,11 +5437,14 @@ const ATTRIBUTES_BY_TAG = {
 		label: '' as string,
 	} as AttributesOf<'Rung'>,
 	ST: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'ST'>,
 	SfcObject: {
-		globalId: '' as string,
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		globalId: '' as string | undefined,
+		mutualExclusion: '' as string | undefined,
+		initialStep: '' as string | undefined,
+		name: '' as string | undefined,
 	} as AttributesOf<'SfcObject'>,
 	SfcScaling: {
 		x: '' as string,
@@ -5440,18 +5459,22 @@ const ATTRIBUTES_BY_TAG = {
 	} as AttributesOf<'Size'>,
 	StructValue: {} as AttributesOf<'StructValue'>,
 	Task: {
-		globalId: '' as string,
-		name: '' as string,
-		pragma: '' as string,
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		globalId: '' as string | undefined,
+		interval: '' as string | undefined,
+		name: '' as string | undefined,
+		pragma: '' as string | undefined,
+		priority: '' as string | undefined,
+		single: '' as string | undefined,
 	} as AttributesOf<'Task'>,
 	TempVars: {
-		constant: '' as string,
-		globalId: '' as string,
-		non_retain: '' as string,
-		pragma: '' as string,
-		retain: '' as string,
-		'xsi:type': '' as string,
+		constant: '' as string | undefined,
+		globalId: '' as string | undefined,
+		non_retain: '' as string | undefined,
+		pragma: '' as string | undefined,
+		retain: '' as string | undefined,
+		'xsi:type': '' as string | undefined,
+		accessSpecifier: '' as string | undefined,
 	} as AttributesOf<'TempVars'>,
 	TextualPredicate: {
 		globalId: '' as string,
@@ -5464,26 +5487,27 @@ const ATTRIBUTES_BY_TAG = {
 	} as AttributesOf<'Transition'>,
 	Type: {} as AttributesOf<'Type'>,
 	TypeName: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'TypeName'>,
 	Types: {} as AttributesOf<'Types'>,
 	UserDefinedTypeSpec: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
+		overlap: '' as string | undefined,
 	} as AttributesOf<'UserDefinedTypeSpec'>,
 	UsingDirective: {
-		'xsi:type': '' as string,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'UsingDirective'>,
 	Value: {
 		member: '' as string,
 		repetitionValue: '' as string,
 	} as AttributesOf<'Value'>,
 	Variable: {
-		edgeDetection: '' as string,
-		globalId: '' as string,
-		name: '' as string,
-		orderWithinParamSet: '' as string,
-		pragma: '' as string,
-		'xsi:type': '' as string,
+		edgeDetection: '' as string | undefined,
+		globalId: '' as string | undefined,
+		name: '' as string | undefined,
+		orderWithinParamSet: '' as string | undefined,
+		pragma: '' as string | undefined,
+		'xsi:type': '' as string | undefined,
 	} as AttributesOf<'Variable'>,
 	VariableLength: {} as AttributesOf<'VariableLength'>,
 	Vars: {
@@ -5619,12 +5643,13 @@ export const ATTRIBUTES = {
 			Type: ATTRIBUTES_BY_TAG.Type,
 			InitialValue: {} as AttributesInitialValueInConfigVariable,
 			Address: {
-				address: '' as string,
-				globalId: '' as string,
-				location: '' as string,
-				pragma: '' as string,
-				size: '' as string,
-				'xsi:type': '' as string,
+				address: '' as string | undefined,
+				globalId: '' as string | undefined,
+				location: '' as string | undefined,
+				pragma: '' as string | undefined,
+				size: '' as string | undefined,
+				'xsi:type': '' as string | undefined,
+				notYetFixed: '' as string | undefined,
 			} as AttributesAddressInConfigVariable,
 		},
 		ConfigVars: {
@@ -5699,10 +5724,10 @@ export const ATTRIBUTES = {
 			AddData: ATTRIBUTES_BY_TAG.AddData,
 			UsingDirective: ATTRIBUTES_BY_TAG.UsingDirective,
 			Variable: {
-				globalId: '' as string,
-				name: '' as string,
-				pragma: '' as string,
-				'xsi:type': '' as string,
+				globalId: '' as string | undefined,
+				name: '' as string | undefined,
+				pragma: '' as string | undefined,
+				'xsi:type': '' as string | undefined,
 			} as AttributesVariableInExternalVars,
 		},
 		FbdObject: {

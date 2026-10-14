@@ -168,6 +168,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}VarList',
 				variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}VarListWithAccessSpec'],
 			},
 			'2': {
@@ -282,6 +283,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Action',
 	},
 	ActionBlock: {
 		tag: 'ActionBlock',
@@ -455,6 +457,7 @@ export const DEFINITION = {
 			maxOccurs: 1,
 			particles: [{ kind: 'element', name: 'Data' }],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}AddData',
 	},
 	AddDataInfo: {
 		tag: 'AddDataInfo',
@@ -578,6 +581,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}AddressExpression',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -636,6 +640,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}FixedAddressExpression',
 				variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}AddressExpression'],
 			},
 		},
@@ -784,6 +789,7 @@ export const DEFINITION = {
 						],
 					},
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}ElementaryType',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -804,6 +810,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeRef',
 			},
 		},
 	},
@@ -918,6 +925,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}Body',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -973,6 +981,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}BodyWithoutSFC',
 			},
 		},
 	},
@@ -1018,6 +1027,7 @@ export const DEFINITION = {
 					],
 					details: {},
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}BehaviourRepresentationBase',
 				variants: [
 					'{www.iec.ch/public/TC65SC65BWG7TF10}FBD',
 					'{www.iec.ch/public/TC65SC65BWG7TF10}IL',
@@ -1037,6 +1047,7 @@ export const DEFINITION = {
 					sequence: ['Network', 'IL', 'Rung', 'ST'],
 					details: {},
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}ProgrammingLanguageBase',
 				variants: [
 					'{www.iec.ch/public/TC65SC65BWG7TF10}FBD',
 					'{www.iec.ch/public/TC65SC65BWG7TF10}IL',
@@ -1138,6 +1149,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Class',
 	},
 	CommonObject: {
 		tag: 'CommonObject',
@@ -1200,6 +1212,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}CommonObjectBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}ActionBlocks',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}Comment',
@@ -1221,6 +1234,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -1304,6 +1318,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}Predicate',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -1562,6 +1577,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Connection',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}FeedbackConnection'],
 	},
 	ConnectionPointIn: {
@@ -1621,6 +1637,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ConnectionPointIn',
 	},
 	ConnectionPointOut: {
 		tag: 'ConnectionPointOut',
@@ -1693,6 +1710,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}ConnectionPointOut',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -1789,6 +1807,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ConnectionPointOut',
 	},
 	Content: {
 		tag: 'Content',
@@ -1802,6 +1821,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TextBase',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}SimpleText'],
 		abstractType: true,
 	},
@@ -1972,6 +1992,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}UserDefinedTypeDecl',
 	},
 	Description: {
 		tag: 'Description',
@@ -1985,6 +2006,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TextBase',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}SimpleText'],
 		abstractType: true,
 	},
@@ -2077,6 +2099,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TextBase',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}SimpleText'],
 		abstractType: true,
 	},
@@ -2164,6 +2187,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeRef',
 	},
 	ExternalVars: {
 		tag: 'ExternalVars',
@@ -2225,6 +2249,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ExternalVarList',
 	},
 	FbInstTaskAssociation: {
 		tag: 'FbInstTaskAssociation',
@@ -2304,6 +2329,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}FbdObjectBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}Block',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}DataSink',
@@ -2335,6 +2361,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}XyDecimalValue',
 	},
 	FeedbackConnection: {
 		tag: 'FeedbackConnection',
@@ -2386,6 +2413,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}FeedbackConnection',
 	},
 	FileHeader: {
 		tag: 'FileHeader',
@@ -2497,6 +2525,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Function',
 	},
 	FunctionBlock: {
 		tag: 'FunctionBlock',
@@ -2602,6 +2631,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}FunctionBlock',
 	},
 	GlobalNamespace: {
 		tag: 'GlobalNamespace',
@@ -2762,6 +2792,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}VarList',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}VarListWithAccessSpec'],
 	},
 	GraphicalExpression: {
@@ -2825,6 +2856,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}NetworkBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}FbdNetwork',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}LadderRung',
@@ -2866,6 +2898,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -2892,6 +2925,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeRef',
 	},
 	InOutAssignment: {
 		tag: 'InOutAssignment',
@@ -2908,6 +2942,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ParameterAssignment',
 	},
 	InOutVariable: {
 		tag: 'InOutVariable',
@@ -3051,6 +3086,7 @@ export const DEFINITION = {
 					details: {},
 				},
 				textContent: {},
+				type: '{http://www.w3.org/2001/XMLSchema}string',
 				variants: [
 					'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 					'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -3076,6 +3112,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'StructValue', minOccurs: 1, maxOccurs: 1 },
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}Value',
 			},
 		},
 	},
@@ -3135,6 +3172,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Body',
 	},
 	InoutVars: {
 		tag: 'InoutVars',
@@ -3174,6 +3212,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ParameterAssignment',
 	},
 	InputVariable: {
 		tag: 'InputVariable',
@@ -3316,6 +3355,7 @@ export const DEFINITION = {
 				},
 			},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}InstantlyDefinableTypeSpecBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}ArrayTypeSpec',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}ReferenceTypeSpec',
@@ -3393,6 +3433,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Interface',
 	},
 	LdObject: {
 		tag: 'LdObject',
@@ -3457,6 +3498,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}LdObjectBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}Coil',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}CompareContact',
@@ -3487,6 +3529,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}XyDecimalValue',
 	},
 	MainBody: {
 		tag: 'MainBody',
@@ -3599,6 +3642,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}Body',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -3654,6 +3698,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}BodyWithoutSFC',
 			},
 		},
 	},
@@ -3738,6 +3783,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}VariableDecl',
 	},
 	Method: {
 		tag: 'Method',
@@ -3883,6 +3929,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}Method',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -3938,6 +3985,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}MethodPrototype',
 			},
 		},
 	},
@@ -4043,6 +4091,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}NamespaceDecl',
 	},
 	Network: {
 		tag: 'Network',
@@ -4111,6 +4160,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}FbdNetwork',
 	},
 	OutputAssignment: {
 		tag: 'OutputAssignment',
@@ -4127,6 +4177,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ParameterAssignment',
 	},
 	OutputVariable: {
 		tag: 'OutputVariable',
@@ -4260,6 +4311,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ParameterSet',
 	},
 	PredicateContent: {
 		tag: 'PredicateContent',
@@ -4273,6 +4325,7 @@ export const DEFINITION = {
 			sequence: ['Network', 'IL', 'Rung', 'ST'],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}ProgrammingLanguageBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}FBD',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}IL',
@@ -4375,6 +4428,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Program',
 	},
 	ProgramInstance: {
 		tag: 'ProgramInstance',
@@ -4524,6 +4578,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -4550,6 +4605,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeRef',
 	},
 	RelPosition: {
 		tag: 'RelPosition',
@@ -4586,6 +4642,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}XyDecimalValue',
 	},
 	Resource: {
 		tag: 'Resource',
@@ -4674,6 +4731,7 @@ export const DEFINITION = {
 				{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeRef',
 	},
 	Rung: {
 		tag: 'Rung',
@@ -4751,6 +4809,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}LadderRung',
 	},
 	ST: {
 		tag: 'ST',
@@ -4765,6 +4824,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -4834,6 +4894,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}SfcObjectBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}SelectionConvergence',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}SelectionDivergence',
@@ -4865,6 +4926,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}XyDecimalValue',
 	},
 	SimpleValue: {
 		tag: 'SimpleValue',
@@ -4911,6 +4973,7 @@ export const DEFINITION = {
 			sequence: [],
 			details: {},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}XyDecimalValue',
 	},
 	StructValue: {
 		tag: 'StructValue',
@@ -4980,6 +5043,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TaskBase',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}StandardTask'],
 		abstractType: true,
 	},
@@ -5051,6 +5115,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}VarList',
 		variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}VarListWithAccessSpec'],
 	},
 	TextualPredicate: {
@@ -5105,6 +5170,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}Predicate',
 	},
 	Transition: {
 		tag: 'Transition',
@@ -5165,6 +5231,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}NamedTransition',
 	},
 	Type: {
 		tag: 'Type',
@@ -5289,6 +5356,7 @@ export const DEFINITION = {
 						],
 					},
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}ElementaryType',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -5309,6 +5377,7 @@ export const DEFINITION = {
 						{ kind: 'element', name: 'InstantlyDefinedType', minOccurs: 1, maxOccurs: 1 },
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeRef',
 			},
 		},
 	},
@@ -5325,6 +5394,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -5380,6 +5450,7 @@ export const DEFINITION = {
 				},
 			},
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}TypeSpecBase',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}ArrayTypeSpec',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}DirectlyDerivedTypeSpec',
@@ -5436,6 +5507,7 @@ export const DEFINITION = {
 			details: {},
 		},
 		textContent: {},
+		type: '{http://www.w3.org/2001/XMLSchema}string',
 		variants: [
 			'{www.iec.ch/public/TC65SC65BWG7TF10}AccessSpecifiers',
 			'{www.iec.ch/public/TC65SC65BWG7TF10}EdgeModifierType',
@@ -5670,6 +5742,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}VariableDecl',
 			},
 			'2': {
 				namespace: { prefix: 'ppx', uri: 'www.iec.ch/public/TC65SC65BWG7TF10' },
@@ -5741,6 +5814,7 @@ export const DEFINITION = {
 						},
 					],
 				},
+				type: '{www.iec.ch/public/TC65SC65BWG7TF10}VariableDeclPlain',
 				variants: ['{www.iec.ch/public/TC65SC65BWG7TF10}VariableDecl'],
 			},
 			'3': {
@@ -6080,6 +6154,7 @@ export const DEFINITION = {
 			type: { builtin: 'boolean' },
 			fixed: 'true',
 		},
+		type: '{http://www.w3.org/2001/XMLSchema}boolean',
 	},
 	Vars: {
 		tag: 'Vars',
@@ -6163,6 +6238,7 @@ export const DEFINITION = {
 				},
 			],
 		},
+		type: '{www.iec.ch/public/TC65SC65BWG7TF10}VarListWithAccessSpec',
 	},
 } as const
 

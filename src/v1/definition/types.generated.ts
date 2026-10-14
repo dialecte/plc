@@ -12,13 +12,28 @@ export type AttributesAccessVariable = {
 	pragma?: string
 }
 
-export type AttributesAccessVars = {
+export type AttributesAccessVars =
+	| AttributesAccessVars_Own
+	| AttributesAccessVars_VarListWithAccessSpec
+
+export type AttributesAccessVars_Own = {
+	'xsi:type'?: 'VarList'
 	constant?: string
 	globalId?: string
 	non_retain?: string
 	pragma?: string
 	retain?: string
-	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
+	accessSpecifier?: undefined
+}
+
+export type AttributesAccessVars_VarListWithAccessSpec = {
+	'xsi:type': 'VarListWithAccessSpec'
+	accessSpecifier: 'private' | 'protected' | 'internal' | 'public' | (string & {})
+	constant?: string
+	globalId?: string
+	non_retain?: string
+	pragma?: string
+	retain?: string
 }
 
 export type AttributesAccessVarsInConfiguration = {
@@ -59,23 +74,50 @@ export type AttributesAddData = {}
 
 export type AttributesAddDataInfo = {}
 
-export type AttributesAddress = {
+export type AttributesAddress = AttributesAddress_Own | AttributesAddress_AddressExpression
+
+export type AttributesAddress_Own = {
+	'xsi:type'?: 'FixedAddressExpression'
 	address?: string
 	globalId?: string
 	location?: 'I' | 'Q' | 'M' | (string & {})
 	notYetFixed?: string
 	pragma?: string
 	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
-	'xsi:type'?: 'AddressExpression' | (string & {})
 }
 
-export type AttributesAddressInConfigVariable = {
+export type AttributesAddress_AddressExpression = {
+	'xsi:type': 'AddressExpression'
+	address?: string
+	globalId?: string
+	location?: 'I' | 'Q' | 'M' | (string & {})
+	notYetFixed?: string
+	pragma?: string
+	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
+}
+
+export type AttributesAddressInConfigVariable =
+	| AttributesAddressInConfigVariable_Own
+	| AttributesAddressInConfigVariable_AddressExpression
+
+export type AttributesAddressInConfigVariable_Own = {
+	'xsi:type'?: 'FixedAddressExpression'
 	address?: string
 	globalId?: string
 	location?: 'I' | 'Q' | 'M' | (string & {})
 	pragma?: string
 	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
-	'xsi:type'?: 'AddressExpression' | (string & {})
+	notYetFixed?: undefined
+}
+
+export type AttributesAddressInConfigVariable_AddressExpression = {
+	'xsi:type': 'AddressExpression'
+	address?: string
+	globalId?: string
+	location?: 'I' | 'Q' | 'M' | (string & {})
+	notYetFixed?: string
+	pragma?: string
+	size?: 'X' | 'B' | 'W' | 'D' | 'L' | (string & {})
 }
 
 export type AttributesAddressInMember = {
@@ -105,8 +147,31 @@ export type AttributesBody = {
 	pragma?: string
 }
 
-export type AttributesBodyContent = {
-	'xsi:type'?: 'FBD' | 'IL' | 'LD' | 'SFC' | 'ST' | (string & {})
+export type AttributesBodyContent =
+	| AttributesBodyContent_FBD
+	| AttributesBodyContent_IL
+	| AttributesBodyContent_LD
+	| AttributesBodyContent_SFC
+	| AttributesBodyContent_ST
+
+export type AttributesBodyContent_FBD = {
+	'xsi:type': 'FBD'
+}
+
+export type AttributesBodyContent_IL = {
+	'xsi:type': 'IL'
+}
+
+export type AttributesBodyContent_LD = {
+	'xsi:type': 'LD'
+}
+
+export type AttributesBodyContent_SFC = {
+	'xsi:type': 'SFC'
+}
+
+export type AttributesBodyContent_ST = {
+	'xsi:type': 'ST'
 }
 
 export type AttributesClass = {
@@ -118,13 +183,51 @@ export type AttributesClass = {
 	pragma?: string
 }
 
-export type AttributesCommonObject = {
+export type AttributesCommonObject =
+	| AttributesCommonObject_ActionBlocks
+	| AttributesCommonObject_Comment
+	| AttributesCommonObject_Connector
+	| AttributesCommonObject_Continuation
+
+export type AttributesCommonObject_ActionBlocks = {
+	'xsi:type': 'ActionBlocks'
 	globalId?: string
-	'xsi:type'?: 'ActionBlocks' | 'Comment' | 'Connector' | 'Continuation' | (string & {})
+	label?: undefined
 }
 
-export type AttributesComplexOperand = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesCommonObject_Comment = {
+	'xsi:type': 'Comment'
+	globalId?: string
+	label?: undefined
+}
+
+export type AttributesCommonObject_Connector = {
+	'xsi:type': 'Connector'
+	globalId?: string
+	label: string
+}
+
+export type AttributesCommonObject_Continuation = {
+	'xsi:type': 'Continuation'
+	globalId?: string
+	label: string
+}
+
+export type AttributesComplexOperand =
+	| AttributesComplexOperand_Own
+	| AttributesComplexOperand_AccessSpecifiers
+	| AttributesComplexOperand_EdgeModifierType
+
+export type AttributesComplexOperand_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesComplexOperand_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesComplexOperand_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
 }
 
 export type AttributesCondition = {
@@ -151,10 +254,22 @@ export type AttributesConfiguration = {
 	pragma?: string
 }
 
-export type AttributesConnection = {
+export type AttributesConnection =
+	| AttributesConnection_Own
+	| AttributesConnection_FeedbackConnection
+
+export type AttributesConnection_Own = {
+	'xsi:type'?: 'Connection'
 	globalId?: string
 	refConnectionPointOutId: string
-	'xsi:type'?: 'FeedbackConnection' | (string & {})
+	feedbackVariable?: undefined
+}
+
+export type AttributesConnection_FeedbackConnection = {
+	'xsi:type': 'FeedbackConnection'
+	feedbackVariable: string
+	globalId?: string
+	refConnectionPointOutId: string
 }
 
 export type AttributesConnectionPointIn = {
@@ -198,7 +313,7 @@ export type AttributesConnectionPointOutAction = {
 }
 
 export type AttributesContent = {
-	'xsi:type'?: 'SimpleText' | (string & {})
+	'xsi:type': 'SimpleText'
 }
 
 export type AttributesContentHeader = {
@@ -226,7 +341,7 @@ export type AttributesDataTypeDecl = {
 }
 
 export type AttributesDescription = {
-	'xsi:type'?: 'SimpleText' | (string & {})
+	'xsi:type': 'SimpleText'
 }
 
 export type AttributesDimensionSpec = {
@@ -234,7 +349,7 @@ export type AttributesDimensionSpec = {
 }
 
 export type AttributesDocumentation = {
-	'xsi:type'?: 'SimpleText' | (string & {})
+	'xsi:type': 'SimpleText'
 }
 
 export type AttributesEnumerator = {
@@ -255,16 +370,72 @@ export type AttributesFbInstTaskAssociation = {
 	fbInstanceName: string
 }
 
-export type AttributesFbdObject = {
+export type AttributesFbdObject =
+	| AttributesFbdObject_Block
+	| AttributesFbdObject_DataSink
+	| AttributesFbdObject_DataSource
+	| AttributesFbdObject_Jump
+	| AttributesFbdObject_Return
+	| AttributesFbdObject_Unconnected
+
+export type AttributesFbdObject_Block = {
+	'xsi:type': 'Block'
 	globalId?: string
-	'xsi:type'?:
-		| 'Block'
-		| 'DataSink'
-		| 'DataSource'
-		| 'Jump'
-		| 'Return'
-		| 'Unconnected'
-		| (string & {})
+	instanceName?: string
+	typeName: string
+	identifier?: undefined
+	targetNetworkLabel?: undefined
+	complexIdentifier?: undefined
+}
+
+export type AttributesFbdObject_DataSink = {
+	'xsi:type': 'DataSink'
+	globalId?: string
+	identifier: string
+	instanceName?: undefined
+	typeName?: undefined
+	targetNetworkLabel?: undefined
+	complexIdentifier?: undefined
+}
+
+export type AttributesFbdObject_DataSource = {
+	'xsi:type': 'DataSource'
+	globalId?: string
+	identifier: string
+	instanceName?: undefined
+	typeName?: undefined
+	targetNetworkLabel?: undefined
+	complexIdentifier?: undefined
+}
+
+export type AttributesFbdObject_Jump = {
+	'xsi:type': 'Jump'
+	globalId?: string
+	targetNetworkLabel: string
+	instanceName?: undefined
+	typeName?: undefined
+	identifier?: undefined
+	complexIdentifier?: undefined
+}
+
+export type AttributesFbdObject_Return = {
+	'xsi:type': 'Return'
+	globalId?: string
+	instanceName?: undefined
+	typeName?: undefined
+	identifier?: undefined
+	targetNetworkLabel?: undefined
+	complexIdentifier?: undefined
+}
+
+export type AttributesFbdObject_Unconnected = {
+	'xsi:type': 'Unconnected'
+	complexIdentifier: string
+	globalId?: string
+	instanceName?: undefined
+	typeName?: undefined
+	identifier?: undefined
+	targetNetworkLabel?: undefined
 }
 
 export type AttributesFbdScaling = {
@@ -307,26 +478,65 @@ export type AttributesGlobalNamespace = {
 	pragma?: string
 }
 
-export type AttributesGlobalVars = {
+export type AttributesGlobalVars =
+	| AttributesGlobalVars_Own
+	| AttributesGlobalVars_VarListWithAccessSpec
+
+export type AttributesGlobalVars_Own = {
+	'xsi:type'?: 'VarList'
 	constant?: string
 	globalId?: string
 	non_retain?: string
 	pragma?: string
 	retain?: string
-	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
+	accessSpecifier?: undefined
 }
 
-export type AttributesGraphicalExpression = {
+export type AttributesGlobalVars_VarListWithAccessSpec = {
+	'xsi:type': 'VarListWithAccessSpec'
+	accessSpecifier: 'private' | 'protected' | 'internal' | 'public' | (string & {})
+	constant?: string
+	globalId?: string
+	non_retain?: string
+	pragma?: string
+	retain?: string
+}
+
+export type AttributesGraphicalExpression =
+	| AttributesGraphicalExpression_FbdNetwork
+	| AttributesGraphicalExpression_LadderRung
+
+export type AttributesGraphicalExpression_FbdNetwork = {
+	'xsi:type': 'FbdNetwork'
 	evaluationOrder: string
 	globalId?: string
 	label?: string
-	'xsi:type'?: 'FbdNetwork' | 'LadderRung' | (string & {})
+}
+
+export type AttributesGraphicalExpression_LadderRung = {
+	'xsi:type': 'LadderRung'
+	evaluationOrder: string
+	globalId?: string
+	label?: string
 }
 
 export type AttributesGraphicalPredicate = {}
 
-export type AttributesIL = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesIL =
+	| AttributesIL_Own
+	| AttributesIL_AccessSpecifiers
+	| AttributesIL_EdgeModifierType
+
+export type AttributesIL_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesIL_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesIL_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
 }
 
 export type AttributesImplements = {}
@@ -355,8 +565,21 @@ export type AttributesInfo = {
 	version?: string
 }
 
-export type AttributesInitialValue = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesInitialValue =
+	| AttributesInitialValue_Own
+	| AttributesInitialValue_AccessSpecifiers
+	| AttributesInitialValue_EdgeModifierType
+
+export type AttributesInitialValue_Own = {
+	'xsi:type'?: 'Value'
+}
+
+export type AttributesInitialValue_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesInitialValue_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
 }
 
 export type AttributesInitialValueInConfigVariable = {}
@@ -394,8 +617,16 @@ export type AttributesInputVars = {
 
 export type AttributesInstances = {}
 
-export type AttributesInstantlyDefinedType = {
-	'xsi:type'?: 'ArrayTypeSpec' | 'ReferenceTypeSpec' | (string & {})
+export type AttributesInstantlyDefinedType =
+	| AttributesInstantlyDefinedType_ArrayTypeSpec
+	| AttributesInstantlyDefinedType_ReferenceTypeSpec
+
+export type AttributesInstantlyDefinedType_ArrayTypeSpec = {
+	'xsi:type': 'ArrayTypeSpec'
+}
+
+export type AttributesInstantlyDefinedType_ReferenceTypeSpec = {
+	'xsi:type': 'ReferenceTypeSpec'
 }
 
 export type AttributesInterface = {
@@ -405,15 +636,71 @@ export type AttributesInterface = {
 	pragma?: string
 }
 
-export type AttributesLdObject = {
+export type AttributesLdObject =
+	| AttributesLdObject_Coil
+	| AttributesLdObject_CompareContact
+	| AttributesLdObject_Contact
+	| AttributesLdObject_LeftPowerRail
+	| AttributesLdObject_RightPowerRail
+
+export type AttributesLdObject_Coil = {
+	'xsi:type': 'Coil'
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
 	globalId?: string
-	'xsi:type'?:
-		| 'Coil'
-		| 'CompareContact'
-		| 'Contact'
-		| 'LeftPowerRail'
-		| 'RightPowerRail'
-		| (string & {})
+	latch?: 'none' | 'set' | 'reset' | (string & {})
+	negated?: string
+	operand: string
+	compareOperator?: undefined
+	operand1?: undefined
+	operand2?: undefined
+}
+
+export type AttributesLdObject_CompareContact = {
+	'xsi:type': 'CompareContact'
+	compareOperator: '>' | '>=' | '=' | '<=' | '<' | '<>' | (string & {})
+	globalId?: string
+	operand1: string
+	operand2: string
+	edge?: undefined
+	latch?: undefined
+	negated?: undefined
+	operand?: undefined
+}
+
+export type AttributesLdObject_Contact = {
+	'xsi:type': 'Contact'
+	edge?: 'none' | 'falling' | 'rising' | (string & {})
+	globalId?: string
+	negated?: string
+	operand: string
+	latch?: undefined
+	compareOperator?: undefined
+	operand1?: undefined
+	operand2?: undefined
+}
+
+export type AttributesLdObject_LeftPowerRail = {
+	'xsi:type': 'LeftPowerRail'
+	globalId?: string
+	edge?: undefined
+	latch?: undefined
+	negated?: undefined
+	operand?: undefined
+	compareOperator?: undefined
+	operand1?: undefined
+	operand2?: undefined
+}
+
+export type AttributesLdObject_RightPowerRail = {
+	'xsi:type': 'RightPowerRail'
+	globalId?: string
+	edge?: undefined
+	latch?: undefined
+	negated?: undefined
+	operand?: undefined
+	compareOperator?: undefined
+	operand1?: undefined
+	operand2?: undefined
 }
 
 export type AttributesLdScaling = {
@@ -502,8 +789,26 @@ export type AttributesOutputVars = {
 
 export type AttributesParameters = {}
 
-export type AttributesPredicateContent = {
-	'xsi:type'?: 'FBD' | 'IL' | 'LD' | 'ST' | (string & {})
+export type AttributesPredicateContent =
+	| AttributesPredicateContent_FBD
+	| AttributesPredicateContent_IL
+	| AttributesPredicateContent_LD
+	| AttributesPredicateContent_ST
+
+export type AttributesPredicateContent_FBD = {
+	'xsi:type': 'FBD'
+}
+
+export type AttributesPredicateContent_IL = {
+	'xsi:type': 'IL'
+}
+
+export type AttributesPredicateContent_LD = {
+	'xsi:type': 'LD'
+}
+
+export type AttributesPredicateContent_ST = {
+	'xsi:type': 'ST'
 }
 
 export type AttributesProgram = {
@@ -535,8 +840,21 @@ export type AttributesReference = {
 	name: string
 }
 
-export type AttributesReferenceName = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesReferenceName =
+	| AttributesReferenceName_Own
+	| AttributesReferenceName_AccessSpecifiers
+	| AttributesReferenceName_EdgeModifierType
+
+export type AttributesReferenceName_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesReferenceName_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesReferenceName_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
 }
 
 export type AttributesReferenceTo = {}
@@ -561,20 +879,77 @@ export type AttributesRung = {
 	label?: string
 }
 
-export type AttributesST = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesST =
+	| AttributesST_Own
+	| AttributesST_AccessSpecifiers
+	| AttributesST_EdgeModifierType
+
+export type AttributesST_Own = {
+	'xsi:type'?: never
 }
 
-export type AttributesSfcObject = {
+export type AttributesST_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesST_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
+}
+
+export type AttributesSfcObject =
+	| AttributesSfcObject_SelectionConvergence
+	| AttributesSfcObject_SelectionDivergence
+	| AttributesSfcObject_SimultaneousConvergence
+	| AttributesSfcObject_SimultaneousDivergence
+	| AttributesSfcObject_Step
+	| AttributesSfcObject_Transition
+
+export type AttributesSfcObject_SelectionConvergence = {
+	'xsi:type': 'SelectionConvergence'
 	globalId?: string
-	'xsi:type'?:
-		| 'SelectionConvergence'
-		| 'SelectionDivergence'
-		| 'SimultaneousConvergence'
-		| 'SimultaneousDivergence'
-		| 'Step'
-		| 'Transition'
-		| (string & {})
+	mutualExclusion?: undefined
+	initialStep?: undefined
+	name?: undefined
+}
+
+export type AttributesSfcObject_SelectionDivergence = {
+	'xsi:type': 'SelectionDivergence'
+	globalId?: string
+	mutualExclusion?: string
+	initialStep?: undefined
+	name?: undefined
+}
+
+export type AttributesSfcObject_SimultaneousConvergence = {
+	'xsi:type': 'SimultaneousConvergence'
+	globalId?: string
+	mutualExclusion?: undefined
+	initialStep?: undefined
+	name?: undefined
+}
+
+export type AttributesSfcObject_SimultaneousDivergence = {
+	'xsi:type': 'SimultaneousDivergence'
+	globalId?: string
+	mutualExclusion?: undefined
+	initialStep?: undefined
+	name?: undefined
+}
+
+export type AttributesSfcObject_Step = {
+	'xsi:type': 'Step'
+	globalId?: string
+	initialStep?: string
+	name: string
+	mutualExclusion?: undefined
+}
+
+export type AttributesSfcObject_Transition = {
+	'xsi:type': 'Transition'
+	globalId?: string
+	mutualExclusion?: undefined
+	initialStep?: undefined
+	name?: undefined
 }
 
 export type AttributesSfcScaling = {
@@ -594,19 +969,35 @@ export type AttributesSize = {
 export type AttributesStructValue = {}
 
 export type AttributesTask = {
+	'xsi:type': 'StandardTask'
 	globalId?: string
+	interval?: string
 	name: string
 	pragma?: string
-	'xsi:type'?: 'StandardTask' | (string & {})
+	priority: string
+	single?: string
 }
 
-export type AttributesTempVars = {
+export type AttributesTempVars = AttributesTempVars_Own | AttributesTempVars_VarListWithAccessSpec
+
+export type AttributesTempVars_Own = {
+	'xsi:type'?: 'VarList'
 	constant?: string
 	globalId?: string
 	non_retain?: string
 	pragma?: string
 	retain?: string
-	'xsi:type'?: 'VarListWithAccessSpec' | (string & {})
+	accessSpecifier?: undefined
+}
+
+export type AttributesTempVars_VarListWithAccessSpec = {
+	'xsi:type': 'VarListWithAccessSpec'
+	accessSpecifier: 'private' | 'protected' | 'internal' | 'public' | (string & {})
+	constant?: string
+	globalId?: string
+	non_retain?: string
+	pragma?: string
+	retain?: string
 }
 
 export type AttributesTextualPredicate = {
@@ -622,26 +1013,84 @@ export type AttributesTransition = {
 
 export type AttributesType = {}
 
-export type AttributesTypeName = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesTypeName =
+	| AttributesTypeName_Own
+	| AttributesTypeName_AccessSpecifiers
+	| AttributesTypeName_EdgeModifierType
+
+export type AttributesTypeName_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesTypeName_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesTypeName_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
 }
 
 export type AttributesTypes = {}
 
-export type AttributesUserDefinedTypeSpec = {
-	'xsi:type'?:
-		| 'ArrayTypeSpec'
-		| 'DirectlyDerivedTypeSpec'
-		| 'EnumTypeSpec'
-		| 'EnumTypeWithNamedValueSpec'
-		| 'ReferenceTypeSpec'
-		| 'StructTypeSpec'
-		| 'SubrangeTypeSpec'
-		| (string & {})
+export type AttributesUserDefinedTypeSpec =
+	| AttributesUserDefinedTypeSpec_ArrayTypeSpec
+	| AttributesUserDefinedTypeSpec_DirectlyDerivedTypeSpec
+	| AttributesUserDefinedTypeSpec_EnumTypeSpec
+	| AttributesUserDefinedTypeSpec_EnumTypeWithNamedValueSpec
+	| AttributesUserDefinedTypeSpec_ReferenceTypeSpec
+	| AttributesUserDefinedTypeSpec_StructTypeSpec
+	| AttributesUserDefinedTypeSpec_SubrangeTypeSpec
+
+export type AttributesUserDefinedTypeSpec_ArrayTypeSpec = {
+	'xsi:type': 'ArrayTypeSpec'
+	overlap?: undefined
 }
 
-export type AttributesUsingDirective = {
-	'xsi:type'?: 'AccessSpecifiers' | 'EdgeModifierType' | (string & {})
+export type AttributesUserDefinedTypeSpec_DirectlyDerivedTypeSpec = {
+	'xsi:type': 'DirectlyDerivedTypeSpec'
+	overlap?: undefined
+}
+
+export type AttributesUserDefinedTypeSpec_EnumTypeSpec = {
+	'xsi:type': 'EnumTypeSpec'
+	overlap?: undefined
+}
+
+export type AttributesUserDefinedTypeSpec_EnumTypeWithNamedValueSpec = {
+	'xsi:type': 'EnumTypeWithNamedValueSpec'
+	overlap?: undefined
+}
+
+export type AttributesUserDefinedTypeSpec_ReferenceTypeSpec = {
+	'xsi:type': 'ReferenceTypeSpec'
+	overlap?: undefined
+}
+
+export type AttributesUserDefinedTypeSpec_StructTypeSpec = {
+	'xsi:type': 'StructTypeSpec'
+	overlap?: string
+}
+
+export type AttributesUserDefinedTypeSpec_SubrangeTypeSpec = {
+	'xsi:type': 'SubrangeTypeSpec'
+	overlap?: undefined
+}
+
+export type AttributesUsingDirective =
+	| AttributesUsingDirective_Own
+	| AttributesUsingDirective_AccessSpecifiers
+	| AttributesUsingDirective_EdgeModifierType
+
+export type AttributesUsingDirective_Own = {
+	'xsi:type'?: never
+}
+
+export type AttributesUsingDirective_AccessSpecifiers = {
+	'xsi:type': 'AccessSpecifiers'
+}
+
+export type AttributesUsingDirective_EdgeModifierType = {
+	'xsi:type': 'EdgeModifierType'
 }
 
 export type AttributesValue = {
@@ -657,13 +1106,24 @@ export type AttributesValueInStructValue = {
 	member: string
 }
 
-export type AttributesVariable = {
+export type AttributesVariable = AttributesVariable_Own | AttributesVariable_VariableDecl
+
+export type AttributesVariable_Own = {
+	'xsi:type'?: 'VariableDeclPlain'
 	edgeDetection?: 'none' | 'falling' | 'rising' | (string & {})
 	globalId?: string
 	name: string
 	orderWithinParamSet?: string
 	pragma?: string
-	'xsi:type'?: 'VariableDecl' | (string & {})
+}
+
+export type AttributesVariable_VariableDecl = {
+	'xsi:type': 'VariableDecl'
+	globalId?: string
+	name: string
+	pragma?: string
+	edgeDetection?: undefined
+	orderWithinParamSet?: undefined
 }
 
 export type AttributesVariableInAccessVars = {
@@ -672,11 +1132,22 @@ export type AttributesVariableInAccessVars = {
 	pragma?: string
 }
 
-export type AttributesVariableInExternalVars = {
+export type AttributesVariableInExternalVars =
+	| AttributesVariableInExternalVars_Own
+	| AttributesVariableInExternalVars_VariableDecl
+
+export type AttributesVariableInExternalVars_Own = {
+	'xsi:type'?: 'VariableDeclPlain'
 	globalId?: string
 	name: string
 	pragma?: string
-	'xsi:type'?: 'VariableDecl' | (string & {})
+}
+
+export type AttributesVariableInExternalVars_VariableDecl = {
+	'xsi:type': 'VariableDecl'
+	globalId?: string
+	name: string
+	pragma?: string
 }
 
 export type AttributesVariableInGlobalVars = {
@@ -1355,7 +1826,8 @@ export type AttributesByParent = {
 
 export type RequiredAttributeNames<T extends AvailableElement> =
 	(typeof REQUIRED_ATTRIBUTES)[T][number]
+/** Every attribute name a member of the type offers, but the required ones. */
 export type OptionalAttributeNames<T extends AvailableElement> = Exclude<
-	keyof AttributesOf<T>,
+	AttributesOf<T> extends infer Member ? (Member extends unknown ? keyof Member : never) : never,
 	RequiredAttributeNames<T>
 >
