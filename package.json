@@ -1,6 +1,6 @@
 {
 	"name": "@dialecte/plc",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Dialecte - PLC (Programmable Logic Controller) sdk",
 	"license": "MIT",
 	"repository": {

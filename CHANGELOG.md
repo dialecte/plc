@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-14
+
+### Changed
+
+- Requires `@dialecte/core` 0.6.1: `assertValidPlcXml`, `runPlcTestCases` and `createPlcTestProject` check the attributes of every namespace and allow what an element's attribute wildcard allows - a fixture carrying an attribute its element does not declare now fails.
+
 ## [0.2.0] - 2026-10-14
 
 ### Changed
