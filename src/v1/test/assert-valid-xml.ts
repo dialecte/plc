@@ -12,6 +12,7 @@ import { PLC_DIALECTE_CONFIG } from '@/v1/config'
  */
 const { assertValidXml, assertValidXmlTestCases } = createXmlSchemaAssertions({
 	definition: PLC_DIALECTE_CONFIG.definition,
+	types: PLC_DIALECTE_CONFIG.types,
 	namespaces: PLC_DIALECTE_CONFIG.namespaces,
 	schemaName: 'Plc',
 })

@@ -1,5 +1,6 @@
 import {
 	DEFINITION,
+	TYPES,
 	ELEMENT_NAMES,
 	ATTRIBUTES,
 	CHILDREN,
@@ -42,6 +43,7 @@ export const PLC_DIALECTE_CONFIG = {
 	database: PLC_DATABASE_CONFIG,
 	io: PLC_IO_CONFIG,
 	definition: DEFINITION,
+	types: TYPES,
 	rootElementName: ROOT_ELEMENT,
 } as const satisfies AnyDialecteConfig
 
