@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-14
+
+### Changed
+
+- **Breaking - built on `@dialecte/core` 0.6 and the definitions `@dialecte/create` 0.1 writes** (`v1` and `tc6-v201`). `DEFINITION` has the new shape: a tag declared several ways lists its declarations, a value's facets sit in its datatype, identity constraints sit on the declaration that declares them, and `TYPES` holds the types an element may take with `xsi:type`. `PLC_DIALECTE_CONFIG` (`v1`) carries `types`. Code that reads `DEFINITION` directly must follow; code that goes through `query.getDefinition` gets the declaration that applies.
+- **Breaking (types): an element that may take another type with `xsi:type` is a union on `'xsi:type'`**, one named member per type (`AttributesFbdObject_Block`, ...). An attribute only one type declares is typed on that member: filter or write with the type, `findByAttributes({ tagName: 'FbdObject', attributes: { 'xsi:type': 'Block', instanceName } })`.
+
 ## [0.1.1] - 2026-09-29
 
 ### Added
