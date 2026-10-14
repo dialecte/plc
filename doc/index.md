@@ -5,7 +5,7 @@ layout: home
 hero:
   name: PLC Dialecte
   text: IEC 61131-10, fully typed.
-  tagline: Query, mutate, and manage PLCopen XML files with a type-safe Document API — 66+ element types, zero guesswork.
+  tagline: Query, mutate, and manage PLCopen XML files with a type-safe Document API — 105 element types, zero guesswork.
   actions:
     - theme: brand
       text: Get Started →
@@ -16,7 +16,7 @@ hero:
 
 features:
   - icon: ⚡
-    title: 66+ Element Types
+    title: 105 Element Types
     details: Every PLCopen element — from Project to FunctionBlock — is fully typed. Attributes, children, and parent relationships are all compiler-checked.
   - icon: 📄
     title: Document / Query / Transaction
