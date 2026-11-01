@@ -26,13 +26,13 @@ const project = await createPlcProject({ storage: { type: 'local' } }).open('my-
 
 ## Step 2 - Import a PLCopen XML file
 
-`project.import` parses one or more PLCopen XML files and stores each one as a document in the project.
+`project.importFile` parses a PLCopen XML file and stores it as a document in the project; its result carries the new document's `documentId`.
 
-Supports `.xml`. A PLCopen TC6 v201 file is normalised to IEC 61131-10 on import.
+Supports `.xml`. A PLCopen TC6 v201 file is normalised to IEC 61131-10 on import (in a browser: the normalisation uses the page's XML APIs).
 
 ```ts
 // Browser File object - e.g. from an <input type="file">
-const [{ documentId }] = await project.import([plcFile])
+const { documentId } = await project.importFile(plcFile)
 ```
 
 ## Step 3 - Open a document
@@ -71,8 +71,8 @@ await doc.transaction(async (tx) => {
 
 ## Step 6 - Export
 
-Export back to PLCopen XML:
+`project.export` writes a document back to a PLCopen XML file: `file` is the XML as a `Blob` (`await file.text()` reads it), `filename` its name. Pass `download: true` to save it as well (the save dialog where the browser has one, a download otherwise).
 
 ```ts
-const [blob] = await project.export([documentId])
+const { file, filename } = await project.export({ documentId })
 ```
