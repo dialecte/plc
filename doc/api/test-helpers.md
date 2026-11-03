@@ -42,12 +42,13 @@ Two methods enforce the right contract at call-site.
 Use when `act` asserts directly on query results via `expect`. No XML export needed.
 
 ```ts
-import { describe, expect } from 'vitest'
 import {
 	runPlcTestCases,
 	ALL_XMLNS_NAMESPACES,
 	CUSTOM_RECORD_ID_ATTRIBUTE,
 } from '@dialecte/plc/v1/test'
+import { describe, expect } from 'vitest'
+
 import type { PlcTest } from '@dialecte/plc/v1/test'
 
 type TestCase = PlcTest.BaseXmlTestCase & {
@@ -90,12 +91,13 @@ describe('getFunctionBlocks', () => {
 Use when `act` performs transactions and assertions must run on the exported XML via XPath. `act` returns an optional `ActResult` to choose which document to assert on (defaults to `source`) and toggle `withDatabaseIds`.
 
 ```ts
-import { describe } from 'vitest'
 import {
 	runPlcTestCases,
 	ALL_XMLNS_NAMESPACES,
 	CUSTOM_RECORD_ID_ATTRIBUTE,
 } from '@dialecte/plc/v1/test'
+import { describe } from 'vitest'
+
 import type { PlcTest } from '@dialecte/plc/v1/test'
 
 type TestCase = PlcTest.BaseXmlTestCase & {
