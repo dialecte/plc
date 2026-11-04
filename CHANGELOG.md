@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-11-04
+
+### Changed
+
+- **The repository's tooling runs on `@dialecte/cli` 0.3.0** (nothing changes for a consumer): the package declares the contributor profile, so the docs build and the type bench run in `dialecte contrib` instead of the gate; the tests run with the runner's defaults; the commit hook checks types, lint and format (`npm run check`, no longer `format:fix`), runs the tests through `dialecte gate --hook` (answered by a green `gate --full` of the committed tree), then builds.
+
 ## [0.3.0] - 2026-11-02
 
 ### Changed
