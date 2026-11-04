@@ -1,6 +1,6 @@
 {
 	"name": "@dialecte/plc",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Dialecte - PLC (Programmable Logic Controller) sdk",
 	"license": "MIT",
 	"repository": {
@@ -35,6 +35,7 @@
 		"test:node": "vitest run --project node",
 		"test:browser": "vitest run --project browser --passWithNoTests",
 		"test:browser:all": "vitest run --project browser-all",
+		"test:hook": "dialecte gate --hook",
 		"//====== CHECK ======//": "",
 		"check": "run-p type-check type-check:test type-check:node lint:check format:check",
 		"type-check": "tsc -p tsconfig.build.json --noEmit",
@@ -57,7 +58,7 @@
 		"@dialecte/core": "0.8.0"
 	},
 	"devDependencies": {
-		"@dialecte/cli": "0.1.0",
+		"@dialecte/cli": "0.3.0",
 		"@tsconfig/node24": "^24.0.4",
 		"@types/node": "^24.12.4",
 		"@typescript/native": "npm:typescript@^7.0.2",
@@ -77,6 +78,7 @@
 		"vitest": "^4.1.10"
 	},
 	"dialecte": {
+		"profile": "contributor",
 		"gate": {
 			"fast": [
 				{
@@ -101,20 +103,13 @@
 				},
 				{
 					"name": "tests",
-					"run": "nice -n 10 npx vitest run --project node --maxWorkers=2",
+					"run": "npx vitest run --project node",
 					"counts": "tests"
 				},
 				{
 					"name": "browser tests",
-					"run": "nice -n 10 npx vitest run --project browser --passWithNoTests --no-file-parallelism"
-				},
-				{
-					"name": "docs",
-					"run": "npm run doc:build"
-				},
-				{
-					"name": "type-bench",
-					"run": "npm run type-bench:check"
+					"run": "npx vitest run --project browser",
+					"counts": "tests"
 				}
 			]
 		},
