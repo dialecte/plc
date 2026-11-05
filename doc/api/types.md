@@ -91,6 +91,16 @@ type AddressInMemberNames = Plc.AttributesOf<'Address', 'Member'>
 // 'address' | 'globalId' | 'location' | 'notYetFixed' | 'pragma' | 'size'
 ```
 
+## PLC_DIALECTE
+
+`PLC_DIALECTE` is the PLC dialecte declared once: its id (`plc/v1`), the package's version, its config, its extensions and how its hooks are made, one of which is the import hook that normalises a PLCopen TC6 v201 file to IEC 61131-10. `createPlcProject` and the test helpers read their parts from it.
+
+```ts
+import { PLC_DIALECTE } from '@dialecte/plc/v1'
+```
+
+Reach for it when you pass the PLC dialecte to something that takes a declaration, such as the project factory or the test helpers of `@dialecte/core`. To work with PLC files, `createPlcProject` is enough.
+
 ## How types stay in sync with core
 
 Each alias is defined in `src/v1/config/hydrated.types.ts` as:

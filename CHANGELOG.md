@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## UNRELEASED
+
+### Added
+
+- **`PLC_DIALECTE`**, the PLC dialecte's declaration, from `@dialecte/plc/v1`: its id, the package's version, its config, its extensions and the import hook, declared once. `createPlcProject` and the test helpers are built from it.
+- The project `createPlcProject` returns now carries `project.dialecteId` (`plc/v1`). `PlcTest.Helpers` and `PlcTest.TestProjectParams` in `@dialecte/plc/v1/test`.
+
+### Changed
+
+- **`createPlcTestProject` and `runPlcTestCases` now run plc's import hook**: a PLCopen TC6 v2.01 fixture is normalised to IEC 61131-10 form when the project imports it, as with `createPlcProject`. A fixture already in IEC form is unchanged. The schema check still reads a fixture as written, so it does not validate a TC6 fixture; export the document and pass it to `assertValidPlcXml` to check the normalised result.
+- **The PLCopen TC6 v2.01 import normalisation no longer needs a browser**: it runs in node and in a worker as it does in a page, with the same output. Consumers install nothing new.
+- **A malformed TC6 v2.01 file's message comes from the new parser**: the text after `TC6 v201 parse error: ` is the parser's own. The prefix stays.
+- **A file whose DOCTYPE holds an internal subset is now refused** with `TC6 v201 parse error: `, even an empty subset, as a deliberate behaviour change: it was expanded before. A bare `<!DOCTYPE project>` is still ignored.
+
+### Fixed
+
+- An LD element named like a built-in object key (`constructor`, `toString`, `__proto__`) is skipped like any other unmapped LD element; it used to come out as an `LdObject`.
+
 ## [0.3.1] - 2026-11-04
 
 ### Changed

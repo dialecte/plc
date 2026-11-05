@@ -19,6 +19,14 @@ const BROWSER_ALL_PROJECT = 'browser-all'
 /** The setup of the `node` project: the test helpers open their projects on the in-memory store. */
 const IN_MEMORY_STORAGE_SETUP = 'src/v1/test/in-memory-storage.setup.ts'
 
+/**
+ * Bundled before a browser run starts: a worker discovers its dependencies late, and one found mid-run reloads the page
+ * under the running tests.
+ */
+const BROWSER_OPTIMIZE_DEPS = {
+	include: ['sax', '@dialecte/core', '@dialecte/core/helpers', '@dialecte/core/engine'],
+}
+
 /** Every path of a tier-only list names a file: a moved test file must not drop out of its tier unseen. */
 function pathsOf(params: { project: string; files: readonly DeclaredTestFile[] }): string[] {
 	const { project, files } = params
@@ -76,6 +84,7 @@ export default mergeConfig(
 					// the browser-only test files, on the local store
 					resolve: viteConfig.resolve,
 					plugins: [],
+					optimizeDeps: BROWSER_OPTIMIZE_DEPS,
 					test: {
 						name: BROWSER_PROJECT,
 						browser: headlessChromium(),
@@ -87,6 +96,7 @@ export default mergeConfig(
 					// the whole suite in the browser, on the local store: the run before a branch merges
 					resolve: viteConfig.resolve,
 					plugins: [],
+					optimizeDeps: BROWSER_OPTIMIZE_DEPS,
 					test: {
 						name: BROWSER_ALL_PROJECT,
 						browser: headlessChromium(),

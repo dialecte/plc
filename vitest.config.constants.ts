@@ -6,8 +6,16 @@ import type { DeclaredTestFile } from './vitest.config.types'
  */
 export const BROWSER_ONLY_TEST_FILES: readonly DeclaredTestFile[] = [
 	{
-		path: 'src/v1/hooks/io/io-hooks.test.ts',
-		why: "normalizeTc6v201 (plc's import hook) parses, builds and serializes XML with the page's DOMParser, document.implementation and XMLSerializer; the test reads its output with DOMParser",
+		path: 'src/v1/declaration.engine.test.ts',
+		why: "a project on `sqlite` storage: an engine worker of the declaration and the origin's private file system",
+	},
+	{
+		path: 'src/plc.default-store.test.ts',
+		why: 'a project on the default `local` store: real IndexedDB, listed by `indexedDB.databases()`',
+	},
+	{
+		path: 'src/v1/hooks/io/normalize-tc6v201.worker.test.ts',
+		why: "starts a real dedicated Worker to run plc's TC6 normaliser where core runs a dialecte's import hooks, an engine worker with no DOM",
 	},
 ]
 
