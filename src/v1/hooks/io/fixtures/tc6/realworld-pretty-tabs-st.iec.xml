@@ -1,0 +1,7 @@
+<Project xmlns="www.iec.ch/public/TC65SC65BWG7TF10" schemaVersion="1.0"><FileHeader companyName="Acme &amp; Sons" productName="Studio" productVersion="2.0"/><ContentHeader name="Line 1 — café" version="1.2" author="J. Dupont" creationDateTime="2024-05-06T07:08:09"/><Types><GlobalNamespace><Program name="Counter"><Vars accessSpecifier="protected"><Variable name="count"><Type><TypeName>INT</TypeName></Type><InitialValue><SimpleValue value="0"/></InitialValue></Variable></Vars><MainBody><BodyContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ST"><ST>(* wrap around *)
+IF count &lt; 100 THEN
+	count := count + 1;
+ELSE
+	count := 0;  // a &gt; b, c &amp; d
+END_IF;</ST></BodyContent></MainBody></Program><FunctionBlock name="Lamp"><MainBody><BodyContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IL"><IL>LD   on
+ST   lamp</IL></BodyContent></MainBody></FunctionBlock></GlobalNamespace></Types><Instances/></Project>

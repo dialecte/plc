@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface>
+<tempVars><variable name="t1"><type><INT/></type></variable></tempVars>
+<localVars><variable name="l1"><type><INT/></type></variable></localVars>
+<externalVars><variable name="e1"><type><INT/></type></variable></externalVars>
+<outputVars><variable name="o1"><type><INT/></type></variable><variable name="o2"><type><BOOL/></type></variable></outputVars>
+<inOutVars><variable name="io1"><type><INT/></type></variable></inOutVars>
+<inputVars><variable name="i1"><type><INT/></type></variable><variable name="i2"><type><BOOL/></type></variable></inputVars>
+</interface>
+</pou></types></project>

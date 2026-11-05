@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<inVariable localId="1"><position x="0" y="0"/><connectionPointOut/><expression>a</expression></inVariable>
+<comment localId="2"><position x="0" y="1"/><content>c</content></comment>
+<inOutVariable localId="3"><position x="0" y="2"/><connectionPointIn/><connectionPointOut/><expression>io</expression></inOutVariable>
+<block localId="4" typeName="B"><position x="5" y="5"/>
+<inputVariables>
+<variable formalParameter="MISSING"><connectionPointIn><connection refLocalId="99"/></connectionPointIn></variable>
+<variable formalParameter="TO_COMMENT"><connectionPointIn><connection refLocalId="2"/></connectionPointIn></variable>
+<variable formalParameter="TO_INOUT"><connectionPointIn><connection refLocalId="3"/></connectionPointIn></variable>
+<variable formalParameter="NO_REF"><connectionPointIn><connection/></connectionPointIn></variable>
+<variable formalParameter="EMPTY_REF"><connectionPointIn><connection refLocalId=""/></connectionPointIn></variable>
+<variable formalParameter="BAD_PIN"><connectionPointIn><connection refLocalId="1" formalParameter="NOPE"/></connectionPointIn></variable>
+<variable formalParameter="MIXED"><connectionPointIn><connection refLocalId="99"/><connection refLocalId="1"/></connectionPointIn></variable>
+</inputVariables>
+<outputVariables><variable formalParameter="OUT"><connectionPointOut/></variable></outputVariables>
+</block>
+<outVariable localId="5"><position x="9" y="9"/><connectionPointIn><connection refLocalId="4" formalParameter="NOPE"/></connectionPointIn><expression>o</expression></outVariable>
+<outVariable localId="6"><position x="9" y="10"/><connectionPointIn><connection refLocalId="77"/></connectionPointIn><expression>p</expression></outVariable>
+<connector localId="7" name="C"><position x="1" y="1"/><connectionPointIn><connection refLocalId="7"/></connectionPointIn></connector>
+
+</FBD></body></pou></types></project>

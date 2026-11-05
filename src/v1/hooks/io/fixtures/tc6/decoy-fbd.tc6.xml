@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<addData><data name="decoy"><inVariable localId="90"><connectionPointOut/><expression>nested element</expression></inVariable></data></addData>
+<inVariable localId="1"><position x="0" y="0"/><connectionPointOut/><addData><data name="decoy"><expression>DecoyExpression</expression></data></addData><expression>RealExpression</expression></inVariable>
+<inVariable localId="2"><position x="0" y="1"/><connectionPointOut/><expression>second</expression></inVariable>
+<block localId="3" typeName="B" instanceName="b"><position x="5" y="5"/>
+<addData><data name="decoy"><position x="99" y="99"/><inputVariables><variable formalParameter="DecoyIn"><connectionPointIn><connection refLocalId="2"/></connectionPointIn></variable></inputVariables><outputVariables><variable formalParameter="DecoyOut"><connectionPointOut/></variable></outputVariables></data></addData>
+<inputVariables>
+<variable formalParameter="RealIn"><addData><data name="decoy"><connectionPointIn><connection refLocalId="2"/></connectionPointIn></data></addData><connectionPointIn><connection refLocalId="1"/></connectionPointIn></variable>
+<variable formalParameter="TwoConnections"><connectionPointIn><addData><data name="decoy"><connection refLocalId="2"/></data></addData><connection refLocalId="1"/></connectionPointIn></variable>
+</inputVariables>
+<outputVariables><variable formalParameter="RealOut"><connectionPointOut/></variable></outputVariables>
+</block>
+<outVariable localId="4"><position x="9" y="9"/><addData><data name="decoy"><connectionPointIn><connection refLocalId="2"/></connectionPointIn></data></addData><connectionPointIn><connection refLocalId="3" formalParameter="RealOut"/></connectionPointIn><addData><data name="decoy"><expression>DecoySink</expression></data></addData><expression>RealSink</expression></outVariable>
+<comment localId="5"><position x="1" y="1"/><addData><data name="decoy"><content>DecoyContent</content></data></addData><content>RealContent</content></comment>
+<connector localId="6" name="C"><position x="2" y="2"/><addData><data name="decoy"><connectionPointIn><connection refLocalId="2"/></connectionPointIn></data></addData><connectionPointIn><connection refLocalId="1"/></connectionPointIn></connector>
+
+</FBD></body></pou></types></project>

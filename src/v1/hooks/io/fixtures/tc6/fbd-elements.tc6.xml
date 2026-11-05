@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<!-- a comment between elements -->
+text between elements
+<inVariable localId="1"><position x="1" y="1"/><connectionPointOut/><expression>  start   </expression></inVariable>
+<inVariable localId="2"><position x="1" y="2"/><connectionPointOut/></inVariable>
+<inVariable localId="3"><position x="1" y="3"/><connectionPointOut/><expression>
+ line1
+ line2
+</expression></inVariable>
+<outVariable localId="4"><position x="9" y="1"/><connectionPointIn><connection refLocalId="1"/><connection refLocalId="2"/></connectionPointIn><expression>out1</expression></outVariable>
+<outVariable localId="5"><position x="9" y="2"/><connectionPointIn><connection refLocalId="3"/></connectionPointIn></outVariable>
+<comment localId="6"><position x="2" y="2"/><content>c</content></comment>
+<connector localId="7" name="K"><position x="3" y="3"/><connectionPointIn><connection refLocalId="1"/></connectionPointIn></connector>
+<continuation localId="8" name="K"><position x="4" y="4"/><connectionPointOut/></continuation>
+<continuation localId="9"><position x="4" y="5"/><connectionPointOut/></continuation>
+<connector localId="10"><position x="3" y="6"/></connector>
+<inOutVariable localId="11"><position x="5" y="5"/><connectionPointIn/><connectionPointOut/><expression>io</expression></inOutVariable>
+<label localId="12" label="L1"/>
+<jump localId="13" label="L1"><connectionPointIn><connection refLocalId="1"/></connectionPointIn></jump>
+<return localId="14"/>
+<vendorElement localId="15"><addData/></vendorElement>
+<addData/>
+
+</FBD></body></pou></types></project>

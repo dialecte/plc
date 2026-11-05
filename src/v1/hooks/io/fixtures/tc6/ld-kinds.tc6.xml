@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><LD>
+<leftPowerRail localId="1"><position x="0" y="0"/><connectionPointOut formalParameter="none"/><connectionPointOut formalParameter="none"/></leftPowerRail>
+<contact localId="2" negated="false" edge="rising"><position x="10" y="0"/><connectionPointIn><connection refLocalId="1"/></connectionPointIn><connectionPointOut/><variable>  A  </variable></contact>
+<contact localId="3" negated="true"><position x="20" y="0"/><connectionPointIn><connection refLocalId="2"/><connection refLocalId="1"/></connectionPointIn><connectionPointOut/><variable>B</variable></contact>
+<coil localId="4" storage="set"><position x="30" y="0"/><connectionPointIn><connection refLocalId="3"/></connectionPointIn><connectionPointOut/><variable>C</variable></coil>
+<coil localId="5" negated="true"><position x="30" y="1"/><connectionPointIn><connection refLocalId="3"/></connectionPointIn><variable>D</variable></coil>
+<rightPowerRail localId="6"><position x="40" y="0"/><connectionPointIn><connection refLocalId="4"/><connection refLocalId="5"/></connectionPointIn></rightPowerRail>
+<block localId="7" typeName="B"><position x="1" y="1"/></block>
+<inVariable localId="8"><position x="1" y="2"/><connectionPointOut/><expression>x</expression></inVariable>
+<vendorElement localId="9"/>
+
+</LD></body></pou></types></project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="AllFour"><body><FBD><inVariable localId="1"><connectionPointOut/><expression>fbd</expression></inVariable></FBD><LD><leftPowerRail localId="1"/></LD><ST>st</ST><IL>il</IL></body></pou>
+<pou name="TextFirst"><body><ST>st</ST><FBD><inVariable localId="1"><connectionPointOut/><expression>fbd</expression></inVariable></FBD></body></pou>
+<pou name="LdOverText"><body><ST>st</ST><LD><leftPowerRail localId="1"/></LD><IL>il</IL></body></pou>
+<pou name="StOverIl"><body><IL>il</IL><ST>st</ST></body></pou>
+<pou name="IlOnly"><body><IL>il</IL></body></pou>
+<pou name="SfcOnly"><body><SFC/></body></pou>
+<pou name="EmptyBody"><body/></pou>
+<pou name="AddDataBody"><body><addData/><ST>st</ST></body></pou>
+</types>
+</project>

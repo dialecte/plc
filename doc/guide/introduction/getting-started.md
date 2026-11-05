@@ -28,7 +28,7 @@ const project = await createPlcProject({ storage: { type: 'local' } }).open('my-
 
 `project.importFile` parses a PLCopen XML file and stores it as a document in the project; its result carries the new document's `documentId`.
 
-Supports `.xml`. A PLCopen TC6 v201 file is normalised to IEC 61131-10 on import (in a browser: the normalisation uses the page's XML APIs).
+Supports `.xml`. A PLCopen TC6 v201 file is normalised to IEC 61131-10 on import, the same in a page, a worker and node.
 
 ```ts
 // Browser File object - e.g. from an <input type="file">

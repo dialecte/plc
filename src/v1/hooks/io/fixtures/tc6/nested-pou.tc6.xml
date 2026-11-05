@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="Outer"><body><ST>outer</ST></body><addData><data name="decoy"><pou name="Inner" pouType="program"><body><ST>inner</ST></body></pou></data></addData></pou><pou name="After"><body><ST>after</ST></body></pou></types></project>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:f="urn:foreign">
+<f:fileHeader companyName="Foreign" productName="F" productVersion="9"/>
+<fileHeader companyName="Real" productName="R" productVersion="1"/>
+<types><pou name="P"><interface><localVars>
+<variable name="v"><type><f:array><f:baseType><f:derived name="FD"/></f:baseType></f:array></type></variable>
+</localVars></interface><body><f:ST>foreign st</f:ST></body></pou></types>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<inVariable localId="1"><position x="0" y="0"/><connectionPointOut/><expression>first</expression></inVariable>
+<inVariable localId="1"><position x="0" y="1"/><connectionPointOut/><expression>second</expression></inVariable>
+<block localId="2" typeName="B"><position x="1" y="1"/>
+<outputVariables>
+<variable formalParameter="Q"><connectionPointOut/></variable>
+<variable formalParameter="Q"><connectionPointOut/></variable>
+<variable formalParameter="R"><connectionPointOut/></variable>
+</outputVariables></block>
+<block localId="2" typeName="C"><position x="2" y="2"/>
+<outputVariables><variable formalParameter="Q"><connectionPointOut/></variable></outputVariables>
+</block>
+<outVariable localId="3"><position x="3" y="3"/><connectionPointIn><connection refLocalId="1"/></connectionPointIn><expression>o1</expression></outVariable>
+<outVariable localId="4"><position x="3" y="4"/><connectionPointIn><connection refLocalId="2" formalParameter="Q"/></connectionPointIn><expression>o2</expression></outVariable>
+<outVariable localId="5"><position x="3" y="5"/><connectionPointIn><connection refLocalId="2" formalParameter="R"/></connectionPointIn><expression>o3</expression></outVariable>
+<outVariable localId="6"><position x="3" y="6"/><connectionPointIn><connection refLocalId="2"/></connectionPointIn><expression>o4</expression></outVariable>
+
+</FBD></body></pou></types></project>

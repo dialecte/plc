@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [<!ATTLIST pou pouType CDATA "program">]>
+<project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="P"><body><ST>x</ST></body></pou></types></project>

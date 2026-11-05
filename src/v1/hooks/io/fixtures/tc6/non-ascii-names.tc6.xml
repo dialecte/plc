@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="Pompé_Ünïcode_日本語" pouType="program">
+<interface><localVars>
+<variable name="größe"><type><derived name="Ωmega"/></type><initialValue><simpleValue value="éàü"/></initialValue></variable>
+<variable name="😀"><type><INT/></type></variable>
+</localVars></interface>
+<body><FBD>
+<comment localId="1"><position x="0" y="0"/><content>héllo — “quoted” ✓ 😀</content></comment>
+<block localId="2" typeName="Böx" instanceName="înst"><position x="0" y="0"/></block>
+<connector localId="3" name="Łabel"><position x="0" y="0"/></connector>
+</FBD></body>
+</pou>
+</types>
+</project>

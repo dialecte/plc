@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="StMixed"><body><ST>a := 1; <!-- not code --> b := 2; <?pi data?> c := 3;</ST></body></pou>
+<pou name="IlMixed"><body><IL>LD a<!-- c1 -->
+ST b<?pi?></IL></body></pou>
+</types>
+</project>

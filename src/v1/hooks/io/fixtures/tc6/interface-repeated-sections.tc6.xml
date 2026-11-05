@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface>
+<inputVars><variable name="i1"><type><INT/></type></variable></inputVars>
+<localVars constant="true"><variable name="l1"><type><INT/></type></variable></localVars>
+<inputVars retain="true"><variable name="i2"><type><INT/></type></variable></inputVars>
+<localVars><variable name="l2"><type><INT/></type></variable></localVars>
+<outputVars><variable name="o1"><type><INT/></type></variable></outputVars>
+<outputVars/>
+<inputVars/>
+<externalVars/>
+<tempVars><variable name="t1"><type><INT/></type></variable></tempVars>
+<tempVars><variable name="t2"><type><INT/></type></variable></tempVars>
+<externalVars><variable name="e1"><type><INT/></type></variable></externalVars>
+<externalVars><variable name="e2"><type><INT/></type></variable></externalVars>
+<inOutVars><variable name="io1"><type><INT/></type></variable></inOutVars>
+<inOutVars><variable name="io2"><type><INT/></type></variable></inOutVars>
+<globalVars><variable name="g1"><type><INT/></type></variable></globalVars>
+<addData><data name="x" handleUnknown="discard"><inputVars><variable name="hidden"><type><INT/></type></variable></inputVars></data></addData>
+</interface>
+</pou></types></project>

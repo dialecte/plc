@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<comment localId="1"><position x="0" y="0"/></comment>
+<comment localId="2"><position x="0" y="1"/><content></content></comment>
+<comment localId="3"><position x="0" y="2"/><content>   </content></comment>
+<comment localId="4"><position x="0" y="3"/><content><xhtml xmlns="http://www.w3.org/1999/xhtml">  Hello <b>bold</b> world  </xhtml></content></comment>
+<comment localId="5"><position x="0" y="4"/><content>
+	line one &amp; two
+	line three &lt;x&gt;
+</content></comment>
+<comment localId="6"><position x="0" y="5"/><content><![CDATA[<raw> & "text"]]></content></comment>
+
+</FBD></body></pou></types></project>

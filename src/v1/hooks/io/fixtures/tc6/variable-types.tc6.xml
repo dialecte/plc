@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface><localVars>
+<variable name="a"><type><BOOL/></type></variable>
+<variable name="b"><type><string length="10"/></type></variable>
+<variable name="c"><type><derived name="TON"/></type></variable>
+<variable name="d"><type><derived/></type></variable>
+<variable name="e"><type><array><dimension lower="0" upper="3"/><baseType><INT/></baseType></array></type></variable>
+<variable name="f"><type><array><dimension lower="0" upper="3"/><baseType><derived name="Base"/></baseType></array></type></variable>
+<variable name="g"><type/></variable>
+<variable name="h"/>
+<variable name="i"><type>  <WORD/></type></variable>
+<variable name="j"><type><!-- c --><DINT/></type></variable>
+<variable name="k"><type><BOOL/><INT/></type></variable>
+<variable name="l"><type><struct><variable name="m"><type><REAL/></type></variable></struct></type></variable>
+<variable><type><INT/></type></variable>
+<variable name=""><type><INT/></type></variable>
+<variable name="o" address="%IX0.0" constant="true"><type><BOOL/></type><documentation><xhtml xmlns="http://www.w3.org/1999/xhtml">doc</xhtml></documentation></variable>
+</localVars></interface>
+</pou></types></project>

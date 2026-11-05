@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<inVariable localId="1"><connectionPointOut/><expression>a</expression></inVariable>
+<inVariable localId="2"><connectionPointOut/><expression>b</expression></inVariable>
+<outVariable localId="3"><connectionPointIn><connection refLocalId="1"><connection refLocalId="2"/></connection></connectionPointIn><expression>o</expression></outVariable>
+
+</FBD></body></pou></types></project>

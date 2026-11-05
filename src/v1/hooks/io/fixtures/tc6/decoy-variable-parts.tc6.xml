@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface><localVars>
+<variable name="TypeDecoy"><addData><data name="decoy"><type><derived name="DecoyType"/></type></data></addData><type><BOOL/></type></variable>
+<variable name="InitDecoy"><type><INT/></type><addData><data name="decoy"><initialValue><simpleValue value="DecoyInit"/></initialValue></data></addData><initialValue><simpleValue value="RealInit"/></initialValue></variable>
+<variable name="DerivedDecoy"><type><array><addData><data name="decoy"><derived name="DecoyDerived"/></data></addData><baseType><INT/></baseType></array></type></variable>
+</localVars></interface>
+</pou></types></project>
