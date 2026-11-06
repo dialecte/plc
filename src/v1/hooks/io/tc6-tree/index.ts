@@ -1,4 +1,5 @@
 export { parseTc6 } from './parse-tc6'
+export { readRootElement } from './read-root-element'
 export {
 	findChildren,
 	findDescendants,
@@ -9,4 +10,4 @@ export {
 	getTextContent,
 } from './selectors'
 
-export type { Tc6Element } from './tc6-tree.types'
+export type { RootElement, Tc6Element } from './tc6-tree.types'

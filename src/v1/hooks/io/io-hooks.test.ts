@@ -35,6 +35,22 @@ describe('isTc6v201', () => {
 		['TC6 namespace present', `<project xmlns="${TC6_NS}"/>`, true],
 		['canonical IEC document', `<Project xmlns="${IEC_NS}"/>`, false],
 		['unrelated xml', `<foo/>`, false],
+		[
+			'TC6 project under another root',
+			`<export xmlns="${TC6_NS}"><project><types/></project></export>`,
+			false,
+		],
+		[
+			'TC6 project held as data in an IEC document',
+			`<Project xmlns="${IEC_NS}"><AddData><Data><project xmlns="${TC6_NS}"/></Data></AddData></Project>`,
+			false,
+		],
+		['TC6 root after a byte order mark', `\uFEFF<project xmlns="${TC6_NS}"/>`, true],
+		[
+			'TC6 root after a comment and a processing instruction',
+			`<!-- c --><?p x?><project xmlns="${TC6_NS}"/>`,
+			true,
+		],
 	])('%s', (_label, xml, expected) => {
 		expect(isTc6v201(xml)).toBe(expected)
 	})

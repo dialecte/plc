@@ -20,8 +20,13 @@ type GoldenCase = { name: string; input: string; golden: string }
 /** A TC6 v2.01 input that must be refused with the parse error prefix. */
 type ParseErrorCase = { name: string; input: string }
 
-/** An input the detection (`isTc6v201`, core's `inspectXml`) refuses before the normaliser starts. */
-type DetectionRejectedCase = { name: string; input: string }
+/** Inputs whose TC6 root the parser refuses, written inline. */
+const PARSE_ERROR_INLINE_CASES: readonly ParseErrorCase[] = [
+	{ name: 'valueless-attribute', input: `<project xmlns="${TC6_NS}" TC6><types a=1>` },
+]
+
+/** A text whose root element is not a TC6 v2.01 `project`, whatever it holds further down. */
+type NotTc6RootCase = { name: string; input: string }
 
 /** The text of a fixture file; a name no file carries is a mistake of this test, not an empty input. */
 function readFixture(params: { file: string }): string {
@@ -31,6 +36,13 @@ function readFixture(params: { file: string }): string {
 }
 
 const GOLDEN_CASES: readonly GoldenCase[] = [
+	// its golden: the recorded output of the same input with `<note>` in place of `<parsererror>` (the DOM code refused
+	// this one), the element sitting in an `addData` block no converter reads
+	{
+		name: 'parsererror-element',
+		input: 'parsererror-element.tc6.xml',
+		golden: 'parsererror-element.iec.xml',
+	},
 	{
 		name: 'doctype-literal-bracket',
 		input: 'doctype-literal-bracket.tc6.xml',
@@ -300,11 +312,6 @@ const GOLDEN_CASES: readonly GoldenCase[] = [
 		input: 'realworld-pretty-tabs-st.tc6.xml',
 		golden: 'realworld-pretty-tabs-st.iec.xml',
 	},
-	{
-		name: 'root-not-project',
-		input: 'root-not-project.tc6.xml',
-		golden: 'root-not-project.iec.xml',
-	},
 	{ name: 'st-comments-pi', input: 'st-comments-pi.tc6.xml', golden: 'st-comments-pi.iec.xml' },
 	{ name: 'st-xhtml-cdata', input: 'st-xhtml-cdata.tc6.xml', golden: 'st-xhtml-cdata.iec.xml' },
 	{
@@ -363,15 +370,20 @@ const PARSE_ERROR_CASES: readonly ParseErrorCase[] = [
 	return { name: entry.name, input: readFixture({ file: entry.input }) }
 })
 
-const DETECTION_REJECTED_CASES: readonly DetectionRejectedCase[] = [
+const NOT_TC6_ROOT_CASES: readonly NotTc6RootCase[] = [
+	{ name: 'root-not-project', input: 'root-not-project.tc6.xml' },
+	{ name: 'iec-holding-tc6-project', input: 'iec-holding-tc6-project.tc6.xml' },
 	{
-		name: 'unescaped-ampersand',
-		input: '<Project xmlns="urn:iec">a & b</Project>',
+		name: 'pi-double-question-before-iec-root',
+		input: 'pi-double-question-before-iec-root.tc6.xml',
 	},
-	{
-		name: 'valueless-attribute',
-		input: `<project xmlns="${TC6_NS}" TC6><types a=1>`,
-	},
+].map(function loadNotTc6RootCase(entry) {
+	return { name: entry.name, input: readFixture({ file: entry.input }) }
+})
+
+/** Texts whose root element the detection reads before anything the parser refuses later on. */
+const NOT_TC6_ROOT_INLINE_CASES: readonly NotTc6RootCase[] = [
+	{ name: 'unescaped-ampersand', input: '<Project xmlns="urn:iec">a & b</Project>' },
 ]
 
 describe('normalizeTc6v201 golden output', () => {
@@ -381,7 +393,7 @@ describe('normalizeTc6v201 golden output', () => {
 })
 
 describe('normalizeTc6v201 parse errors', () => {
-	it.each(PARSE_ERROR_CASES)(
+	it.each([...PARSE_ERROR_CASES, ...PARSE_ERROR_INLINE_CASES])(
 		'$name -> throws an Error with the TC6 v201 parse error prefix',
 		({ input }) => {
 			// the message after the prefix is the parser's
@@ -391,9 +403,12 @@ describe('normalizeTc6v201 parse errors', () => {
 	)
 })
 
-describe('normalizeTc6v201 rejected by the detection', () => {
-	// isTc6v201 runs first and its error is core's, unprefixed: only the Error is pinned
-	it.each(DETECTION_REJECTED_CASES)('$name -> throws an Error', ({ input }) => {
-		expect(() => normalizeTc6v201(input)).toThrow(Error)
-	})
+describe('normalizeTc6v201 on a text whose root is not a TC6 project', () => {
+	// the detection reads the root element only: a TC6 project further down is the document's own data
+	it.each([...NOT_TC6_ROOT_CASES, ...NOT_TC6_ROOT_INLINE_CASES])(
+		'$name -> returned unchanged',
+		({ input }) => {
+			expect(normalizeTc6v201(input)).toBe(input)
+		},
+	)
 })

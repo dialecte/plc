@@ -16,11 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`createPlcTestProject` and `runPlcTestCases` now run plc's import hook**: a PLCopen TC6 v2.01 fixture is normalised to IEC 61131-10 form when the project imports it, as with `createPlcProject`. A fixture already in IEC form is unchanged. The schema check still reads a fixture as written, so it does not validate a TC6 fixture; export the document and pass it to `assertValidPlcXml` to check the normalised result.
 - **The PLCopen TC6 v2.01 import normalisation no longer needs a browser**: it runs in node and in a worker as it does in a page, with the same output. Consumers install nothing new.
-- **A malformed TC6 v2.01 file's message comes from the new parser**: the text after `TC6 v201 parse error: ` is the parser's own. The prefix stays.
+- **What counts as malformed follows the strict XML parser the import itself uses**: a refused file's message after `TC6 v201 parse error: ` is that parser's own, and the prefix stays. Some malformed input a browser's parser refused is now accepted, and some it accepted is now refused: a name holding a character at or above U+10000 (in an element or attribute a vendor adds) is refused with `TC6 v201 parse error: `. A `<parsererror>` element in a file no longer makes the file refused: it is read like any other element.
+- **A file is normalised only when its root element is a TC6 v2.01 `project`**, as a deliberate behaviour change: a TC6 `project` under another root is left as it is (it was converted). The detection reads the root's start tag only, so its cost no longer grows with the file: on a 50 MB IEC 61131-10 file, from seconds to under a millisecond per import. A text whose root is not a TC6 `project` is left to the import, whose parser reports what is malformed in it.
 - **A file whose DOCTYPE holds an internal subset is now refused** with `TC6 v201 parse error: `, even an empty subset, as a deliberate behaviour change: it was expanded before. A bare `<!DOCTYPE project>` is still ignored.
 
 ### Fixed
 
+- **A PLC document holding a TC6 v2.01 `project` as data** (for example in an `AddData` block) is no longer replaced by an empty project on import. When a processing instruction closing with `??>` comes before its root, the import now refuses the file instead: the XML parser the import uses misreads such an instruction.
 - An LD element named like a built-in object key (`constructor`, `toString`, `__proto__`) is skipped like any other unmapped LD element; it used to come out as an `LdObject`.
 
 ## [0.3.1] - 2026-11-04

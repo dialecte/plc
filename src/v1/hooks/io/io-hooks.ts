@@ -1,21 +1,26 @@
 import { convertProject } from './converters/convert-project'
 import { serializeIecTree } from './iec-tree'
-import { TC6_NAMESPACE } from './io-hooks.constants'
-import { parseTc6 } from './tc6-tree'
+import { TC6_NAMESPACE, TC6_ROOT_NAME } from './io-hooks.constants'
+import { parseTc6, readRootElement } from './tc6-tree'
 
-import { inspectXml } from '@dialecte/core'
-
+import type { RootElement } from './tc6-tree'
 import type { IOHooks } from '@dialecte/core'
 
 /**
- * Whether an XML text is a PLCopen TC6 v2.01 file: its first `project` element sits in that namespace. Reads with
- * `inspectXml`, not a plain string search; what the detection refuses throws its own error.
+ * Whether an XML text is a PLCopen TC6 v2.01 file: its root element is a `project` in that namespace. Only the root's
+ * start tag is read, so the cost does not grow with the file, and a TC6 `project` held deeper (a document's own data)
+ * does not make the text one.
  *
  * @intent tell a TC6 v2.01 file from one already in IEC 61131-10 form, before normalising it on import
  */
 export function isTc6v201(xml: string): boolean {
-	const report = inspectXml(xml, { elements: ['project'] as const })
-	return report['project']?.namespace === TC6_NAMESPACE
+	const root = readRootElement(xml)
+	return root !== undefined && isTc6Root(root)
+}
+
+/** Whether an element is a TC6 v2.01 file's root: a `project` in that namespace. */
+function isTc6Root(element: RootElement): boolean {
+	return element.localName === TC6_ROOT_NAME && element.namespace === TC6_NAMESPACE
 }
 
 /**
@@ -29,7 +34,7 @@ export function isTc6v201(xml: string): boolean {
  * - Bodies: FBD to `MainBody > BodyContent xsi:type="FBD" > Network` with `FbdObject` and `CommonObject` nodes; ST and
  *   IL to `MainBody > BodyContent xsi:type="ST"|"IL"` carrying text; LD to `MainBody > BodyContent xsi:type="LD" > Rung`
  *   with `LdObject`.
- * - FBD graphics, as the logic editor's write contract has them: `block` to `FbdObject xsi:type="Block"` with
+ * - FBD graphics, each to the object of the IEC 61131-10 schema with the pins it holds: `block` to `FbdObject xsi:type="Block"` with
  *   `InputVariables > InputVariable[parameterName] > ConnectionPointIn > Connection` and
  *   `OutputVariables > OutputVariable[parameterName] > ConnectionPointOut`; `inVariable` to
  *   `FbdObject xsi:type="DataSource"`; `outVariable` to `FbdObject xsi:type="DataSink"`; `comment` to
@@ -45,7 +50,11 @@ export function isTc6v201(xml: string): boolean {
  */
 export function normalizeTc6v201(xml: string): string {
 	if (!isTc6v201(xml)) return xml
-	return serializeIecTree(convertProject(parseTc6(xml)))
+	const root = parseTc6(xml)
+	// the detection reads the text as written; the parse reads it repaired (a processing instruction closing with `??>`
+	// can hide the real root from the first): only a root the parse confirms is converted
+	if (!isTc6Root(root)) return xml
+	return serializeIecTree(convertProject(root))
 }
 
 /**

@@ -21,6 +21,7 @@ function openElement(params: { build: Tc6TreeBuild; tag: sax.QualifiedTag }): vo
 	}
 	const element: Tc6Element = {
 		localName: tag.local,
+		namespace: tag.uri,
 		attributes,
 		parent: build.open,
 		children: [],
