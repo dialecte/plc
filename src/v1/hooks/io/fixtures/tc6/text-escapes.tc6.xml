@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="Refs"><body><ST>a &amp; b &lt; c &gt; d &quot;q&quot; &apos;s&apos; &#233; &#x2665; &#x1F600; end</ST></body></pou>
+<pou name="Literal"><body><ST>x > y and y >= z</ST></body></pou>
+<pou name="SplitCdata"><body><ST><![CDATA[x ]]]]><![CDATA[> y]]></ST></body></pou>
+<pou name="CdataMarkup"><body><ST><![CDATA[<![CDATA[ looks nested ]]]]><![CDATA[> <b>&amp;</b>]]></ST></body></pou>
+<pou name="Brackets"><body><ST>arr[1]] ]> ]] ></ST></body></pou>
+</types>
+</project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface><localVars>
+<variable name='sq"dq'><type><derived name="a>b"/></type><initialValue><simpleValue value="it's &quot;x&quot; &amp; &lt;y&gt;"/></initialValue></variable>
+<variable name="literal	tab
+and newline"><type><INT/></type></variable>
+<variable name="refs&#9;tab&#10;nl&#13;cr"><type><INT/></type></variable>
+</localVars></interface>
+<body><FBD>
+<block localId="1" typeName="T&amp;U" instanceName="i&lt;1&gt;"><position x="0" y="0"/></block>
+<connector localId="2" name="L&#10;1"><position x="0" y="0"/></connector>
+<continuation localId="3" name="a&quot;b&apos;c&amp;d"><position x="0" y="0"/></continuation>
+</FBD></body>
+</pou></types></project>

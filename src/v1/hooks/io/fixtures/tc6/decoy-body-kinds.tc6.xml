@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="LdDecoy"><body><addData><data name="decoy"><LD><leftPowerRail localId="1"/></LD></data></addData><ST>real st</ST></body></pou>
+<pou name="StDecoy"><body><addData><data name="decoy"><ST>decoy st</ST></data></addData><IL>real il</IL></body></pou>
+<pou name="FbdDecoy"><body><addData><data name="decoy"><FBD/></data></addData><LD><leftPowerRail localId="1"/></LD></body></pou>
+<pou name="IlDecoy"><body><addData><data name="decoy"><IL>decoy il</IL></data></addData></body></pou>
+</types>
+</project>

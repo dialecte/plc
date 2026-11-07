@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="OnlyName"/>
+<pou name="OnlyInterface"><interface><localVars><variable name="v"><type><INT/></type></variable></localVars></interface></pou>
+<pou name="OnlyBody"><body><ST>b;</ST></body></pou>
+<pou name="EmptyParts"><interface/><body/></pou>
+</types>
+</project>

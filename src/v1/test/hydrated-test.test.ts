@@ -58,3 +58,22 @@ describe('createPlcTestProject', () => {
 		})
 	}
 })
+
+describe('the test entry', () => {
+	it('exports the public value names of the package -> no name leaves the entry unnoticed', async () => {
+		await expect(import('@/v1/test').then((entry) => Object.keys(entry).sort())).resolves.toEqual(
+			[
+				'ALL_XMLNS_NAMESPACES',
+				'XMLNS_PLC_NAMESPACE',
+				'CUSTOM_RECORD_ID_ATTRIBUTE',
+				'CUSTOM_RECORD_ID_ATTRIBUTE_NAME',
+				'assertValidPlcXml',
+				'runPlcTestCases',
+				'createPlcTestProject',
+				'createPlcTestRecord',
+				'assertExpectedElementQueries',
+				'assertUnexpectedElementQueries',
+			].sort(),
+		)
+	})
+})

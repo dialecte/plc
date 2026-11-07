@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201">
+<contentHeader name="C"><addData><data name="d"><types><pou name="InAddData"><body><ST>hidden types</ST></body></pou></types></data></addData></contentHeader>
+<types><pou name="Real"><body><ST>real types</ST></body></pou></types>
+</project>

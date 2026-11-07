@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:x="urn:x">
+<fileHeader x:companyName="Pref" companyName="Plain" x:productName="PrefP" productVersion="1"/>
+<types>
+<pou x:name="Pre" pouType="program"><body><FBD>
+<block x:localId="1" localId="2" x:typeName="T"><position x:x="5" y="6"/><outputVariables><variable x:formalParameter="Q"><connectionPointOut/></variable></outputVariables></block>
+<outVariable localId="3"><connectionPointIn><connection x:refLocalId="1" refLocalId="2"/></connectionPointIn></outVariable>
+</FBD></body></pou>
+</types>
+</project>

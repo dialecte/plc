@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="BlankSt"><body><ST>   
+   </ST></body></pou>
+<pou name="EmptyIl"><body><IL/></body></pou>
+<pou name="UnicodeSpaces"><body><ST>&#160;&#xFEFF;&#x3000;a := 1;&#160;&#8232;</ST></body></pou>
+<pou name="InnerWhitespace"><body><ST>	IF a THEN
+		b := 1;
+	END_IF;
+</ST></body></pou>
+</types>
+</project>

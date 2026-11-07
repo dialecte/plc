@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface><localVars>
+<variable name="a"><type><INT/></type><initialValue><simpleValue value="42"/></initialValue></variable>
+<variable name="b"><type><STRING/></type><initialValue><simpleValue/></initialValue></variable>
+<variable name="c"><type><INT/></type><initialValue/></variable>
+<variable name="d"><type><array/></type><initialValue><arrayValue><value><simpleValue value="1"/></value></arrayValue></initialValue></variable>
+<variable name="e"><type><derived name="S"/></type><initialValue><structValue><value member="m"><simpleValue value="2"/></value></structValue></initialValue></variable>
+<variable name="f"><type><STRING/></type><initialValue><simpleValue value="a &amp; b"/></initialValue></variable>
+<variable name="g"><type><INT/></type><initialValue><simpleValue value="1"/><simpleValue value="2"/></initialValue></variable>
+<variable name="h"><initialValue><simpleValue value="no type"/></initialValue></variable>
+<variable name="i"><type><INT/></type><initialValue><simpleValue value=""/></initialValue></variable>
+</localVars></interface>
+</pou></types></project>

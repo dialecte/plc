@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<inVariable><position x="0" y="0"/><connectionPointOut/><expression>nolocal</expression></inVariable>
+<block typeName="B"><position x="1" y="1"/>
+<inputVariables>
+<variable formalParameter="IN"><connectionPointIn><connection/></connectionPointIn></variable>
+<variable formalParameter="IN2"><connectionPointIn><connection formalParameter="OUT"/></connectionPointIn></variable>
+</inputVariables>
+<outputVariables><variable formalParameter="OUT"><connectionPointOut/></variable></outputVariables>
+</block>
+<outVariable localId="2"><position x="2" y="2"/><connectionPointIn><connection refLocalId="1"/></connectionPointIn><expression>o</expression></outVariable>
+
+</FBD></body></pou></types></project>

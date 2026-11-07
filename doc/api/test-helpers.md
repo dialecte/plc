@@ -23,7 +23,7 @@ import {
 
 All helpers are wired to the PLC config internally — no config argument needed.
 
-Fixtures are IEC 61131-10 XML: the root is `Project`, POUs sit under `Types > GlobalNamespace` (`FunctionBlock`, `Program`, `Function`, ...). Every fixture is checked against the schema before it runs — see [Fixture validation](#fixture-validation).
+Fixtures are IEC 61131-10 XML: the root is `Project`, POUs sit under `Types > GlobalNamespace` (`FunctionBlock`, `Program`, `Function`, ...). Every fixture is checked against the schema before it runs — see [Fixture validation](#fixture-validation) — and imported through plc's import hook, which normalises a PLCopen TC6 v201 fixture to that form.
 
 ## runPlcTestCases
 
@@ -143,7 +143,7 @@ Use `runPlcTestCases.withoutExport` when no export is needed — `act` returns `
 
 Lower-level helper for tests that need manual control over intermediate assertions, multi-step verification, or transactions outside `runPlcTestCases`. Spins up a real `Project`, on the store the runner chose, with the source (and optionally target) file imported, and returns pre-opened documents. A project opened inside a running test is destroyed when that test ends: no `destroy()` to write. One opened in `beforeAll` or at module scope belongs to no test: destroy it yourself (`await project.destroy()` in `afterAll`).
 
-The project is opened without plc's import hook: the fixture is stored as written, IEC 61131-10 XML. A PLCopen TC6 v201 fixture is not normalised; a test that imports through the hook (`createPlcProject`, then `project.importFile`) needs a browser - see [Test tiers of this package](#test-tiers-of-this-package).
+The project is opened with plc's import hook, as `createPlcProject` opens one: a fixture in IEC 61131-10 form is stored as written, and a PLCopen TC6 v201 fixture is normalised to IEC 61131-10 first. The hook needs no DOM, so this holds in node and in a browser alike. A TC6 fixture is not validated: see [Fixture validation](#fixture-validation).
 
 ```ts
 async function createPlcTestProject(params: {
@@ -206,6 +206,17 @@ The check is structural:
 `xmlns` declarations, `xsi:*` attributes and `dev:db-id` are always allowed. Elements unknown to the schema, and elements in a namespace the package does not declare, are skipped.
 
 Required attributes are not required there: the runners and `createPlcTestProject` pass `requireComplete: false`, so a minimal fixture may leave them out (`<Project>` without `schemaVersion`).
+
+### A PLCopen TC6 v201 fixture
+
+The check reads the fixture as written, before the import hook normalises it. The elements of a TC6 file sit in a namespace the package does not declare, so the check skips every one of them and the fixture passes whatever its elements and attributes hold (only text that is not well-formed fails). Nothing checks it afterwards: a mistyped element or an unknown attribute in a TC6 fixture is not reported, and the normalised document is not validated either. To check what the hook produced, export the document and pass the XML to `assertValidPlcXml`:
+
+```ts
+const { project, source } = await createPlcTestProject({ sourceXml: tc6Xml })
+const { file } = await project.export({ documentId: source.documentId })
+
+assertValidPlcXml({ xml: await file.text(), label: 'normalised source', requireComplete: false })
+```
 
 ### assertValidPlcXml
 
@@ -338,7 +349,7 @@ The helpers need no browser API: they read XML with libxml2 and documents throug
 
 The `node` project's setup (`src/v1/test/in-memory-storage.setup.ts`) calls core's `useTestStorage({ type: 'inMemory' })`: the runner chooses the store, a test never names it. A file on the browser-only list says why (`{ path, why }`), naming the browser API it needs. A test that passes in one tier and fails in the other is a store or assertion bug to fix, never a file moved to the browser list.
 
-The browser-only list holds one file: the test of plc's import hook (`src/v1/hooks/io/io-hooks.test.ts`). The hook normalises a PLCopen TC6 v201 file to IEC 61131-10 with the page's `DOMParser`, `document.implementation` and `XMLSerializer`, which node does not have. The test helpers open their projects without that hook, so every other test runs in node; a test that imports a file through the hook belongs on the browser-only list.
+The browser-only list holds the tests that need a browser API: a real dedicated `Worker` (`src/v1/hooks/io/normalize-tc6v201.worker.test.ts`, which runs plc's import hook where core runs a dialecte's import hooks), the declaration served outside the page (`src/v1/declaration.engine.test.ts`) and real IndexedDB (`src/plc.default-store.test.ts`). The hook itself needs no DOM: it normalises a PLCopen TC6 v201 file to IEC 61131-10 the same way in node, in a worker and in a page, and the test helpers open their projects with it, so every other test runs in node with the rest.
 
 ### Running the helpers in node, in your package
 
@@ -351,7 +362,7 @@ import { useTestStorage } from '@dialecte/core/test'
 useTestStorage({ type: 'inMemory' })
 ```
 
-A test of yours that imports through plc's hook (a project from `createPlcProject`, then `project.importFile`) needs a browser: run it in a browser project.
+A test of yours that imports through plc's hook runs in node too: `createPlcProject` does not read the runner's store, so name it, `createPlcProject({ storage: { type: 'inMemory' } })`, then `project.importFile`.
 
 ---
 
@@ -371,6 +382,8 @@ All types are bound to the PLC dialecte config via the `PlcTest` namespace:
 | `PlcTest.ActParams<T>`      | `{ project, source, target?, testCase }` - passed to `act`                                              |
 | `PlcTest.ActResult`         | `{ assertOn?: 'source' \| 'target', withDatabaseIds?: boolean }` - returned by `act` in `withExport`    |
 | `PlcTest.TestRunner`        | Runner type bound to PLC config                                                                         |
+| `PlcTest.Helpers`           | Every test helper of the PLC dialecte, as core derives them from `PLC_DIALECTE`                         |
+| `PlcTest.TestProjectParams` | `{ sourceXml, targetXml? }` - what `createPlcTestProject` takes                                         |
 
 `TestCases<T>` accepts any type extending `BaseTestCase` - use `BaseTestCase` for non-XML generic tests, `BaseXmlTestCase` for XML round-trip tests:
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><dataTypes/><pous>
+<pou name="NoType"><body><ST>none;</ST></body></pou>
+<pou name="Prog" pouType="program"><body><ST>prog;</ST></body></pou>
+<pou name="Func" pouType="function"><interface><returnType><INT/></returnType><inputVars><variable name="x"><type><INT/></type></variable></inputVars></interface><body><ST>Func := x;</ST></body></pou>
+<pou name="Fb" pouType="functionBlock"><body><IL>LD 1</IL></body></pou>
+<pou name="WrongCase" pouType="Program"><body><ST>case;</ST></body></pou>
+<pou pouType="program"><body><ST>nameless;</ST></body></pou>
+<pou name="EmptyType" pouType=""><body><ST>empty;</ST></body></pou>
+</pous></types>
+</project>

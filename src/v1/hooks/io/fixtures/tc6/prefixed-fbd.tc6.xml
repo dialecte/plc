@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><tc6:project xmlns:tc6="http://www.plcopen.org/xml/tc6_0201" xmlns:f="urn:foreign"><tc6:types><tc6:pou name="P"><tc6:body><tc6:FBD>
+<tc6:inVariable localId="1"><tc6:position x="1" y="2"/><tc6:connectionPointOut/><tc6:expression>a</tc6:expression></tc6:inVariable>
+<f:inVariable localId="2"><f:position x="3" y="4"/><f:connectionPointOut/><f:expression>foreign</f:expression></f:inVariable>
+<tc6:block localId="3" typeName="B"><tc6:position x="5" y="6"/><tc6:inputVariables><tc6:variable formalParameter="IN"><tc6:connectionPointIn><tc6:connection refLocalId="1"/></tc6:connectionPointIn></tc6:variable></tc6:inputVariables><tc6:outputVariables><tc6:variable formalParameter="Q"><tc6:connectionPointOut/></tc6:variable></tc6:outputVariables></tc6:block>
+<tc6:outVariable localId="4"><tc6:connectionPointIn><tc6:connection refLocalId="3" formalParameter="Q"/></tc6:connectionPointIn><tc6:expression>o</tc6:expression></tc6:outVariable>
+<tc6:comment localId="5"><tc6:position x="0" y="0"/><tc6:content>c</tc6:content></tc6:comment>
+<tc6:connector localId="6" name="K"><tc6:connectionPointIn><tc6:connection refLocalId="2"/></tc6:connectionPointIn></tc6:connector>
+<tc6:continuation localId="7" name="K"><tc6:connectionPointOut/></tc6:continuation>
+</tc6:FBD>
+</tc6:body></tc6:pou></tc6:types></tc6:project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><LD>
+<leftPowerRail localId="1"/>
+<contact localId="2"><connectionPointIn><connection refLocalId="1"/></connectionPointIn></contact>
+<contact localId="3"><position/><connectionPointIn><connection refLocalId="404"/></connectionPointIn><connectionPointOut/><variable/></contact>
+<coil localId="4"><connectionPointOut/><variable>
+   </variable></coil>
+<rightPowerRail><connectionPointIn><connection/></connectionPointIn></rightPowerRail>
+<contact localId="5"><connectionPointIn><connection refLocalId="3" formalParameter="pin"/></connectionPointIn><connectionPointOut/><addData><variable>nested</variable></addData></contact>
+<contact localId="6"><connectionPointIn/></contact>
+<contact localId="7" negated="true"/>
+
+</LD></body></pou></types></project>

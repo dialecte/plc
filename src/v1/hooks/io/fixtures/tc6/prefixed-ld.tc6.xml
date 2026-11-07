@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><tc6:project xmlns:tc6="http://www.plcopen.org/xml/tc6_0201" xmlns:f="urn:foreign"><tc6:types><tc6:pou name="P"><tc6:body><tc6:LD>
+<tc6:leftPowerRail localId="1"><tc6:position x="0" y="0"/><tc6:connectionPointOut/></tc6:leftPowerRail>
+<f:contact localId="2"><f:connectionPointOut/><f:variable>foreign</f:variable></f:contact>
+<tc6:contact localId="3" negated="true"><tc6:connectionPointIn><tc6:connection refLocalId="1"/></tc6:connectionPointIn><tc6:connectionPointOut/><tc6:variable>X</tc6:variable></tc6:contact>
+<tc6:coil localId="4"><tc6:connectionPointIn><tc6:connection refLocalId="3"/></tc6:connectionPointIn><tc6:variable>Y</tc6:variable></tc6:coil>
+<tc6:rightPowerRail localId="5"><tc6:connectionPointIn><tc6:connection refLocalId="4"/></tc6:connectionPointIn></tc6:rightPowerRail>
+</tc6:LD>
+</tc6:body></tc6:pou></tc6:types></tc6:project>

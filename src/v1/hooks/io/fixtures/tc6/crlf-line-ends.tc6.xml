@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <types>
+    <pou name="Crlf" pouType="program">
+      <interface><localVars><variable name="a
+b"><type><INT/></type></variable></localVars></interface>
+      <body><ST>line 1
+line 2
+  line 3&#13;
+line 4&#13;&#10;line 5</ST></body>
+    </pou>
+  </types>
+</project>

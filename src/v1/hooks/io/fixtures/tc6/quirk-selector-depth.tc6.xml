@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201">
+<types>
+<addData><pou name="HiddenInTypes"/></addData>
+<pous>
+<pou name="ActionFirst"><interface><localVars><variable name="v"><type><INT/></type></variable></localVars></interface>
+<actions><action name="A"><body><ST>action body</ST></body></action></actions>
+<body><ST>main body</ST></body></pou>
+<pou name="BodyFirst"><body><ST>main body</ST></body>
+<actions><action name="A"><body><IL>action body</IL></body></action></actions></pou>
+</pous>
+</types>
+</project>

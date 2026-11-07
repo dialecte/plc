@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<inVariable localId="1"><position x="0" y="0"/><connectionPointOut/><expression>a</expression></inVariable>
+<inVariable localId="2"><position x="0" y="40"/><connectionPointOut/><expression>b</expression></inVariable>
+<block localId="3" typeName="SPLIT" instanceName="s1"><position x="50" y="0"/>
+<inputVariables><variable formalParameter="IN1"><connectionPointIn><connection refLocalId="1"/></connectionPointIn></variable></inputVariables>
+<inOutVariables/>
+<outputVariables>
+<variable formalParameter="Q1"><connectionPointOut/></variable>
+<variable formalParameter="Q2"><connectionPointOut/></variable>
+<variable formalParameter="Q3"><connectionPointOut/></variable>
+</outputVariables></block>
+<block localId="4" typeName="MUX" instanceName=""><position x="150" y="0"/>
+<inputVariables>
+<variable formalParameter="A" negated="true"><connectionPointIn><connection refLocalId="3" formalParameter="Q2"/></connectionPointIn></variable>
+<variable formalParameter="B" negated="false"><connectionPointIn><connection refLocalId="3"/></connectionPointIn></variable>
+<variable formalParameter="C" edge="rising"><connectionPointIn><connection refLocalId="3" formalParameter="Q3"/><connection refLocalId="2"/></connectionPointIn></variable>
+<variable formalParameter="D" edge="falling" negated="true"><connectionPointIn><connection refLocalId="1"/></connectionPointIn></variable>
+<variable formalParameter="E" edge="none"><connectionPointIn/></variable>
+<variable formalParameter="F" edge=""/>
+<variable><connectionPointIn><connection refLocalId="2"/></connectionPointIn></variable>
+</inputVariables>
+<outputVariables><variable formalParameter="Y"><connectionPointOut/></variable><variable formalParameter="Z"><connectionPointOut/></variable></outputVariables>
+</block>
+<outVariable localId="5"><position x="250" y="0"/><connectionPointIn><connection refLocalId="4" formalParameter="Z"/></connectionPointIn><expression>z</expression></outVariable>
+<outVariable localId="6"><position x="250" y="40"/><connectionPointIn><connection refLocalId="4"/></connectionPointIn><expression>y</expression></outVariable>
+
+</FBD></body></pou></types></project>

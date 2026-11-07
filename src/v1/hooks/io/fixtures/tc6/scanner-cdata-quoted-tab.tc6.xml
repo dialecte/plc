@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="a	b" pouType="program"><body><ST><![CDATA[x := 'a	b'; y := "c	d"; z := a > b;]]></ST></body></pou><pou name="after	tab" pouType="program"/></types></project>

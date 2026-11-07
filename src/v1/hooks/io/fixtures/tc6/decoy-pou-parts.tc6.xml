@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types>
+<pou name="Parts">
+<addData><data name="decoy"><interface><localVars><variable name="DecoyVar"><type><BOOL/></type></variable></localVars></interface><body><ST>decoy body</ST></body></data></addData>
+<interface><localVars><variable name="RealVar"><type><INT/></type></variable></localVars></interface>
+<body><ST>real body</ST></body>
+</pou>
+</types>
+</project>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><LD>
+<addData><data name="decoy"><contact localId="90"><connectionPointOut/><variable>nested element</variable></contact></data></addData>
+<leftPowerRail localId="1"><position x="0" y="0"/><connectionPointOut/></leftPowerRail>
+<contact localId="2"><position x="1" y="0"/><addData><data name="decoy"><connectionPointIn><connection refLocalId="1"/></connectionPointIn><connectionPointOut/></data></addData><addData><data name="decoy"><variable>DecoyOperand</variable></data></addData><variable>RealOperand</variable></contact>
+<contact localId="3"><position x="2" y="0"/><connectionPointIn><connection refLocalId="1"/></connectionPointIn><addData><data name="decoy"><connectionPointOut/></data></addData><variable>Y</variable></contact>
+<coil localId="4"><position x="3" y="0"/><addData><data name="decoy"><connectionPointOut/></data></addData><connectionPointIn><connection refLocalId="3"/></connectionPointIn><variable>Z</variable></coil>
+
+</LD></body></pou></types></project>

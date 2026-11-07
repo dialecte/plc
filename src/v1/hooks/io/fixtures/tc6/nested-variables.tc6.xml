@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><body><FBD>
+<inVariable localId="1"><connectionPointOut/><expression>a</expression></inVariable>
+<block localId="2" typeName="B"><position x="0" y="0"/>
+<inputVariables>
+<addData><data name="decoy"><variable formalParameter="InAddData"><connectionPointIn><connection refLocalId="1"/></connectionPointIn></variable></data></addData>
+<variable formalParameter="Outer"><connectionPointIn><connection refLocalId="1"/></connectionPointIn><variable formalParameter="InVariable"><connectionPointIn><connection refLocalId="1"/></connectionPointIn></variable></variable>
+</inputVariables>
+<outputVariables><addData><data name="decoy"><variable formalParameter="OnlyNested"><connectionPointOut/></variable></data></addData></outputVariables>
+</block>
+<block localId="3" typeName="C"><position x="1" y="0"/>
+<inputVariables><addData><variable formalParameter="OnlyAddData"/></addData></inputVariables>
+<outputVariables><variable formalParameter="Out"><connectionPointOut/><variable formalParameter="InOut"><connectionPointOut/></variable></variable></outputVariables>
+</block>
+<outVariable localId="4"><connectionPointIn><connection refLocalId="2" formalParameter="OnlyNested"/><connection refLocalId="3" formalParameter="InOut"/><connection refLocalId="3" formalParameter="Out"/></connectionPointIn><expression>o</expression></outVariable>
+
+</FBD></body></pou></types></project>

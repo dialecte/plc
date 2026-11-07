@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.plcopen.org/xml/tc6_0201"><types><pou name="FB1" pouType="functionBlock"><interface>
+<inputVars>
+<variable name="direct"><type><INT/></type></variable>
+<addData><variable name="nested"><type><INT/></type></variable></addData>
+</inputVars>
+<localVars><!-- a comment --><variable name="after_comment"><type><INT/></type></variable></localVars>
+</interface>
+</pou></types></project>
