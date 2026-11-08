@@ -1,6 +1,6 @@
 import { describe, it, expect, onTestFinished } from 'vitest'
 
-import { createPlcProject } from '@/v1'
+import { createPlcProject, PLC_DIALECTE } from '@/v1'
 
 /**
  * Every fixture file of the hook folder, by path. Every file name is written in full where it is used (the test-code
@@ -40,6 +40,10 @@ describe('createPlcProject', () => {
 
 	it('a project -> carries the id of the declaration it is wired from', () => {
 		expect(createPlcProject().dialecteId).toBe('plc/v1')
+	})
+
+	it('the factory -> carries the PLC declaration it makes its projects from', () => {
+		expect(createPlcProject.dialecte).toBe(PLC_DIALECTE)
 	})
 
 	it('a TC6 v2.01 file imported into its project on the in-memory store -> normalised: the root reads back as the IEC Project', async () => {

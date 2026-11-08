@@ -24,7 +24,7 @@ const IN_MEMORY_STORAGE_SETUP = 'src/v1/test/in-memory-storage.setup.ts'
  * under the running tests.
  */
 const BROWSER_OPTIMIZE_DEPS = {
-	include: ['sax', '@dialecte/core', '@dialecte/core/helpers', '@dialecte/core/engine'],
+	include: ['sax', '@dialecte/core', '@dialecte/core/helpers', '@dialecte/core/sqlite'],
 }
 
 /** Every path of a tier-only list names a file: a moved test file must not drop out of its tier unseen. */

@@ -5,15 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## UNRELEASED
+## [0.4.0] - 2026-11-08
 
 ### Added
 
 - **`PLC_DIALECTE`**, the PLC dialecte's declaration, from `@dialecte/plc/v1`: its id, the package's version, its config, its extensions and the import hook, declared once. `createPlcProject` and the test helpers are built from it.
 - The project `createPlcProject` returns now carries `project.dialecteId` (`plc/v1`). `PlcTest.Helpers` and `PlcTest.TestProjectParams` in `@dialecte/plc/v1/test`.
+- **`createPlcProject.destroyProject({ name, storage })`** deletes the PLC project of that name on that storage without opening it, and **`createPlcProject.dialecte`** is `PLC_DIALECTE`: `createPlcProject` is now `@dialecte/core`'s project factory for the PLC declaration. Calling it is unchanged: `createPlcProject({ storage?, extensions? })` returns a project, opened with `.open(name)`, on the local store unless `storage` names another.
 
 ### Changed
 
+- **Breaking: requires `@dialecte/core` 0.9.0** (pinned exactly, was 0.8.1). An app keeps one `@dialecte/core` in its lockfile and moves its other dialecte packages to core 0.9.0 with this one. A project on the local or in-memory store changes nothing.
+- **Breaking, for a project on SQLite storage:** the app assembles the engine; this package ships no worker. The app's one engine worker file calls `serveSqliteEngine({ dialectes: [PLC_DIALECTE, ...] })`, and its page calls `registerSqliteEngine({ url, dialectes: [PLC_DIALECTE, ...] })` once, before the first project, `url` a `?worker&url` import of that file (both from `@dialecte/core/sqlite`). `createPlcProject({ storage: { type: 'sqlite' } })` then opens on it. Getting started shows both files.
+- **A PLC project's in-memory state is its dialecte's and its name's**: the project `createPlcProject` or the test helpers make tells its store `plc/v1`, so it no longer shares its in-memory state with a project of another dialecte, or with a plain core `Project` given no dialecte, of the same name. A project on the local (IndexedDB) store is still found by its name alone.
 - **`createPlcTestProject` and `runPlcTestCases` now run plc's import hook**: a PLCopen TC6 v2.01 fixture is normalised to IEC 61131-10 form when the project imports it, as with `createPlcProject`. A fixture already in IEC form is unchanged. The schema check still reads a fixture as written, so it does not validate a TC6 fixture; export the document and pass it to `assertValidPlcXml` to check the normalised result.
 - **The PLCopen TC6 v2.01 import normalisation no longer needs a browser**: it runs in node and in a worker as it does in a page, with the same output. Consumers install nothing new.
 - **What counts as malformed follows the strict XML parser the import itself uses**: a refused file's message after `TC6 v201 parse error: ` is that parser's own, and the prefix stays. Some malformed input a browser's parser refused is now accepted, and some it accepted is now refused: a name holding a character at or above U+10000 (in an element or attribute a vendor adds) is refused with `TC6 v201 parse error: `. A `<parsererror>` element in a file no longer makes the file refused: it is read like any other element.

@@ -1,11 +1,15 @@
-// SQLite storage, as an app opts into it
-import '@dialecte/core/sqlite'
+// the test-only engine worker, started from its `?worker&url` import as an app's page starts its own
+import engineUrl from './__tests__/plc-engine.worker?worker&url'
 import { PLC_DIALECTE } from './declaration.constants'
+import { createPlcProject } from './dialecte'
 
-import { createProjectFactory } from '@dialecte/core'
+// SQLite storage, as an app opts into it: the import registers the storage kind, the call tells where the engine is
+import { registerSqliteEngine } from '@dialecte/core/sqlite'
 import { describe, expect, it, onTestFinished } from 'vitest'
 
 import type { Plc } from './config'
+
+registerSqliteEngine({ url: engineUrl, dialectes: [PLC_DIALECTE] })
 
 /**
  * Every fixture file of the hook folder, by path. Every file name is written in full where it is used (the test-code
@@ -22,14 +26,6 @@ const FIXTURES = import.meta.glob<string>('./hooks/io/fixtures/tc6/*.xml', {
  * many times over on a loaded machine. A wide bound, so what fails is the case with its message, not the runner's default.
  */
 const ENGINE_CASE_TIMEOUT_MS = 60_000
-
-/** A test-only engine worker serving the PLC declaration, as the dev server serves it. */
-const ENGINE_URL = new URL('./__tests__/plc-engine.worker.ts', import.meta.url).href
-/** Projects of the PLC declaration, run by that engine worker. */
-const createDeclaredPlcProject = createProjectFactory({
-	dialecte: PLC_DIALECTE,
-	engineUrl: ENGINE_URL,
-})
 
 /** What a document reads back once its project is opened again. */
 type ReadBack = {
@@ -51,23 +47,23 @@ function fileOf(params: { xml: string; name: string }): File {
 }
 
 /**
- * The file imported into a new project of the declaration on sqlite storage, the project closed and opened again, the
+ * The file imported into a new PLC project on sqlite storage, the project closed and opened again, the
  * document read back from the engine; the project destroyed when the case ends, whichever step it reached.
  */
 async function importAndReadBack(params: { file: File }): Promise<ReadBack> {
 	const { file } = params
 	const name = `plc-sqlite-${crypto.randomUUID()}`
-	const first = await createDeclaredPlcProject({ storage: { type: 'sqlite' } }).open(name)
+	const first = await createPlcProject({ storage: { type: 'sqlite' } }).open(name)
 	// the project the case holds open; none between the close and the reopen
 	const held: { project: Plc.Project | undefined } = { project: first }
 	onTestFinished(function destroyProject() {
 		if (held.project) return held.project.destroy()
-		return createDeclaredPlcProject.destroyProject({ name })
+		return createPlcProject.destroyProject({ name, storage: { type: 'sqlite' } })
 	})
 	const { documentId } = await first.importFile(file)
 	await first.close()
 	held.project = undefined
-	const again = await createDeclaredPlcProject({ storage: { type: 'sqlite' } }).open(name)
+	const again = await createPlcProject({ storage: { type: 'sqlite' } }).open(name)
 	held.project = again
 	const document = again.openDocument(documentId)
 	const root = await document.query.getRoot()
@@ -85,7 +81,7 @@ async function importAndReadBack(params: { file: File }): Promise<ReadBack> {
 	}
 }
 
-describe('PLC_DIALECTE in an engine worker, a project on sqlite storage', () => {
+describe('createPlcProject on sqlite storage, served by an engine worker of PLC_DIALECTE', () => {
 	type TestCase = { file: File; expected: ReadBack }
 	const IEC_FBD_WIRING_READ_BACK: ReadBack = {
 		configKey: 'plc',

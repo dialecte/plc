@@ -24,6 +24,31 @@ import { createPlcProject } from '@dialecte/plc/v1'
 const project = await createPlcProject({ storage: { type: 'local' } }).open('my-project')
 ```
 
+`createPlcProject` is `@dialecte/core`'s project factory for the PLC declaration: `createPlcProject.destroyProject({ name, storage })` deletes a PLC project of that name without opening it, and `createPlcProject.dialecte` is `PLC_DIALECTE`.
+
+### On SQLite storage
+
+A project on `{ type: 'sqlite' }` runs in the app's engine worker, which the app assembles from `@dialecte/core/sqlite`: one worker file serving every dialecte the app uses, and one call in the page, before the first project, that tells where it is. This package ships no worker.
+
+```ts
+// the app's engine worker file, e.g. src/engine.worker.ts
+import { serveSqliteEngine } from '@dialecte/core/sqlite'
+import { PLC_DIALECTE } from '@dialecte/plc/v1'
+
+serveSqliteEngine({ dialectes: [PLC_DIALECTE] })
+```
+
+```ts
+import engineUrl from './engine.worker?worker&url'
+
+// the page
+import { registerSqliteEngine } from '@dialecte/core/sqlite'
+import { createPlcProject, PLC_DIALECTE } from '@dialecte/plc/v1'
+
+registerSqliteEngine({ url: engineUrl, dialectes: [PLC_DIALECTE] })
+const project = await createPlcProject({ storage: { type: 'sqlite' } }).open('my-project')
+```
+
 ## Step 2 - Import a PLCopen XML file
 
 `project.importFile` parses a PLCopen XML file and stores it as a document in the project; its result carries the new document's `documentId`.

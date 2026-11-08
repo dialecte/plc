@@ -1,6 +1,6 @@
 import { PLC_DIALECTE } from '../declaration.constants'
 
-// The PLC declaration served as a project engine, for the tests that open a project on sqlite storage.
-import { serveDialecteEngine } from '@dialecte/core/engine'
+// The app's one engine worker file, as a test needs it: it serves projects of the PLC declaration on sqlite storage.
+import { serveSqliteEngine } from '@dialecte/core/sqlite'
 
-serveDialecteEngine({ dialecte: PLC_DIALECTE })
+serveSqliteEngine({ dialectes: [PLC_DIALECTE] })

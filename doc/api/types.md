@@ -99,7 +99,7 @@ type AddressInMemberNames = Plc.AttributesOf<'Address', 'Member'>
 import { PLC_DIALECTE } from '@dialecte/plc/v1'
 ```
 
-Reach for it when you pass the PLC dialecte to something that takes a declaration, such as the project factory or the test helpers of `@dialecte/core`. To work with PLC files, `createPlcProject` is enough.
+Reach for it when you pass the PLC dialecte to something that takes a declaration, such as the test helpers of `@dialecte/core` or the app's SQLite engine (`serveSqliteEngine` in its worker file, `registerSqliteEngine` in its page, both from `@dialecte/core/sqlite`). To work with PLC files, `createPlcProject` is enough: it is core's project factory for this declaration (`createPlcProject.dialecte`).
 
 ## How types stay in sync with core
 
