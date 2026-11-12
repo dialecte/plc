@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-11-11
+
+### Changed
+
+- **Requires `@dialecte/core` 0.10.0** (pinned exactly, was 0.9.0). No breaking change: an app keeps one `@dialecte/core` in its lockfile and moves its other dialecte packages to core 0.10.0 with this one.
+- In `@dialecte/plc/v1/test`, `runPlcTestCases`, `assertExpectedElementQueries` and `assertUnexpectedElementQueries` now report a missed expectation (an expected query that selects nothing, an unexpected one that selects a node) as a failed assertion, an `AssertionError`, as core 0.10.0 does. The message text is unchanged.
+
 ## [0.4.0] - 2026-11-08
 
 ### Added
