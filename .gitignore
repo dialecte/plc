@@ -42,7 +42,7 @@ storybook-static
 src/generated/
 src/documentation/
 
-AGENTS.md
+AGENTS.local.md
 
 .vitepress/dist
 .vitepress/cache
