@@ -1,3 +1,4 @@
+# Written by `dialecte ci sync` from the @dialecte/cli template: change the template, not this file.
 name: _type-perf
 
 on:
@@ -11,11 +12,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        # the merge commit and its parents: the bench measures the change against the base it goes onto
+        with:
+          fetch-depth: 2
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'latest'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Restore node_modules cache
@@ -23,12 +27,25 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          # the install job filled it: a miss stops here, never runs without the locked dependencies
+          fail-on-cache-miss: true
 
-      # Fails if type-instantiation counts regress > 5% vs benchmarks/types/<version>/baseline.json.
-      # To intentionally update the baseline, run `npm run type-bench` and commit the result.
-      - name: Type-performance regression gate
+      # the base the change goes onto: the queue's base (fetched), else the pull request merge ref's first parent; a
+      # dispatched run has no change to measure
+      - name: Fetch the base the change goes onto
+        if: github.event_name == 'merge_group'
+        env:
+          BASE: ${{ github.event.merge_group.base_sha }}
+        run: git fetch --depth=1 origin "$BASE"
+
+      # fails when the change grows a type instantiation count past 5% of its base and its changelog fragment does not
+      # explain it ("- Type cost: <why>"); the base reaches the bench through the environment, on this step only
+      - name: Type-performance gate over the change
+        if: github.event_name != 'workflow_dispatch'
+        env:
+          DIALECTE_CHANGE_BASE: ${{ github.event_name == 'merge_group' && github.event.merge_group.base_sha || 'HEAD^1' }}
         run: npm run type-bench:check
 
-      # Fails if a schema-derived narrowing assertion no longer holds (IntelliSense safety net).
+      # fails when a schema-derived narrowing assertion no longer holds
       - name: Type-narrowing gate
-        run: npm run type-narrowing
+        run: npm run type-narrowing --if-present
