@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.6.0] - 2026-11-23
+
+### Changed
+
+- **Breaking:** requires `@dialecte/core` 0.14.0 (pinned exactly, was 0.12.1). An app keeps one `@dialecte/core` in its lockfile and moves its other dialecte packages to core 0.14 with this one. The engine's changes reach a PLC project as they reach any core project: `getTree`'s `depth` counts the levels the caller sees (a hoisted transparent element no longer uses one up), a transaction drops everything it has cached once another view's commit, an undo or a reimport of the document is told, and a copy of the library at another version no longer shares its storage kinds.
+
 ## [0.5.0] - 2026-11-19
 
 ### Changed
