@@ -47,18 +47,18 @@
 		"format:fix": "oxfmt",
 		"//====== TYPE PERF ======//": "",
 		"coverage:gen": "dialecte coverage --version v1",
-		"type-bench": "npm run coverage:gen && dialecte bench --version v1",
-		"type-bench:check": "npm run coverage:gen && dialecte bench --check --version v1",
+		"type-bench": "dialecte bench --version v1",
+		"type-bench:check": "dialecte bench --check --version v1",
 		"type-narrowing": "npm run coverage:gen && dialecte narrowing --version v1",
 		"type-audit": "dialecte audit --version v1",
 		"//====== HOOKS ======//": "",
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@dialecte/core": "0.12.1"
+		"@dialecte/core": "0.14.0"
 	},
 	"devDependencies": {
-		"@dialecte/cli": "0.7.0",
+		"@dialecte/cli": "0.11.0",
 		"@tsconfig/node24": "^24.0.4",
 		"@types/node": "^24.12.4",
 		"@types/sax": "1.2.7",
@@ -92,6 +92,11 @@
 					"run": "npx vitest run --project node --changed",
 					"counts": "tests",
 					"changedOnly": true
+				},
+				{
+					"name": "rules",
+					"run": "dialecte rules",
+					"scoped": true
 				}
 			],
 			"full": [
@@ -112,6 +117,22 @@
 					"name": "browser tests",
 					"run": "npx vitest run --project browser",
 					"counts": "tests"
+				},
+				{
+					"name": "rules",
+					"run": "dialecte rules",
+					"scoped": true
+				}
+			],
+			"hook": [
+				{
+					"name": "check",
+					"run": "npm run check"
+				},
+				{
+					"name": "rules",
+					"run": "dialecte rules",
+					"scoped": true
 				}
 			]
 		},
