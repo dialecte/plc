@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-25
+
+### Changed
+
+- **Breaking:** requires `@dialecte/core` 0.17.0 (pinned exactly, was 0.14.0). An app keeps one `@dialecte/core` in its lockfile and moves its other dialecte packages to core 0.17 with this one: a copy of the library at another version no longer shares its storage kinds, and an engine or hub of an older core is refused (SQLite engine protocol 9, hub protocol 13), so tabs still running an older core are closed before a project is opened with this one. Stored data is unchanged.
+- **Breaking** for custom implementations: core's `SaveTarget` now requires `discard()` and `ProgressReporter` requires `runInPlan()`; a wrapper or test fake of either adds them.
+- Core's reworked transparent-element reads (`findAncestors`, `getTree`, `getSnapshot`, child reads) and the required fixed root attributes `initEmptyDocument` now writes change nothing for a PLC project: the dialecte declares no transparent element and no required fixed root attribute. It also gets core's fixes: IndexedDB writes and reads that ran while the store reopened its connection, and no empty file left by an export that fails after its save dialog opened.
+
 ## [0.6.0] - 2026-11-23
 
 ### Changed
