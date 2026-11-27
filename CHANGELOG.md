@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-11-27
+
+### Changed
+
+- On `@dialecte/core` 0.17.1 (parallel IndexedDB reads fix): requires it pinned exactly (was 0.17.0). The IndexedDB store no longer fails a read or a write with `PrematureCommitError` under load, so parallel reads of one project no longer fail. An app moves its other dialecte packages to core 0.17.1 with this one, keeping one `@dialecte/core` in its lockfile.
+
 ## [0.7.0] - 2026-11-25
 
 ### Changed
